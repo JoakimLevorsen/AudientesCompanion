@@ -1,4 +1,4 @@
-package com.a2electricboogaloo.audientes.ui.dashboard
+package com.a2electricboogaloo.audientes.ui.audiograms
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -10,20 +10,20 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
 
-class DashboardFragment : Fragment() {
+class AudiogramFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var audiogramViewModel: AudiogramViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-            ViewModelProviders.of(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(this, Observer {
+        audiogramViewModel =
+            ViewModelProviders.of(this).get(AudiogramViewModel::class.java)
+        val root = inflater.inflate(R.layout.fragment_audiograms, container, false)
+        val textView: TextView = root.findViewById(R.id.text_home)
+        audiogramViewModel.text.observe(this, Observer {
             textView.text = it
         })
         return root
