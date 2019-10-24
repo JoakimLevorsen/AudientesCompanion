@@ -84,7 +84,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="#4F4F4F"
+                android:background="@color/gray2"
                 android:orientation="horizontal">
 
                 <Space
