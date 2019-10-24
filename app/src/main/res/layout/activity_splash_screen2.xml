@@ -8,14 +8,12 @@
     tools:context=".ui.SplashScreen.SplashScreen">
 
     <ImageView
-        android:id="@+id/imageView14"
+        android:id="@+id/imageView17"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/loading1" />
+        app:srcCompat="@drawable/Loading2"
+        tools:layout_editor_absoluteX="77dp"
+        tools:layout_editor_absoluteY="109dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
 
