@@ -9,17 +9,17 @@
         android:id="@+id/navigation_home"
         android:name="com.a2electricboogaloo.audientes.ui.home.HomeFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_audiograms" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
         android:name="com.a2electricboogaloo.audientes.ui.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_notifications"
         android:name="com.a2electricboogaloo.audientes.ui.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_settings" />
 </navigation>
