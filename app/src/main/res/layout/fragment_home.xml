@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#333333">
+    android:background="@color/gray1">
 
     <TextView
         android:id="@+id/text_dashboard"
@@ -22,10 +22,10 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="24dp"
+        android:layout_marginStart="@dimen/activity_outer_horizontal_margin"
+        android:layout_marginTop="@dimen/activity_outer_vertical_margin"
+        android:layout_marginEnd="@dimen/activity_outer_horizontal_margin"
+        android:layout_marginBottom="@dimen/activity_outer_vertical_margin"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="75dp"
-            android:background="#4F4F4F"
+            android:background="@color/gray2"
             android:orientation="vertical">
 
             <LinearLayout
@@ -43,12 +43,17 @@
                 android:layout_height="50dp"
                 android:orientation="horizontal">
 
+                <Space
+                    android:layout_width="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/volume"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/volume" />
+                    android:text="@string/volume"
+                    android:textColor="@color/gray6" />
 
                 <Button
                     android:id="@+id/button"
@@ -61,6 +66,7 @@
 
             <SeekBar
                 android:id="@+id/seekBar"
+                style="@android:style/Widget.Material.SeekBar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -72,6 +78,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="250dp"
+            android:background="@color/gray2"
             android:orientation="vertical">
 
             <LinearLayout
@@ -80,12 +87,17 @@
                 android:background="#4F4F4F"
                 android:orientation="horizontal">
 
+                <Space
+                    android:layout_width="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content" />
+
                 <TextView
                     android:id="@+id/textView2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/programs" />
+                    android:text="@string/programs"
+                    android:textColor="@color/gray6" />
 
                 <Button
                     android:id="@+id/button2"
