@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/activity_outer_horizontal_margin"
+    android:layout_marginTop="@dimen/activity_outer_vertical_margin"
+    android:layout_marginRight="@dimen/activity_outer_horizontal_margin"
+    android:layout_marginBottom="@dimen/activity_outer_vertical_margin"
+    android:orientation="vertical">
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="507dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="24dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/upButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_up"
+            android:stateListAnimator="@null" />
+
+        <Space
+            android:layout_width="47dp"
+            android:layout_height="match_parent" />
+
+        <Button
+            android:id="@+id/downButton"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_down"
+            android:stateListAnimator="@null" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="16dp" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/addButton"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:background="@drawable/ic_plus"
+            android:fadingEdge="horizontal|vertical|none"
+            android:stateListAnimator="@null" />
+
+        <Space
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+</LinearLayout>
