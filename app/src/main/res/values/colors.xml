@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    TODO: Get colors from Figma and implement use of colors/styles throughout project-->
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#D81B60</color>
+<!--    TODO: Implement use of colors/styles throughout project-->
+    <color name="primary">#FFC44A</color>
+    <color name="primaryDark">#C89410</color>
+    <color name="primaryLight">#FFF77B</color>
+    <color name="secondary">#4A86FF</color>
+    <color name="secondaryDark">#005ABC</color>
+    <color name="secondaryLight">#88B5FF</color>
+    <color name="gray1">#333333</color>
+    <color name="gray2">#4F4F4F</color>
+    <color name="gray3">#828282</color>
+    <color name="gray4">#BDBDBD</color>
+    <color name="gray5">#E0E0E0</color>
+    <color name="gray6">#F2F2F2</color>
+    <color name="text">#394F61</color>
+    <color name="background">#19232B</color>
+    <color name="red">#D10A0A</color>
+    <color name="blue">#226BF8</color>
+    <color name="green">#0AE47C</color>
+
 </resources>
