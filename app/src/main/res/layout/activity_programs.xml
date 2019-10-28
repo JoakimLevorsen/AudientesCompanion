@@ -20,45 +20,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="24dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <Button
-                android:id="@+id/upButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/ic_up"
-                android:stateListAnimator="@null" />
-
-            <Space
-                android:layout_width="47dp"
-                android:layout_height="match_parent" />
-
-            <Button
-                android:id="@+id/downButton"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:background="@drawable/ic_down"
-                android:stateListAnimator="@null" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            android:layout_height="45dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
