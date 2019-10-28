@@ -22,9 +22,8 @@ class AudiogramFragment : Fragment() {
         audiogramViewModel =
             ViewModelProviders.of(this).get(AudiogramViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_audiograms, container, false)
-        val textView: TextView = root.findViewById(R.id.text_home)
         audiogramViewModel.text.observe(this, Observer {
-            textView.text = it
+            //textView.text = it
         })
         return root
     }
