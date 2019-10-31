@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#333333"
-    tools:context=".ui.SplashScreen.SplashScreen">
+    tools:context=".ui.splashScreen.SplashScreen">
 
     <ImageView
         android:id="@+id/imageView17"
