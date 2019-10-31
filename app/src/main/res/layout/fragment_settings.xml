@@ -60,7 +60,7 @@
                     android:textColor="@color/gray6" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/programsTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Change the app’s display language"

@@ -46,7 +46,7 @@
             android:layout_weight="1" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/moreButton"
             android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -191,7 +191,7 @@
             android:layout_weight="1" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/programsTitle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
