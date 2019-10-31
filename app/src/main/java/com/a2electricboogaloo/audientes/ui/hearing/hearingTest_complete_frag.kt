@@ -20,11 +20,11 @@ class hearingTest_complete_frag : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_hearing_test_complete_frag, container, false)
 
-        //See my results-button not implemented
-        val button = root.findViewById<Button>(R.id.button9)
-
-        //Amazing home button not implemented
-        val button2 = root.findViewById<Button>(R.id.button10)
+//        //TODO See my results-button not implemented
+//        val button = root.findViewById<Button>(R.id.button9)
+//
+//        //TODO Amazing home button not implemented
+//        val button2 = root.findViewById<Button>(R.id.button10)
 
         return root
     }

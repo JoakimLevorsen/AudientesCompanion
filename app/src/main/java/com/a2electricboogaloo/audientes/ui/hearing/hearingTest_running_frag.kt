@@ -24,11 +24,11 @@ class hearingtest_running_frag : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.fragment_hearing_test_running_frag, container, false)
 
-        //confirm hearing test button not implemented ::DUE TO THIS THERE IS NO NAVIGATION TO "hearingTest_complete_frag"
-        val button = root.findViewById<Button>(R.id.confirmButton4)
-
-        //Cancel hearing test button not implemented ::DUE TO THIS THERE IS NO NAVIGATION TO "hearingTest_complete_frag"
-        val button2 = root.findViewById<Button>(R.id.cancelButton5)
+//        // TODO confirm hearing test button not implemented ::DUE TO THIS THERE IS NO NAVIGATION TO "hearingTest_complete_frag"
+//        val button = root.findViewById<Button>(R.id.confirmButton4)
+//
+//        // TODO Cancel hearing test button not implemented ::DUE TO THIS THERE IS NO NAVIGATION TO "hearingTest_complete_frag"
+//        val button2 = root.findViewById<Button>(R.id.cancelButton5)
 
 
         return root
