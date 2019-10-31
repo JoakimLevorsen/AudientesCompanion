@@ -16,13 +16,13 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="510dp" />
+            android:layout_height="655dp" />
 
         <Space
             android:layout_width="match_parent"
             android:layout_height="45dp" />
 
-        <LinearLayout
+        <!--<LinearLayout
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:orientation="horizontal">
@@ -44,7 +44,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1" />
-        </LinearLayout>
+        </LinearLayout>-->
 
     </LinearLayout>
 </FrameLayout>
