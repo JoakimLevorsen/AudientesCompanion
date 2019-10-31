@@ -28,10 +28,7 @@ class hearingtest_running_frag : Fragment() {
 //        // TODO confirm hearing test button not implemented ::DUE TO THIS THERE IS NO NAVIGATION TO "hearingTest_complete_frag"
 //        val button = root.findViewById<Button>(R.id.confirmButton4)
 //
-        // TODO Cancel hearing test button not implemented
         val button2 = root.findViewById<Button>(R.id.cancelButton5)
-        val fragment = HomeFragment()
-
         button2.setOnClickListener {
             activity?.finish()
         }
