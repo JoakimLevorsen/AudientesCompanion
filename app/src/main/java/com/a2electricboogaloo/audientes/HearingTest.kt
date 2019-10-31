@@ -12,6 +12,7 @@ import androidx.core.app.ComponentActivity.ExtraData
 import androidx.core.content.ContextCompat.getSystemService
 import android.icu.lang.UCharacter.GraphemeClusterBreak.T
 import androidx.fragment.app.FragmentManager
+import kotlinx.android.synthetic.main.activity_hearing_test.view.*
 
 
 class HearingTest : AppCompatActivity() {
@@ -22,20 +23,10 @@ class HearingTest : AppCompatActivity() {
 
         val button = findViewById<Button>(R.id.startButton3)
         val fragment = hearingtest_running_frag()
-        val transaction = getSupportFragmentManager().beginTransaction()
 
-        button.setOnClickListener { transaction.replace(R.id.startButton3, fragment)}
-        transaction.commit()
-
-
-
-        /*val button = findViewById<Button>(R.id.startButton3)
-        val intent = Intent(this, hearingtest_running_frag::class.java)
-        button.setOnClickListener { startActivity(intent) }
-
-         */
-
-
-
+        button.setOnClickListener {
+            val transaction = getSupportFragmentManager().beginTransaction()
+            transaction.add(R.id.fragmentindhold, fragment)
+        transaction.commit()}
     }
 }
