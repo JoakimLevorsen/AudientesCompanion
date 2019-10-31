@@ -1,13 +1,16 @@
 package com.a2electricboogaloo.audientes.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.a2electricboogaloo.audientes.HearingTest
 import com.a2electricboogaloo.audientes.R
 
 class HomeFragment : Fragment() {
@@ -26,6 +29,11 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(this, Observer {
             textView.text = it
         })
+
+        val button = root.findViewById<Button>(R.id.goButton)
+        val intent = Intent(this.context, HearingTest::class.java)
+        button?.setOnClickListener { startActivity(intent) }
+
         return root
     }
 }

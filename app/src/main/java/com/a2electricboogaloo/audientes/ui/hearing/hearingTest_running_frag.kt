@@ -1,14 +1,19 @@
 package com.a2electricboogaloo.audientes.ui.hearing
 
 import android.content.Context
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ListView
+import com.a2electricboogaloo.audientes.HearingTest
 
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.ui.audiograms.AudiogramFragment
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,7 +47,17 @@ class hearingtest_running_frag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hearing_test_running_frag, container, false)
+        val root = inflater.inflate(R.layout.fragment_hearing_test_running_frag, container, false)
+
+        val button = root.findViewById<Button>(R.id.confirmButton4)
+        val intent = Intent(this.context, hearingTest_complete_frag::class.java)
+        button?.setOnClickListener { startActivity(intent) }
+
+        val button2 = root.findViewById<Button>(R.id.cancelButton5)
+        val intent2 = Intent(this.context, AudiogramFragment::class.java)
+        button2?.setOnClickListener({startActivity(intent2)})
+
+        return root
     }
 
     // TODO: Rename method, update argument and hook method into UI event
