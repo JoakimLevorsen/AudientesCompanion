@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.a2electricboogaloo.audientes.HearingTest
+import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 import com.a2electricboogaloo.audientes.R
 
 class HomeFragment : Fragment() {

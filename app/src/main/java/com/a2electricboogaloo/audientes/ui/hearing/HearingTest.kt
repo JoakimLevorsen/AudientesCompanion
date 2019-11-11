@@ -1,8 +1,9 @@
-package com.a2electricboogaloo.audientes
+package com.a2electricboogaloo.audientes.ui.hearing
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.hearing.Hearingtest_running_frag
 
 
