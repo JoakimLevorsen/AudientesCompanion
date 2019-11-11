@@ -6,11 +6,12 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.google.gms.google-services'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 26
+    buildToolsVersion '23.0.2'
     defaultConfig {
         applicationId "com.a2electricboogaloo.audientes"
-        minSdkVersion 21
-        targetSdkVersion 28
+        minSdkVersion 18
+        targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
@@ -21,7 +22,13 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    sourceSets {
+        main.java.srcDirs += 'src/main/lib/sweetblue/src'
+        main.res.srcDirs += 'src/main/lib/sweetblue/res'
+    }
 }
+
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

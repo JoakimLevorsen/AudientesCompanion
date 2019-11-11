@@ -1,19 +1,18 @@
 package com.a2electricboogaloo.audientes.ui.programs
 
-import com.a2electricboogaloo.audientes.R
-
 import android.app.Activity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.a2electricboogaloo.audientes.R
 
 class ProgramsActivity : Activity() {
-    private lateinit var recyclerView : RecyclerView
-    private lateinit var viewManager : RecyclerView.LayoutManager
-    private lateinit var viewAdapter : RecyclerView.Adapter<*>
-    private val dataset : Array<String> = arrayOf("", "?", "!", "‽")
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var viewManager: RecyclerView.LayoutManager
+    private lateinit var viewAdapter: RecyclerView.Adapter<*>
+    private val dataset: Array<String> = arrayOf("", "?", "!", "‽")
 
-    override fun onCreate(savedInstanceState : Bundle) {
+    override fun onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_programs)
 
