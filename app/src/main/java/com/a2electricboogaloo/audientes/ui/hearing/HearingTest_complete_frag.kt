@@ -11,7 +11,7 @@ import android.widget.Button
 
 import com.a2electricboogaloo.audientes.R
 
-class hearingTest_complete_frag : Fragment() {
+class HearingTest_complete_frag : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
