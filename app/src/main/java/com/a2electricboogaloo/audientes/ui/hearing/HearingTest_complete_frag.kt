@@ -1,14 +1,10 @@
 package com.a2electricboogaloo.audientes.ui.hearing
 
-import android.content.Context
-import android.net.Uri
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-
+import androidx.fragment.app.Fragment
 import com.a2electricboogaloo.audientes.R
 
 class HearingTest_complete_frag : Fragment() {

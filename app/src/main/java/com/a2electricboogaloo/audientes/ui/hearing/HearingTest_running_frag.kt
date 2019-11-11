@@ -8,7 +8,7 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.a2electricboogaloo.audientes.R
 
-class Hearingtest_running_frag : Fragment() {
+class HearingTest_running_frag : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
