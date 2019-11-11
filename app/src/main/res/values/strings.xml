@@ -6,10 +6,16 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="volume">Volume</string>
-    <string name="full_volume">full_Volume</string>
     <string name="programs">Programs</string>
-    <string name="plus_newProgram">Plus_newProgram</string>
     <string name="hearing_test">Hearing test</string>
+    <string name="volume_overall">Volume (overall)</string>
+    <string name="volume_left">Volume (left ear)</string>
+    <string name="volume_right">Volume (right ear)</string>
+    <string name="letter_l">L</string>
+    <string name="letter_r">R</string>
+    <string name="go">Go</string>
+    <string name="new_hearing_test">Take new hearing test</string>
+    <string name="last_hearing_test">Your last hearing test was taken on the %1$s</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

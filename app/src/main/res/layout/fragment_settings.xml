@@ -6,29 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/gray1">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="694dp"
         android:layout_marginStart="@dimen/activity_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_notifications">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -60,7 +47,7 @@
                     android:textColor="@color/gray6" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/programsTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Change the app’s display language"
@@ -70,13 +57,11 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/activity_vertical_margin"
-            android:layout_weight="@dimen/activity_vertical_margin" />
+            android:layout_height="@dimen/default_gap" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_weight="0"
             android:orientation="horizontal">
 
             <ImageView

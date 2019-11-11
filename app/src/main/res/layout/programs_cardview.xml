@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray1"
+    android:padding="16dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/gray1"
+        app:cardBackgroundColor="@color/gray5"
+        app:cardCornerRadius="5dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp">
+
+            <Space
+                android:id="@+id/leftSpace"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true" />
+            <!--android:layout_above="@id/horizontalDivider"-->
+
+            <TextView
+                android:id="@+id/programName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toEndOf="@id/leftSpace"
+                android:text="TextView"
+                android:textColor="#000000"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/basedOnAudiogram"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/programName"
+                android:layout_toEndOf="@id/leftSpace"
+                android:text="TextView"
+                android:textColor="#8C000000" />
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_alignParentTop="false"
+                android:layout_alignParentBottom="false"
+                android:layout_centerVertical="true"
+                android:layout_toStartOf="@id/rightSpace" />
+
+            <Space
+                android:id="@+id/rightSpace"
+                android:layout_width="15dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true" />
+            <!--android:layout_above="@id/horizontalDivider"-->
+
+            <!--<Space
+                android:id="@+id/middleSpace"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:layout_below="@id/basedOnAudiogram" />
+
+            <View
+                android:id="@+id/horizontalDivider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/middleSpace"
+                android:background="@color/gray3" />
+
+            <Button
+                android:id="@+id/editButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontalDivider"
+                android:layout_alignBottom="@id/deleteButton"
+                android:layout_alignParentStart="true"
+                android:layout_toStartOf="@id/verticalDivider"
+                android:text="EDIT"
+                android:textAlignment="center"
+                android:textColor="@color/primaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/verticalDivider"
+                android:layout_width="1dp"
+                android:layout_height="45dp"
+                android:layout_below="@id/horizontalDivider"
+                android:layout_centerHorizontal="true"
+                android:layout_toStartOf="@id/deleteButton"
+                android:background="@color/gray3" />
+
+            <Button
+                android:id="@+id/deleteButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="170dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/horizontalDivider"
+                android:layout_alignParentEnd="true"
+                android:text="DELETE"
+                android:textAlignment="center"
+                android:textColor="@color/primaryDark"
+                android:textSize="18sp"
+                android:textStyle="bold" />-->
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
