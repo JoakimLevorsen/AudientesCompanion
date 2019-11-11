@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "692787363787",
+    "firebase_url": "https://audientes-6531e.firebaseio.com",
+    "project_id": "audientes-6531e",
+    "storage_bucket": "audientes-6531e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692787363787:android:6c7e7a25fcd40bae83804e",
+        "android_client_info": {
+          "package_name": "com.a2electricboogaloo.audientes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "692787363787-fqlhajle7d1sft3on2ik0ads2dqpgkni.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.a2electricboogaloo.audientes",
+            "certificate_hash": "54615f8fffb490a4940543bed787219202a55ea1"
+          }
+        },
+        {
+          "client_id": "692787363787-ghukap626cmpnvhbgc9rohbli7m6d7i3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATYNHf75832zwCYiKyxkRFw6EHg8ndBOU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "692787363787-ghukap626cmpnvhbgc9rohbli7m6d7i3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
