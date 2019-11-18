@@ -120,7 +120,7 @@ final class P_BluetoothCrashResolver {
         filter.addAction(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         context.registerReceiver(receiver, filter);
 
-        if (isDebugEnabled()) Log.d(TAG, "started listening for BluetoothAdapter events");
+        if (isDebugEnabled()) Log.d(TAG, "started listening for DeviceScanActivity events");
     }
 
     /**
@@ -138,7 +138,7 @@ final class P_BluetoothCrashResolver {
 			//--- DRK > unregisterReceiver can't be called more than once for a given receiver.
 		}
     	
-        if (isDebugEnabled()) Log.d(TAG, "stopped listening for BluetoothAdapter events");
+        if (isDebugEnabled()) Log.d(TAG, "stopped listening for DeviceScanActivity events");
         saveState();
     }
 
@@ -156,7 +156,7 @@ final class P_BluetoothCrashResolver {
     }
 
     /**
-     * Call this method from your BluetoothAdapter.LeScanCallback method.
+     * Call this method from your DeviceScanActivity.LeScanCallback method.
      * Doing so is optional, but if you do, this class will be able to count the number of
      * disctinct bluetooth devices scanned, and prevent crashes before they happen.
      *
@@ -450,7 +450,7 @@ final class P_BluetoothCrashResolver {
             try {
                 Thread.sleep(TIME_TO_LET_DISCOVERY_RUN_MILLIS);
                 if (!discoveryStartConfirmed) {
-                    Log.w(TAG, "BluetoothAdapter.ACTION_DISCOVERY_STARTED never received.  Recovery may fail.");
+                    Log.w(TAG, "DeviceScanActivity.ACTION_DISCOVERY_STARTED never received.  Recovery may fail.");
                 }
 
                 final BluetoothAdapter adapter = BluetoothAdapter.getDefaultAdapter();

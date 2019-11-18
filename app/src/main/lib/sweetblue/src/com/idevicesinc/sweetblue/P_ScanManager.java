@@ -117,8 +117,8 @@ final class P_ScanManager
             {
                 //--- DRK > Catching this because of exception thrown one time...only ever seen once, so not very reproducible.
                 //			java.lang.NullPointerException
-                //			07-02 15:04:48.149: E/AndroidRuntime(24389): 	at android.bluetooth.BluetoothAdapter$GattCallbackWrapper.stopLeScan(BluetoothAdapter.java:1819)
-                //			07-02 15:04:48.149: E/AndroidRuntime(24389): 	at android.bluetooth.BluetoothAdapter.stopLeScan(BluetoothAdapter.java:1722)
+                //			07-02 15:04:48.149: E/AndroidRuntime(24389): 	at android.bluetooth.DeviceScanActivity$GattCallbackWrapper.stopLeScan(DeviceScanActivity.java:1819)
+                //			07-02 15:04:48.149: E/AndroidRuntime(24389): 	at android.bluetooth.DeviceScanActivity.stopLeScan(DeviceScanActivity.java:1722)
                 m_manager.getLogger().w(e.getStackTrace().toString());
 
                 m_manager.uhOh(BleManager.UhOhListener.UhOh.RANDOM_EXCEPTION);
@@ -434,7 +434,7 @@ final class P_ScanManager
                     //--- DRK > Not really an ASSERT case...rather just really want to know if this can happen
                     //---		so if/when it does I want it to be loud.
                     //---		UPDATE: Yes, this hits...TODO: Now have to determine if this is my fault or Android's.
-                    //---		Error message is "09-29 16:37:11.622: E/BluetoothAdapter(16286): LE Scan has already started".
+                    //---		Error message is "09-29 16:37:11.622: E/DeviceScanActivity(16286): LE Scan has already started".
                     //---		Calling stopLeScan below "fixes" the issue.
                     //---		UPDATE: Seems like it mostly happens on quick restarts of the app while developing, so
                     //---		maybe the scan started in the previous app sessions is still lingering in the new session.
