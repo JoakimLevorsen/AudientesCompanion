@@ -2,7 +2,6 @@ package com.a2electricboogaloo.audientes.model.types
 
 import com.a2electricboogaloo.audientes.model.firebase.ObjectKeys
 import com.google.firebase.firestore.DocumentSnapshot
-import java.lang.Error
 import java.util.*
 
 class Program {
@@ -48,7 +47,7 @@ class Program {
             && rightEar != null
             && creationDate != null
             && modificationDate != null
-            && name  != null
+            && name != null
             && audiogramID != null
         ) {
             this.leftEar = leftEar
