@@ -1,4 +1,0 @@
-package bluetooth
-
-class BluetoothAdapter {
-}
