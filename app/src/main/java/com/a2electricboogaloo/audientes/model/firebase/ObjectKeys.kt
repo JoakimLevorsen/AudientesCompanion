@@ -7,5 +7,9 @@ enum class ObjectKeys {
     MODIFICATION_DATE,
     NAME,
     DEVICE_INDEX,
-    AUDIOGRAM_ID
+    AUDIOGRAM_ID,
+    AUDIOGRAMS,
+    OWNER,
+    PROGRAMS,
+    DEVICES
 }
