@@ -35,12 +35,12 @@ class Program {
     }
 
     constructor(fireDoc: DocumentSnapshot) {
-        var leftEar = fireDoc.get(ObjectKeys.LEFT_EAR.name) as? HearingChannelData
-        var rightEar = fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? HearingChannelData
-        var creationDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
-        var modificationDate = fireDoc.getDate(ObjectKeys.MODIFICATION_DATE.name)
-        var name = fireDoc.get(ObjectKeys.NAME.name) as? String
-        var deviceIndex = fireDoc.get(ObjectKeys.DEVICE_INDEX.name) as? Int
+        val leftEar = fireDoc.get(ObjectKeys.LEFT_EAR.name) as? HearingChannelData
+        val rightEar = fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? HearingChannelData
+        val creationDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
+        val modificationDate = fireDoc.getDate(ObjectKeys.MODIFICATION_DATE.name)
+        val name = fireDoc.get(ObjectKeys.NAME.name) as? String
+        val deviceIndex = fireDoc.get(ObjectKeys.DEVICE_INDEX.name) as? Int
         val audiogramID = fireDoc.get(ObjectKeys.AUDIOGRAM_ID.name) as? String
         // Note: we do not check DeviceIndex since it's allowed to be null
         if (
@@ -72,4 +72,12 @@ class Program {
         ObjectKeys.DEVICE_INDEX to deviceIndex,
         ObjectKeys.AUDIOGRAM_ID to audiogramID
     )
+
+    fun getLeftEar() = leftEar
+    fun getRightEar() = rightEar
+    fun getCreationDate() = creationDate
+    fun getModificationDate() = modificationDate
+    fun getName() = name
+    fun getDeviceIndex() = deviceIndex
+    fun getAudiogramID() = audiogramID
 }
