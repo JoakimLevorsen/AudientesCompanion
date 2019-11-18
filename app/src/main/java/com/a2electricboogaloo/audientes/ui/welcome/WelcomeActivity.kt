@@ -16,6 +16,7 @@ class WelcomeActivity : AppCompatActivity() {
     private var contentText: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
 
