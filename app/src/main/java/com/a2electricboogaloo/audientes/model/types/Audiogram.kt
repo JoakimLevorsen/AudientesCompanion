@@ -2,8 +2,6 @@ package com.a2electricboogaloo.audientes.model.types
 
 import com.a2electricboogaloo.audientes.model.firebase.ObjectKeys
 import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import java.lang.Error
 import java.util.*
 
 typealias HearingChannelData = Array<Byte>
