@@ -119,7 +119,8 @@
                 android:layout_height="60dp"
                 android:background="@color/primary"
                 android:text="Start"
-                android:textColor="@color/gray6" />
+                android:textColor="@color/gray1"
+                android:textSize="18sp" />
         </LinearLayout>
     </FrameLayout>
 
