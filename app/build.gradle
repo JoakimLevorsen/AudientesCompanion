@@ -23,11 +23,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    sourceSets {
+    //Sweetblue BLE
+    /*sourceSets {
         main.java.srcDirs += 'src/main/lib/sweetblue/src'
         main.res.srcDirs += 'src/main/lib/sweetblue/res'
-    }
+    }*/
 }
 
 
