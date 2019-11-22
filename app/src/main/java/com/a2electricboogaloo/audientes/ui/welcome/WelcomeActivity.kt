@@ -41,6 +41,7 @@ class WelcomeActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_welcome)
+        hideNavBar()
 
         nextButton = findViewById<Button>(R.id.button11)
         titleText = findViewById<TextView>(R.id.titleView)
@@ -57,10 +58,11 @@ class WelcomeActivity : AppCompatActivity() {
         }
         */
 
+
         nextButton?.setOnClickListener {
             activateBT()
         }
-        
+
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter (BluetoothDevice.ACTION_FOUND)
         registerReceiver(receiver, filter)
@@ -106,6 +108,15 @@ class WelcomeActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun hideNavBar() {
+        this.window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                or View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                or View.SYSTEM_UI_FLAG_FULLSCREEN
+                or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
     }
 
     override fun onDestroy() {
