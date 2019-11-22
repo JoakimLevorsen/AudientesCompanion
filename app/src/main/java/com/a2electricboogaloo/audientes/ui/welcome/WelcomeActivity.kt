@@ -16,12 +16,11 @@ import com.a2electricboogaloo.audientes.R
 
 
 class WelcomeActivity : AppCompatActivity() {
-
-    private var didStartActivation = false
+    
     private var nextButton: Button? = null
     private var titleText: TextView? = null
     private var contentText: TextView? = null
-    private val REQUEST_ENABLE_BT = 1
+    private val REQUEST_ENABLE_BT = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,11 +49,12 @@ class WelcomeActivity : AppCompatActivity() {
         contentText?.text = "Connecting to device."
 
         val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
-        bluetoothAdapter?.startDiscovery()
 
         if (bluetoothAdapter?.isEnabled == false) {
-            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+            val discoverableIntent: Intent = Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE).apply {
+                putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 100)
+            }
+            startActivity(discoverableIntent)
             println("forbinder til BT")
         }
         if (bluetoothAdapter?.isEnabled == true){
