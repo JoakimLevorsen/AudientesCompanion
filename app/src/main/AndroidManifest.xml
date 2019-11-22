@@ -27,7 +27,6 @@
     <uses-feature android:name="android.hardware.bluetooth_le" android:required="true" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-feature android:name="android.hardware.bluetooth_le" android:required="true"/> <!-- Fjern denne linje, hvis der opstår fejl -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
