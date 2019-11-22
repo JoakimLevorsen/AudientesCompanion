@@ -58,32 +58,37 @@ class WelcomeActivity : AppCompatActivity() {
         */
 
         nextButton?.setOnClickListener {
-            titleText?.text = "Loading..."
-            contentText?.text = "Connecting to device."
-
-            val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
-            bluetoothAdapter?.startDiscovery()
-
-            if (bluetoothAdapter?.isEnabled == false) {
-                val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
-                println("forbinder til BT")
-            }
-            if (bluetoothAdapter?.isEnabled == true){
-            println("BT er aktiveret")
-                val intent = Intent(this, MainActivity::class.java)
-                val lambda = { -> startActivity(intent) }
-                finish()
-                lambda()
-            }
+            activateBT()
         }
-
-       
-
+        
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter (BluetoothDevice.ACTION_FOUND)
         registerReceiver(receiver, filter)
     }
+
+
+
+    fun activateBT(){
+        titleText?.text = "Loading..."
+        contentText?.text = "Connecting to device."
+
+        val bluetoothAdapter: BluetoothAdapter? = BluetoothAdapter.getDefaultAdapter()
+        bluetoothAdapter?.startDiscovery()
+
+        if (bluetoothAdapter?.isEnabled == false) {
+            val enableBtIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT)
+            println("forbinder til BT")
+        }
+        if (bluetoothAdapter?.isEnabled == true){
+            println("BT er aktiveret")
+            val intent = Intent(this, MainActivity::class.java)
+            val lambda = { -> startActivity(intent) }
+            finish()
+            lambda()
+        }
+    }
+
 
         // Create a BroadcastReceiver for ACTION_FOUND.
     private val receiver = object : BroadcastReceiver() {
