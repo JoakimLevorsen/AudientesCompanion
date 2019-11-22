@@ -1,6 +1,8 @@
 package com.a2electricboogaloo.audientes
 
+import android.content.DialogInterface
 import android.os.Bundle
+import androidx.appcompat.app.AlertDialog
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -28,5 +30,19 @@ class MainActivity : AppCompatActivity() {
         navView.setupWithNavController(navController)
     }
 
+    override fun onBackPressed() {
+        val builder = AlertDialog.Builder(this@MainActivity)
 
+        builder.setTitle("Confirm exit")
+
+        builder.setMessage("Are you sure you want to exit the app")
+
+        builder.setPositiveButton("EXIT"){ dialogInterface: DialogInterface, i: Int ->
+            finish()
+        }
+        builder.setNegativeButton("CANCEL"){ dialogInterface: DialogInterface, i: Int ->
+        }
+        val dialog: AlertDialog = builder.create()
+        dialog.show()
+    }
 }
