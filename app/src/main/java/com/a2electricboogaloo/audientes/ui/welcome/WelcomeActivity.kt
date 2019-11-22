@@ -73,6 +73,7 @@ class WelcomeActivity : AppCompatActivity() {
             println("BT er aktiveret")
                 val intent = Intent(this, MainActivity::class.java)
                 val lambda = { -> startActivity(intent) }
+                finish()
                 lambda()
             }
         }
