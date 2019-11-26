@@ -6,8 +6,8 @@ import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.content.Intent
-import android.os.Bundle
 import android.os.AsyncTask
+import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.MainActivity
@@ -17,11 +17,12 @@ import java.io.IOException
 import java.util.*
 
 /**
- * @author Sersan Aslan
+ * @author Sersan Aslan & Ida Christensen
  **/
 class WelcomeActivity : AppCompatActivity() {
 
     private var nextButton: Button? = null
+    private var refreshButton: Button? = null
     private var titleText: TextView? = null
     private var contentText: TextView? = null
     private var requestCodeForBT: Int? = null
@@ -30,11 +31,9 @@ class WelcomeActivity : AppCompatActivity() {
     private var deviceList: ListView? = null
     private var stringArrayList: ArrayList<String>? = null
     private var arrayAdapter: ArrayAdapter<String>? = null
-
-    var bluetoothSocket: BluetoothSocket? = null
-    var isConnected: Boolean = false
-    var AUDIENTES_UUID_ROOT: UUID = UUID.fromString("e2190000-ec7a-45d0-9ecf-6ccfdee39a27")
-
+    private var bluetoothSocket: BluetoothSocket? = null
+    private var isConnected: Boolean = false
+    private val AUDIENTES_UUID_ROOT: UUID = UUID.fromString("e2190000-ec7a-45d0-9ecf-6ccfdee39a27")
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,7 +55,7 @@ class WelcomeActivity : AppCompatActivity() {
     }
 
     /**
-     * @author Sersan Aslan
+     * @author Sersan Aslan & Ida Christensen
      **/
     private fun bluetoothActivate() {
         nextButton?.setOnClickListener {
@@ -117,9 +116,13 @@ class WelcomeActivity : AppCompatActivity() {
         }
     }
 
-   private inner class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
+    /**
+     * @author Ida Christensen
+     **/
+    private inner class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
         private var connectSuccess: Boolean = true
         private val context: Context
+        private var bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
 
         init {
             this.context = c
@@ -127,15 +130,16 @@ class WelcomeActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg params: Void?): String? {
             try {
-                if (bluetoothSocket == null || !isConnected){
-                    bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-                    val device: BluetoothDevice = bluetoothAdapter.getRemoteDevice(bluetoothAdapter.address) //wrong address, it needs 'device.address' from bondedDevices
-                    bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(AUDIENTES_UUID_ROOT)
+                if (bluetoothSocket == null || !isConnected) {
+                    val device: BluetoothDevice =
+                        bluetoothAdapter.getRemoteDevice(bluetoothAdapter.address) //wrong address, it needs 'device.address' from bondedDevices
+                    bluetoothSocket =
+                        device.createInsecureRfcommSocketToServiceRecord(AUDIENTES_UUID_ROOT)
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
 
                     bluetoothSocket?.connect() //It does not connect yet
                 }
-            } catch (e: IOException){
+            } catch (e: IOException) {
                 connectSuccess = false
                 e.printStackTrace()
             }
