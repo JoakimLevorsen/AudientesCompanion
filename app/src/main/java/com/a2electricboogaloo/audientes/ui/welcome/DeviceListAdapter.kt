@@ -1,33 +1,29 @@
 package com.a2electricboogaloo.audientes.ui.welcome
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import java.util.*
 
 
-
-
 class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: Context) :
     RecyclerView.Adapter<DeviceListAdapter.ListeViewHolder>() {
-    class ListeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
+    class ListeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         var name: TextView
-        var listeItemClickListener : ListeItemClickListener? = null
+        var listeItemClickListener: ListeItemClickListener? = null
 
         init {
             name = itemView.findViewById(R.id.textView_deviceList)
             itemView.setOnClickListener(this)
         }
-        fun setOnListItemClickListener(itemClickListener:ListeItemClickListener){
+
+        fun setOnListItemClickListener(itemClickListener: ListeItemClickListener) {
             this.listeItemClickListener = itemClickListener
         }
 
@@ -48,15 +44,14 @@ class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: 
 
         holder.name.text = "Device: " + name + " " + address
 
-        holder.setOnListItemClickListener(object :ListeItemClickListener{
+        holder.setOnListItemClickListener(object : ListeItemClickListener {
             override fun onListeItemClickListener(view: View, pos: Int) {
                 if (context is SelectDeviceActivity) {
-                    Toast.makeText(context,"virker rigtigt",Toast.LENGTH_LONG).show()//debug
+                    Toast.makeText(context, "virker rigtigt", Toast.LENGTH_LONG).show()//debug
                     (context as SelectDeviceActivity).connect(pos)
-                }
-                else{
+                } else {
                     (context as SelectDeviceActivity).connect(pos)
-                    Toast.makeText(context,"virker ikke",Toast.LENGTH_LONG).show()//debug
+                    Toast.makeText(context, "virker ikke", Toast.LENGTH_LONG).show()//debug
                 }
             }
         })
