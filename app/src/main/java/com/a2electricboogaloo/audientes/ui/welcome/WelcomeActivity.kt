@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,7 +19,8 @@ import com.a2electricboogaloo.audientes.R
 import kotlinx.android.synthetic.main.activity_select_device.*
 import org.jetbrains.anko.toast
 
-class WelcomeActivity: AppCompatActivity() {
+class WelcomeActivity: AppCompatActivity(), ListeItemClickListener {
+
     private var recyclerView: RecyclerView? = null
     private var adapter: DeviceListAdapter? = null
     internal var list = java.util.ArrayList<Device>()
@@ -28,6 +30,7 @@ class WelcomeActivity: AppCompatActivity() {
     private val REQUEST_ENABLE_BLUETOOTH = 1
 
     companion object {
+        val instance = WelcomeActivity()
         val EXTRA_ADDRESS: String = "Device_address"
     }
 
@@ -52,8 +55,15 @@ class WelcomeActivity: AppCompatActivity() {
         button_devicelist.setOnClickListener{ discoverDevices()}
     }
 
+    override fun onListeItemClickListener(view: View, pos: Int) {
+        toast("test")
+        val device: BluetoothDevice = BTDevicelist[pos]
+        val address: String = device.address
 
-
+        val intent = Intent(this, MainActivity::class.java)
+        intent.putExtra(EXTRA_ADDRESS, address)
+        startActivity(intent)
+    }
     private fun discoverDevices() {
         m_bluetoothAdapter!!.startDiscovery()
         adapter = DeviceListAdapter(list, applicationContext)
@@ -62,15 +72,6 @@ class WelcomeActivity: AppCompatActivity() {
         recyclerView?.layoutManager = layoutManager
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = adapter
-
-        val device: BluetoothDevice = BTDevicelist.get(0)
-        val address: String = device.address
-        /*
-            val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra(EXTRA_ADDRESS, address)
-            startActivity(intent)
-        */
-
     }
     private val receiver = object : BroadcastReceiver(){
 
