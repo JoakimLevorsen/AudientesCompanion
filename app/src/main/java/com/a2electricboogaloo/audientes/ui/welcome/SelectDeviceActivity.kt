@@ -68,8 +68,6 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
     }
 
     fun connect(position: Int){
-        println("test connect")
-        Log.i("test oonnect", "test connect")
         val device: BluetoothDevice = BTDevicelist[position]
         val address: String = device.address
 

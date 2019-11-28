@@ -51,16 +51,6 @@ class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: 
         holder.setOnListItemClickListener(object :ListeItemClickListener{
             override fun onListeItemClickListener(view: View, pos: Int) {
                 SelectDeviceActivity.instance!!.connect(pos)
-                /*
-                if (context is SelectDeviceActivity) {
-                    Toast.makeText(context,"virker rigtigt",Toast.LENGTH_LONG).show()//debug
-                    (context as SelectDeviceActivity).connect(pos)
-                    SelectDeviceActivity.instance!!.connect(pos)
-                }
-                else{
-                    Toast.makeText(context,"virker ikke context: "+context.toString(),Toast.LENGTH_LONG).show()//debug
-                }
-                 */
             }
         })
 

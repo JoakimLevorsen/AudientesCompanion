@@ -9,22 +9,30 @@ import android.content.Context
 import android.os.AsyncTask
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import com.a2electricboogaloo.audientes.MainActivity
+import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
 import java.io.IOException
 import java.util.*
 
-class bluetoothController : AppCompatActivity() {
+class BluetoothController {
 
     companion object {
+        var instance: BluetoothController? = null
+
+        fun setGlobalInstance(BluetoothController: BluetoothController) {
+            instance = BluetoothController
+        }
+
         var m_myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
         var m_bluetoothSocket: BluetoothSocket? = null
         lateinit var m_progress: ProgressDialog
         lateinit var m_bluetoothAdapter: BluetoothAdapter
         var m_isConnected: Boolean = false
-        lateinit var m_address: String
+        var m_address: String? = MainActivity.m_address
     }
 
 
-    private fun sendCommand(input: String) {
+    fun sendCommand(input: String) {
         if (m_bluetoothSocket != null) {
             try {
                 m_bluetoothSocket!!.outputStream.write(input.toByteArray())
@@ -34,7 +42,8 @@ class bluetoothController : AppCompatActivity() {
         }
     }
 
-    private fun disconnect() {
+
+    fun disconnect() {
         if (m_bluetoothSocket != null) {
             try {
                 m_bluetoothSocket!!.close()
@@ -44,10 +53,9 @@ class bluetoothController : AppCompatActivity() {
                 e.printStackTrace()
             }
         }
-        finish()
     }
 
-    private class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
+     class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
         private var connectSuccess: Boolean = true
         private val context: Context
 
