@@ -1,10 +1,10 @@
 package com.a2electricboogaloo.audientes.ui.splashScreen
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.R
 
-class SplashScreen : AppCompatActivity() {
+class  SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

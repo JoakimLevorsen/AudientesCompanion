@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray1"
-    tools:context=".HearingTest">
+    tools:context=".ui.hearing.HearingTest">
 
     <FrameLayout
         android:id="@+id/fragmentindhold"
