@@ -46,18 +46,21 @@ class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: 
         var name = item.name
         var address = item.address
 
-        holder.name.text = "Device: " + name + " " + address
+        holder.name.text = "Device: " + name
 
         holder.setOnListItemClickListener(object :ListeItemClickListener{
             override fun onListeItemClickListener(view: View, pos: Int) {
+                SelectDeviceActivity.instance!!.connect(pos)
+                /*
                 if (context is SelectDeviceActivity) {
                     Toast.makeText(context,"virker rigtigt",Toast.LENGTH_LONG).show()//debug
                     (context as SelectDeviceActivity).connect(pos)
+                    SelectDeviceActivity.instance!!.connect(pos)
                 }
                 else{
-                    (context as SelectDeviceActivity).connect(pos)
-                    Toast.makeText(context,"virker ikke",Toast.LENGTH_LONG).show()//debug
+                    Toast.makeText(context,"virker ikke context: "+context.toString(),Toast.LENGTH_LONG).show()//debug
                 }
+                 */
             }
         })
 

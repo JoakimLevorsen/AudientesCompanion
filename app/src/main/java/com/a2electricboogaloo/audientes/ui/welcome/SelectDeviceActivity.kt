@@ -34,12 +34,20 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
     private val runnable: Runnable? = null
 
     companion object {
-        val instance = WelcomeActivity()
+        var instance: SelectDeviceActivity? = null
+
+        fun setGlobalInstance(activity: SelectDeviceActivity) {
+            instance = activity
+        }
+
         val EXTRA_ADDRESS: String = "Device_address"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        setGlobalInstance(this)
+
         setContentView(R.layout.activity_select_device)
 
         // Register for broadcasts when a device is discovered.
