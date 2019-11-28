@@ -26,7 +26,7 @@ import java.lang.reflect.Method;
  * <br><br>
  * This class is simply a convenience that wraps various helper methods of {@link BleManager} (see the "See Also" section, which has enough links that it might give you
  * an idea of why {@link BluetoothEnabler} was written). As such you don't need to use it, but in combination with {@link BluetoothEnabler.DefaultBluetoothEnablerFilter}
- * it comes in handy as a one-line addition to most simple apps.
+ * it comes in handy as a one-name addition to most simple apps.
  *
  * @see BleManager#isLocationEnabledForScanning()
  * @see BleManager#isLocationEnabledForScanning_byManifestPermissions()

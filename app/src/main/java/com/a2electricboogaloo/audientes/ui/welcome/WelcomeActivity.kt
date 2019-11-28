@@ -3,161 +3,130 @@ package com.a2electricboogaloo.audientes.ui.welcome
 import android.app.Activity
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
-import android.bluetooth.BluetoothSocket
+import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
-import android.os.AsyncTask
+import android.content.IntentFilter
 import android.os.Bundle
-import android.widget.*
+import android.util.Log
+import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
-import kotlinx.android.synthetic.main.activity_welcome.*
-import java.io.IOException
-import java.util.*
+import kotlinx.android.synthetic.main.activity_select_device.*
+import org.jetbrains.anko.toast
 
-/**
- * @author Sersan Aslan & Ida Christensen
- **/
-class WelcomeActivity : AppCompatActivity() {
+class WelcomeActivity: AppCompatActivity() {
+    private var recyclerView: RecyclerView? = null
+    private var adapter: DeviceListAdapter? = null
+    internal var list = java.util.ArrayList<Device>()
+    internal var BTDevicelist : ArrayList<BluetoothDevice> = ArrayList()
+    private var m_bluetoothAdapter: BluetoothAdapter? = null
+    private lateinit var m_pairedDevices: Set<BluetoothDevice>
+    private val REQUEST_ENABLE_BLUETOOTH = 1
 
-    private var nextButton: Button? = null
-    private var refreshButton: Button? = null
-    private var titleText: TextView? = null
-    private var contentText: TextView? = null
-    private var requestCodeForBT: Int? = null
-    private var btEnablingIntent: Intent? = null
-    private var bluetoothAdapter: BluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-    private var deviceList: ListView? = null
-    private var stringArrayList: ArrayList<String>? = null
-    private var arrayAdapter: ArrayAdapter<String>? = null
-    private var bluetoothSocket: BluetoothSocket? = null
-    private var isConnected: Boolean = false
-    private val AUDIENTES_UUID_ROOT: UUID = UUID.fromString("e2190000-ec7a-45d0-9ecf-6ccfdee39a27")
-
+    companion object {
+        val EXTRA_ADDRESS: String = "Device_address"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         setTheme(R.style.AppTheme)
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_welcome)
-        supportActionBar?.hide()
+        setContentView(R.layout.activity_select_device)
 
-        nextButton = buttonNext
-        titleText = titleView
-        contentText = contentView
-        deviceList = listOfDevices
-
-        btEnablingIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-        requestCodeForBT = 1
-
-        showListOfBondedDevices()
-        bluetoothActivate()
-    }
-
-    /**
-     * @author Sersan Aslan & Ida Christensen
-     **/
-    private fun bluetoothActivate() {
-        nextButton?.setOnClickListener {
-            if (bluetoothAdapter == null) {
-                Toast.makeText(
-                    application,
-                    "Bluetooth does not support this device",
-                    Toast.LENGTH_LONG
-                ).show()
-
-            } else if (!bluetoothAdapter.isEnabled) {
-                startActivityForResult(btEnablingIntent, requestCodeForBT!!)
-
-            } else {
-                ConnectToDevice(this).execute()
-                val intent = Intent(this, MainActivity::class.java)
-                val lambda = { -> startActivity(intent) }
-                finish()
-                lambda()
-            }
+        // Register for broadcasts when a device is discovered.
+        val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
+        registerReceiver(receiver, filter)
+        m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        if(m_bluetoothAdapter == null) {
+            toast("this device doesn't support bluetooth")
+            return
         }
+        if(!m_bluetoothAdapter!!.isEnabled) {
+            val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
+        }
+        pairedDeviceList()
+        button_devicelist.setOnClickListener{ discoverDevices()}
     }
 
 
-    /**
-     *@method can be used, if wanted to know already bonded BT devices
-     * @author Sersan Aslan
-     **/
-    private fun showListOfBondedDevices() {
-        var setBT: Set<BluetoothDevice> = bluetoothAdapter.bondedDevices
-        var arrayBT = arrayOfNulls<String>(setBT.size)
-        var index = 0
 
-        if (setBT.isNotEmpty()) {
-            for (device: BluetoothDevice in setBT) {
-                arrayBT[index] = device.name
-                index++
-            }
-            var arrayAdapter =
-                ArrayAdapter<String>(applicationContext, R.layout.bt_list_items, arrayBT)
-            deviceList?.adapter = arrayAdapter
-        }
+    private fun discoverDevices() {
+        m_bluetoothAdapter!!.startDiscovery()
+        adapter = DeviceListAdapter(list, applicationContext)
+        var layoutManager = LinearLayoutManager(applicationContext)
+        recyclerView = findViewById(R.id.recyclerView)
+        recyclerView?.layoutManager = layoutManager
+        recyclerView?.setHasFixedSize(true)
+        recyclerView?.adapter = adapter
+
+        val device: BluetoothDevice = BTDevicelist.get(0)
+        val address: String = device.address
+        /*
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra(EXTRA_ADDRESS, address)
+            startActivity(intent)
+        */
+
     }
+    private val receiver = object : BroadcastReceiver(){
 
-    /**
-     * @author Sersan Aslan
-     **/
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode == requestCodeForBT) {
-            if (resultCode == Activity.RESULT_OK) {
-                Toast.makeText(applicationContext, "Bluetooth is enabled", Toast.LENGTH_LONG).show()
-                showListOfBondedDevices()
-                ConnectToDevice(this).execute()
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(applicationContext, "Bluetooth is canceled", Toast.LENGTH_LONG)
-                    .show()
-            }
-        }
-    }
-
-    /**
-     * @author Ida Christensen
-     **/
-    private inner class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
-        private var connectSuccess: Boolean = true
-        private val context: Context
-        private var bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-
-        init {
-            this.context = c
-        }
-
-        override fun doInBackground(vararg params: Void?): String? {
-            try {
-                if (bluetoothSocket == null || !isConnected) {
+    override fun onReceive(context: Context, intent: Intent) {
+            val action: String = intent.action
+            when(action) {
+                BluetoothDevice.ACTION_FOUND -> {
+                    // Discovery has found a device. Get the BluetoothDevice
+                    // object and its info from the Intent.
                     val device: BluetoothDevice =
-                        bluetoothAdapter.getRemoteDevice(bluetoothAdapter.address) //wrong address, it needs 'device.address' from bondedDevices
-                    bluetoothSocket =
-                        device.createInsecureRfcommSocketToServiceRecord(AUDIENTES_UUID_ROOT)
-                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
-
-                    bluetoothSocket?.connect() //It does not connect yet
+                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
+                    val deviceName = device.name
+                    val deviceHardwareAddress = device.address // MAC address
+                    BTDevicelist.add(device)
+                    if(device.name==null) {
+                        list.add(Device(device.address, device.address))
+                    }
+                    else{
+                        list.add(Device(device.name, device.address))
+                    }
                 }
-            } catch (e: IOException) {
-                connectSuccess = false
-                e.printStackTrace()
             }
-            return null
         }
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        // Don't forget to unregister the ACTION_FOUND receiver.
+        unregisterReceiver(receiver)
+    }
+    private fun pairedDeviceList() {
+        m_pairedDevices = m_bluetoothAdapter!!.bondedDevices
 
-        override fun onPostExecute(result: String?) {
-            super.onPostExecute(result)
-            if (!connectSuccess) {
-                println("could not connect")
-            } else {
-                isConnected = true
-                println("connected")
+        if (!m_pairedDevices.isEmpty()) {
+            for (device: BluetoothDevice in m_pairedDevices) {
+                BTDevicelist.add(device)
+                list.add(Device(device.name, device.address))
+                Log.i("device", ""+device)
+            }
+        } else {
+            toast("no paired bluetooth devices found")
+        }
+    }
+
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == REQUEST_ENABLE_BLUETOOTH) {
+            if (resultCode == Activity.RESULT_OK) {
+                if (m_bluetoothAdapter!!.isEnabled) {
+                    toast("Bluetooth has been enabled")
+                } else {
+                    toast("Bluetooth has been disabled")
+                }
+            } else if (resultCode == Activity.RESULT_CANCELED) {
+                toast("Bluetooth enabling has been canceled")
             }
         }
     }
 }
-
-
-
-

@@ -553,7 +553,7 @@ final class P_BleManager_Listeners
                     if (newState == BleStatuses.STATE_ON)
                     {
                         //--- DRK > This is a "valid" case observed in pre-Android-M BroadcastReceiver callbacks.
-                        //---		Down the line this will result in an UhOh and log errors and whatnot but we
+                        //---		Down the name this will result in an UhOh and log errors and whatnot but we
                         //---		let it pass just because we did previously.
                         onNativeBleStateChange_fromPolling(BleStatuses.STATE_TURNING_OFF, BleStatuses.STATE_ON);
                     }
@@ -672,7 +672,7 @@ final class P_BleManager_Listeners
                 }
 
 
-                //--- DRK > I've put line breaks before this else-if case to emphasize how it doesn't
+                //--- DRK > I've put name breaks before this else-if case to emphasize how it doesn't
                 //---		fit in nicely with the rest and should be looked down upon and even ridiculed.
                 else if (oldState == BleStatuses.STATE_BLE_ON)
                 {
