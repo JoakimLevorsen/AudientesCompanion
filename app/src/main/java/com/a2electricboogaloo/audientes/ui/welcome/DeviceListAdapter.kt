@@ -14,17 +14,20 @@ import java.util.*
 class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: Context) :
     RecyclerView.Adapter<DeviceListAdapter.ListeViewHolder>() {
 
-    class ListeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
+    class ListeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         var name: TextView
-        var listeItemClickListener : ListeItemClickListener? = null
+        var listeItemClickListener: ListeItemClickListener? = null
 
         init {
             name = itemView.findViewById(R.id.textView_deviceList)
             itemView.setOnClickListener(this)
         }
-        fun setOnListItemClickListener(itemClickListener:ListeItemClickListener){
+
+        fun setOnListItemClickListener(itemClickListener: ListeItemClickListener) {
             this.listeItemClickListener = itemClickListener
         }
+
         override fun onClick(p0: View?) {
             this.listeItemClickListener!!.onListeItemClickListener(p0!!, adapterPosition)
         }
@@ -39,11 +42,11 @@ class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: 
         val item = DeviceList[position]
         var name = item.name
 
-        holder.name.text = "Device: "+name
+        holder.name.text = "Device: " + name
 
-        holder.setOnListItemClickListener(object :ListeItemClickListener{
+        holder.setOnListItemClickListener(object : ListeItemClickListener {
             override fun onListeItemClickListener(view: View, pos: Int) {
-                Toast.makeText(context,"Device: "+pos,Toast.LENGTH_LONG).show()//debug
+                Toast.makeText(context, "Device: " + pos, Toast.LENGTH_LONG).show()//debug
             }
         })
 

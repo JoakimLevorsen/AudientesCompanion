@@ -3,12 +3,12 @@ package com.a2electricboogaloo.audientes
 import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity() {
 
         builder.setMessage("Are you sure you want to exit the app")
 
-        builder.setPositiveButton("EXIT"){ dialogInterface: DialogInterface, i: Int ->
+        builder.setPositiveButton("EXIT") { dialogInterface: DialogInterface, i: Int ->
             finish()
         }
-        builder.setNegativeButton("CANCEL"){ dialogInterface: DialogInterface, i: Int ->
+        builder.setNegativeButton("CANCEL") { dialogInterface: DialogInterface, i: Int ->
         }
         val dialog: AlertDialog = builder.create()
         dialog.show()

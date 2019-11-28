@@ -1,10 +1,9 @@
 package com.a2electricboogaloo.audientes.ui.hearing
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.R
-import com.a2electricboogaloo.audientes.ui.hearing.HearingTest_running_frag
 
 
 class HearingTest : AppCompatActivity() {
@@ -19,6 +18,7 @@ class HearingTest : AppCompatActivity() {
         button.setOnClickListener {
             val transaction = getSupportFragmentManager().beginTransaction()
             transaction.add(R.id.fragmentindhold, fragment)
-        transaction.commit()}
+            transaction.commit()
+        }
     }
 }
