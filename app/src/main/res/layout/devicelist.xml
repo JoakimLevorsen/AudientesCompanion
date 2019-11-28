@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardBackgroundColor="@color/primary">
+    app:cardBackgroundColor="@color/gray1">
 
 <RelativeLayout
     android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         android:text="device Adress"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
+        android:textColor="@color/primary"
         android:layout_alignParentTop="true"
         android:layout_marginStart="8dp"
         />
