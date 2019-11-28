@@ -4,7 +4,7 @@ import com.a2electricboogaloo.audientes.model.types.Program
 
 class ProgramSerializer {
     companion object {
-        fun startProgramBuild(rawRightChannel: Array<Byte>, audiogramID: String): (Array<Byte>) -> Program?  {
+        fun buildProgram(rawRightChannel: Array<Byte>, audiogramID: String): (Array<Byte>) -> Program?  {
             val (deviceIndex, rightChannel) = extractProgramData(rawRightChannel, true)
             return { rawLeftChannel: Array<Byte> ->
                 val (otherDeviceIndex, leftChannel) = extractProgramData(rawLeftChannel, false)
@@ -19,7 +19,7 @@ class ProgramSerializer {
             if (program.size != 8) {
                 throw Error("Invalid program")
             }
-            if (program[0] == 0x20.toByte()) {
+            if (program[0] == AppCommands.ADD_PROGRAM.hex) {
                 if (
                     (isRightChannel && program[2] == 0x00.toByte())
                     || (!isRightChannel && program[2] == 0x01.toByte())
