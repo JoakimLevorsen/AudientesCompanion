@@ -1,11 +1,10 @@
 package com.a2electricboogaloo.audientes.ui.welcome
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
-import com.a2electricboogaloo.audientes.MainActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.R
 
 class WelcomeActivity : AppCompatActivity() {

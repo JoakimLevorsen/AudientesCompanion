@@ -4,15 +4,13 @@ package com.a2electricboogaloo.audientes.controller
 import android.app.ProgressDialog
 import android.bluetooth.BluetoothAdapter
 import android.bluetooth.BluetoothDevice
+import android.bluetooth.BluetoothSocket
 import android.content.Context
 import android.os.AsyncTask
-import android.os.Bundle
-import java.util.*
-import android.bluetooth.BluetoothSocket
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
-import com.a2electricboogaloo.audientes.R
 import java.io.IOException
+import java.util.*
 
 class bluetoothController: AppCompatActivity() {
 

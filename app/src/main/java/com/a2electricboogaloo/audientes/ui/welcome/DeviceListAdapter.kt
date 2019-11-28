@@ -1,21 +1,14 @@
 package com.a2electricboogaloo.audientes.ui.welcome
 
-import android.bluetooth.BluetoothDevice
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
-import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity.Companion.EXTRA_ADDRESS
-import java.util.ArrayList
-import org.jetbrains.anko.toast
-import android.app.Activity
+import java.util.*
 
 
 class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: Context) :

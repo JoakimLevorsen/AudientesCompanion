@@ -16,8 +16,8 @@
         android:layout_height="wrap_content"
         android:text="device Adress"
         android:textSize="20sp"
-        android:textStyle="bold"
         android:textColor="@color/primary"
+        android:textStyle="normal"
         android:layout_alignParentTop="true"
         android:layout_marginStart="8dp"
         />

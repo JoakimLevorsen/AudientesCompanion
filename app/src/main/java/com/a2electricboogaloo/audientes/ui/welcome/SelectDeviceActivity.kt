@@ -8,6 +8,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.AdapterView
@@ -18,6 +19,8 @@ import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import kotlinx.android.synthetic.main.activity_select_device.*
 import org.jetbrains.anko.toast
+import java.util.*
+import kotlin.collections.ArrayList
 
 class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
 
@@ -51,6 +54,8 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
             startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
         }
         pairedDeviceList()
+
+
         button_devicelist.setOnClickListener{ discoverDevices()}
     }
 
