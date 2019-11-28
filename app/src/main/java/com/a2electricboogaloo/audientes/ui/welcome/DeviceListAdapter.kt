@@ -1,12 +1,16 @@
 package com.a2electricboogaloo.audientes.ui.welcome
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import java.util.*
 
@@ -41,12 +45,14 @@ class DeviceListAdapter(private val DeviceList: ArrayList<Device>, var context: 
     override fun onBindViewHolder(holder: ListeViewHolder, position: Int) {
         val item = DeviceList[position]
         var name = item.name
+        var address = item.address
 
-        holder.name.text = "Device: " + name
+        holder.name.text = "Device: " + name + " " + address
 
         holder.setOnListItemClickListener(object : ListeItemClickListener {
             override fun onListeItemClickListener(view: View, pos: Int) {
                 Toast.makeText(context, "Device: " + pos, Toast.LENGTH_LONG).show()//debug
+
             }
         })
 
