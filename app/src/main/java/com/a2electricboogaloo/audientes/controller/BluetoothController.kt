@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import java.io.IOException
 import java.util.*
 
-class bluetoothController: AppCompatActivity() {
+class bluetoothController : AppCompatActivity() {
 
     companion object {
         var m_myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
@@ -26,9 +26,9 @@ class bluetoothController: AppCompatActivity() {
 
     private fun sendCommand(input: String) {
         if (m_bluetoothSocket != null) {
-            try{
+            try {
                 m_bluetoothSocket!!.outputStream.write(input.toByteArray())
-            } catch(e: IOException) {
+            } catch (e: IOException) {
                 e.printStackTrace()
             }
         }
