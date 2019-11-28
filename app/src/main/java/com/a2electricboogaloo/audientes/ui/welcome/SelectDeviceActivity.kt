@@ -11,16 +11,12 @@ import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
-import kotlinx.android.synthetic.main.activity_select_device.*
 import org.jetbrains.anko.toast
-import java.util.*
-import kotlin.collections.ArrayList
 
 class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
 
@@ -31,6 +27,8 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
     private var m_bluetoothAdapter: BluetoothAdapter? = null
     private lateinit var m_pairedDevices: Set<BluetoothDevice>
     private val REQUEST_ENABLE_BLUETOOTH = 1
+    private val mhandler: Handler? = null
+    private val runnable: Runnable? = null
 
     companion object {
         val instance = WelcomeActivity()
@@ -55,8 +53,10 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         }
         pairedDeviceList()
 
-
-        button_devicelist.setOnClickListener{ discoverDevices()}
+        runnable.run {
+            discoverDevices()
+            mhandler!!.postDelayed(this,3000)
+        }
     }
 
     override fun onListeItemClickListener(view: View, pos: Int) {
