@@ -9,12 +9,17 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.a2electricboogaloo.audientes.controller.bluetoothController
+import com.a2electricboogaloo.audientes.controller.bluetoothController.Companion.m_address
+import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis)
+
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
 
         val navController = findNavController(R.id.nav_host_fragment)

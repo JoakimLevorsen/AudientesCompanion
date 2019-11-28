@@ -30,8 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.hearing.HearingTest" />
-        <activity android:name=".ui.welcome.SelectDeviceActivity" />
+        <activity android:name=".ui.hearing.HearingTest"
+            />
+        <activity android:name=".ui.welcome.SelectDeviceActivity"
+            android:screenOrientation="portrait"
+            />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"

@@ -25,6 +25,7 @@ class WelcomeActivity : AppCompatActivity() {
             titleText?.text = "Loading..."
             contentText?.text = "Connecting to device."
 
+            //indsæt bluetooth check
             val intent = Intent(this, SelectDeviceActivity::class.java)
             startActivity(intent)
         }

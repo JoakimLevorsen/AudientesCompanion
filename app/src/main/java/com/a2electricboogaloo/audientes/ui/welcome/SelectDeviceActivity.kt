@@ -16,7 +16,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
+import kotlinx.android.synthetic.main.activity_select_device.*
 import org.jetbrains.anko.toast
+import java.lang.reflect.Array.get
+import kotlin.properties.Delegates
 
 class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
 
@@ -53,20 +56,23 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         }
         pairedDeviceList()
 
-        runnable.run {
-            discoverDevices()
-            mhandler!!.postDelayed(this,3000)
-        }
+        button_devicelist.setOnClickListener{discoverDevices()}
     }
 
-    override fun onListeItemClickListener(view: View, pos: Int) {
-        toast("test")
-        val device: BluetoothDevice = BTDevicelist[pos]
+    fun connect(position: Int){
+        println("test connect")
+        Log.i("test oonnect", "test connect")
+        val device: BluetoothDevice = BTDevicelist[position]
         val address: String = device.address
 
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
         startActivity(intent)
+    }
+
+    override fun onListeItemClickListener(view: View, pos: Int) {
+        toast("test")
+        connect(pos)
     }
     private fun discoverDevices() {
         m_bluetoothAdapter!!.startDiscovery()
