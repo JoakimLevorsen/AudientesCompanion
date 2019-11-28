@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
+import kotlinx.android.synthetic.main.activity_select_device.*
 import org.jetbrains.anko.toast
 
 class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
@@ -52,11 +53,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
             startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
         }
         pairedDeviceList()
-
-        runnable.run {
-            discoverDevices()
-            mhandler!!.postDelayed(this,3000)
-        }
+        button_devicelist.setOnClickListener{ discoverDevices()}
     }
 
     override fun onListeItemClickListener(view: View, pos: Int) {
