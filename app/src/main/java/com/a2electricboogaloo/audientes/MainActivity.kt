@@ -16,7 +16,6 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.a2electricboogaloo.audientes.controller.BluetoothController
 
 import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
 import java.io.IOException
@@ -31,18 +30,17 @@ class MainActivity : AppCompatActivity() {
         lateinit var m_bluetoothAdapter: BluetoothAdapter
         var m_isConnected: Boolean = false
         var m_address: String? = null
-        private var connectToDevice : BluetoothController.ConnectToDevice? = null
-        private var bluetoothController : BluetoothController?=null
+       // private var connectToDevice : BluetoothController.ConnectToDevice? = null
+        //private var bluetoothController : BluetoothController?=null
     }
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis)
         m_address = intent.getStringExtra(SelectDeviceActivity.EXTRA_ADDRESS)
-        BluetoothController.ConnectToDevice(this).execute()
+        ConnectToDevice(this).execute()
 
 
-        bluetoothController = BluetoothController()
 
         sendCommand("0x00")
 
@@ -77,13 +75,28 @@ class MainActivity : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun sendCommand(input: String) {
-        bluetoothController?.sendCommand(input)
+
+    fun sendCommand(input: String) {
+        if (m_bluetoothSocket != null) {
+            try {
+                m_bluetoothSocket!!.outputStream.write(input.toByteArray())
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 
 
-    private fun disconnect() {
-        bluetoothController?.disconnect()
+    fun disconnect() {
+        if (m_bluetoothSocket != null) {
+            try {
+                m_bluetoothSocket!!.close()
+                m_bluetoothSocket = null
+                m_isConnected = false
+            } catch (e: IOException) {
+                e.printStackTrace()
+            }
+        }
     }
 
     class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
@@ -101,16 +114,16 @@ class MainActivity : AppCompatActivity() {
 
         override fun doInBackground(vararg p0: Void?): String? {
             try {
-                if (BluetoothController.m_bluetoothSocket == null || !BluetoothController.m_isConnected) {
-                    BluetoothController.m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-                    val device: BluetoothDevice = BluetoothController.m_bluetoothAdapter.getRemoteDevice(
-                        BluetoothController.m_address
+                if (m_bluetoothSocket == null || !m_isConnected) {
+                    m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+                    val device: BluetoothDevice = m_bluetoothAdapter.getRemoteDevice(
+                        m_address
                     )
-                    BluetoothController.m_bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(
-                        BluetoothController.m_myUUID
+                    m_bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(
+                        m_myUUID
                     )
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
-                    BluetoothController.m_bluetoothSocket!!.connect()
+                    m_bluetoothSocket!!.connect()
                 }
             } catch (e: IOException) {
                 connectSuccess = false
@@ -125,10 +138,10 @@ class MainActivity : AppCompatActivity() {
                 Log.i("data", "couldn't connect")
             } else {
                 Log.i("data", "connection success")
-                BluetoothController.m_isConnected = true
+                    m_isConnected = true
 
             }
-            BluetoothController.m_progress.dismiss()
+            m_progress.dismiss()
         }
     }
 }

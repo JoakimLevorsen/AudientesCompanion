@@ -13,7 +13,7 @@ import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
 import java.io.IOException
 import java.util.*
-
+/*
 class BluetoothController {
 
     companion object {
@@ -96,4 +96,6 @@ class BluetoothController {
     }
 }
 
+
+ */
 
