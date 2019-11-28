@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
-import com.a2electricboogaloo.audientes.ui.welcome.WelcomeActivity.Companion.EXTRA_ADDRESS
+import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity.Companion.EXTRA_ADDRESS
 import java.util.ArrayList
 import org.jetbrains.anko.toast
 import android.app.Activity

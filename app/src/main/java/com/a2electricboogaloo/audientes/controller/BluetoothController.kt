@@ -14,8 +14,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.R
 import java.io.IOException
 
-
-
 class bluetoothController: AppCompatActivity() {
 
     companion object {
