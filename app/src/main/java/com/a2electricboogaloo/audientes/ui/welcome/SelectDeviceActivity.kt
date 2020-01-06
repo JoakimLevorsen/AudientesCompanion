@@ -7,10 +7,12 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -67,15 +69,17 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         button_devicelist.setOnClickListener{discoverDevices()}
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun connect(position: Int){
         val device: BluetoothDevice = BTDevicelist[position]
         val address: String = device.address
-
+        device.createBond()
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
         startActivity(intent)
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onListeItemClickListener(view: View, pos: Int) {
         toast("test")
         connect(pos)
