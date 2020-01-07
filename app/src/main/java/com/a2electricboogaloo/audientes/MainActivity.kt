@@ -109,6 +109,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPreExecute() {
             super.onPreExecute()
+
             m_progress = ProgressDialog.show(context, "Connecting...", "please wait")
         }
 
@@ -122,22 +123,25 @@ class MainActivity : AppCompatActivity() {
                     m_bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(
                         m_myUUID
                     )
-                    BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
+
+                    m_bluetoothAdapter.cancelDiscovery()
+
                     m_bluetoothSocket!!.connect()
                 }
+
             } catch (e: IOException) {
                 connectSuccess = false
                 e.printStackTrace()
             }
             return null
         }
-
+        
         override fun onPostExecute(result: String?) {
             super.onPostExecute(result)
             if (!connectSuccess) {
                 Log.i("data", "couldn't connect")
             } else {
-                Log.i("data", "connection success")
+                Log.i("data", "connection success"+ m_address)
                     m_isConnected = true
 
             }
