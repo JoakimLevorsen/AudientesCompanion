@@ -52,12 +52,37 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         accessCoarseLocation()
         button_devicelist.setOnClickListener{discoverDevices()}
     }
+
+    private val receiver = object : BroadcastReceiver(){
+
+        override fun onReceive(context: Context, intent: Intent) {
+            Toast.makeText(context, "bluetooth devices found", Toast.LENGTH_LONG).show()
+            val action: String = intent.action
+            when(action) {
+                BluetoothDevice.ACTION_FOUND -> {
+                    val device: BluetoothDevice =
+                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
+                    BTDevicelist.add(device)
+
+                    if(device.name==null) {
+                        list.add(Device(device.address, device.address))
+                    }
+                    else{
+                        list.add(Device(device.name, device.address))
+                    }
+                    adapter!!.notifyDataSetChanged()
+                }
+            }
+        }
+    }
+
     private fun registerBroadcast(){
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
         registerReceiver(receiver, filter)
         Toast.makeText(this, "bluetooth searching", Toast.LENGTH_LONG).show()
     }
+
     private fun accessCoarseLocation(){
         ActivityCompat.requestPermissions(
             this,
@@ -65,6 +90,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
             12345
         )
     }
+
     private fun addBondedDevices(){
         var m_pairedDevices = m_bluetoothAdapter!!.bondedDevices
         if (!m_pairedDevices.isEmpty()) {
@@ -77,6 +103,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
             Toast.makeText(this, "no paired bluetooth devices found", Toast.LENGTH_LONG).show()
         }
     }
+
     private fun enableBluetooth(){
         if(!m_bluetoothAdapter!!.isEnabled) {
             val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
@@ -91,6 +118,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
             return
         }
     }
+
     private fun makeList(){
         adapter = DeviceListAdapter(list, applicationContext)
         var layoutManager = LinearLayoutManager(applicationContext)
@@ -122,34 +150,6 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         connect(pos)
     }
 
-    private val receiver = object : BroadcastReceiver(){
-
-    override fun onReceive(context: Context, intent: Intent) {
-        Toast.makeText(context, "bluetooth devices found", Toast.LENGTH_LONG).show()
-            val action: String = intent.action
-            when(action) {
-                BluetoothDevice.ACTION_FOUND -> {
-                    val device: BluetoothDevice =
-                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
-                    BTDevicelist.add(device)
-
-                    if(device.name==null) {
-                        list.add(Device(device.address, device.address))
-                    }
-                    else{
-                        list.add(Device(device.name, device.address))
-                    }
-                    adapter!!.notifyDataSetChanged()
-                }
-            }
-        }
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        unregisterReceiver(receiver)
-    }
-
-
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_ENABLE_BLUETOOTH) {
@@ -163,5 +163,11 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
                 Toast.makeText(this, "Bluetooth enabling has been canceled", Toast.LENGTH_LONG).show()
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        m_bluetoothAdapter!!.cancelDiscovery()
+        unregisterReceiver(receiver)
     }
 }

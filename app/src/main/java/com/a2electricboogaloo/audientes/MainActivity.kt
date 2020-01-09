@@ -34,13 +34,10 @@ class MainActivity : AppCompatActivity() {
         //private var bluetoothController : BluetoothController?=null
     }
     override fun onCreate(savedInstanceState: Bundle?) {
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_mis)
         m_address = intent.getStringExtra(SelectDeviceActivity.EXTRA_ADDRESS)
         ConnectToDevice(this).execute()
-
-
 
         sendCommand("0x00")
 
@@ -64,7 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         builder.setTitle("Confirm exit")
 
-        builder.setMessage("Are you sure you want to exit the app")
+        builder.setMessage("Are you sure you want to exit the app?")
 
         builder.setPositiveButton("EXIT"){ dialogInterface: DialogInterface, i: Int ->
             finish()
@@ -85,8 +82,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
     fun disconnect() {
         if (m_bluetoothSocket != null) {
             try {
