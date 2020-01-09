@@ -8,11 +8,13 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -55,7 +57,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
         registerReceiver(receiver, filter)
-        Toast.makeText(this, "bluetooth seaching", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "bluetooth searching", Toast.LENGTH_LONG).show()
 
         m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if(m_bluetoothAdapter == null) {
@@ -99,15 +101,18 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
     }
 
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     fun connect(position: Int){
-        val device: BluetoothDevice = BTDevicelist[position]
+        var device: BluetoothDevice = BTDevicelist[position]
         val address: String = device.address
-
+        device  = m_bluetoothAdapter!!.getRemoteDevice(address)
+        device.createBond()
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
         startActivity(intent)
     }
 
+    @RequiresApi(Build.VERSION_CODES.KITKAT)
     override fun onListeItemClickListener(view: View, pos: Int) {
         Toast.makeText(this, "test", Toast.LENGTH_LONG).show()
         connect(pos)
