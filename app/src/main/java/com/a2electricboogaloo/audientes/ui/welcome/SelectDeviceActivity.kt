@@ -10,7 +10,6 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -30,10 +29,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
     internal var list = java.util.ArrayList<Device>()
     internal var BTDevicelist : ArrayList<BluetoothDevice> = ArrayList()
     private var m_bluetoothAdapter: BluetoothAdapter? = null
-
     private val REQUEST_ENABLE_BLUETOOTH = 1
-    private val mhandler: Handler? = null
-    private val runnable: Runnable? = null
 
     companion object {
         var instance: SelectDeviceActivity? = null
@@ -41,35 +37,35 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         fun setGlobalInstance(activity: SelectDeviceActivity) {
             instance = activity
         }
-
         val EXTRA_ADDRESS: String = "Device_address"
     }
 
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         setGlobalInstance(this)
-
         setContentView(R.layout.activity_select_device)
-
+        registerBroadcast()
+        isBluetoothSupported()
+        enableBluetooth()
+        addBondedDevices()
+        makeList()
+        accessCoarseLocation()
+        button_devicelist.setOnClickListener{discoverDevices()}
+    }
+    private fun registerBroadcast(){
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
         registerReceiver(receiver, filter)
         Toast.makeText(this, "bluetooth searching", Toast.LENGTH_LONG).show()
-
-        m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        if(m_bluetoothAdapter == null) {
-            Toast.makeText(this, "device doesn't support bluetooth", Toast.LENGTH_LONG).show()
-            return
-        }
-        if(!m_bluetoothAdapter!!.isEnabled) {
-            val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
-            startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
-
-        }
-
+    }
+    private fun accessCoarseLocation(){
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
+            12345
+        )
+    }
+    private fun addBondedDevices(){
         var m_pairedDevices = m_bluetoothAdapter!!.bondedDevices
         if (!m_pairedDevices.isEmpty()) {
             for (device: BluetoothDevice in m_pairedDevices) {
@@ -80,20 +76,28 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         } else {
             Toast.makeText(this, "no paired bluetooth devices found", Toast.LENGTH_LONG).show()
         }
+    }
+    private fun enableBluetooth(){
+        if(!m_bluetoothAdapter!!.isEnabled) {
+            val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
+            startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
+        }
+    }
+
+    private fun isBluetoothSupported(){
+        m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        if(m_bluetoothAdapter == null) {
+            Toast.makeText(this, "device doesn't support bluetooth", Toast.LENGTH_LONG).show()
+            return
+        }
+    }
+    private fun makeList(){
         adapter = DeviceListAdapter(list, applicationContext)
         var layoutManager = LinearLayoutManager(applicationContext)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView?.layoutManager = layoutManager
         recyclerView?.setHasFixedSize(true)
         recyclerView?.adapter = adapter
-
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION),
-            12345
-        )
-
-        button_devicelist.setOnClickListener{discoverDevices()}
     }
 
     private fun discoverDevices() {
@@ -125,14 +129,9 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
             val action: String = intent.action
             when(action) {
                 BluetoothDevice.ACTION_FOUND -> {
-                    // Discovery has found a device. Get the BluetoothDevice
-                    // object and its info from the Intent.
                     val device: BluetoothDevice =
                         intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
-                    val deviceName = device.name
-                    val deviceHardwareAddress = device.address // MAC address
                     BTDevicelist.add(device)
-
 
                     if(device.name==null) {
                         list.add(Device(device.address, device.address))
@@ -147,7 +146,6 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
     }
     override fun onDestroy() {
         super.onDestroy()
-        // Don't forget to unregister the ACTION_FOUND receiver.
         unregisterReceiver(receiver)
     }
 
