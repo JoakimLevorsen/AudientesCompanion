@@ -77,6 +77,15 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         }
     }
 
+    private fun checkDevice() {
+        //add method to onreceive
+
+        //add code that checks whether a device is already on the list.{
+        // if true dont add unless the name is the same as the address{
+        // if the name is available update it}
+        //}
+    }
+
     private fun registerBroadcast(){
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
