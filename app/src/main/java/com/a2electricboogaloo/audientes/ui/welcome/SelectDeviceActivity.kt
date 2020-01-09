@@ -50,6 +50,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         addBondedDevices()
         makeList()
         accessCoarseLocation()
+        discoverDevices()
         button_devicelist.setOnClickListener{discoverDevices()}
     }
 
