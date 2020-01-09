@@ -18,16 +18,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.model.types.FoundDevice
 import kotlinx.android.synthetic.main.activity_select_device.*
 import org.jetbrains.anko.toast
-import java.lang.reflect.Array.get
-import kotlin.properties.Delegates
 
-class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
+class SelectDeviceActivity: AppCompatActivity(), ListItemClickListener {
 
     private var recyclerView: RecyclerView? = null
     private var adapter: DeviceListAdapter? = null
-    internal var list = java.util.ArrayList<Device>()
+    internal var list = java.util.ArrayList<FoundDevice>()
     internal var BTDevicelist : ArrayList<BluetoothDevice> = ArrayList()
     private var m_bluetoothAdapter: BluetoothAdapter? = null
     private lateinit var m_pairedDevices: Set<BluetoothDevice>
@@ -80,7 +79,7 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
     }
 
     @RequiresApi(Build.VERSION_CODES.KITKAT)
-    override fun onListeItemClickListener(view: View, pos: Int) {
+    override fun onListItemClickListener(view: View, pos: Int) {
         toast("test")
         connect(pos)
     }
@@ -107,10 +106,20 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
                     val deviceHardwareAddress = device.address // MAC address
                     BTDevicelist.add(device)
                     if(device.name==null) {
-                        list.add(Device(device.address, device.address))
+                        list.add(
+                            FoundDevice(
+                                device.address,
+                                device.address
+                            )
+                        )
                     }
                     else{
-                        list.add(Device(device.name, device.address))
+                        list.add(
+                            FoundDevice(
+                                device.name,
+                                device.address
+                            )
+                        )
                     }
                 }
             }
@@ -127,7 +136,12 @@ class SelectDeviceActivity: AppCompatActivity(), ListeItemClickListener {
         if (!m_pairedDevices.isEmpty()) {
             for (device: BluetoothDevice in m_pairedDevices) {
                 BTDevicelist.add(device)
-                list.add(Device(device.name, device.address))
+                list.add(
+                    FoundDevice(
+                        device.name,
+                        device.address
+                    )
+                )
                 Log.i("device", ""+device)
             }
         } else {

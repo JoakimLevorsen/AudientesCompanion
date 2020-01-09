@@ -9,7 +9,7 @@ class ProgramSerializer {
             return { rawLeftChannel: Array<Byte> ->
                 val (otherDeviceIndex, leftChannel) = extractProgramData(rawLeftChannel, false)
                 if (deviceIndex != otherDeviceIndex) {
-                    throw Error("Device indexes for streams did not match")
+                    throw Error("FoundDevice indexes for streams did not match")
                 }
                 Program(rightChannel, leftChannel, deviceIndex.toString(), audiogramID, deviceIndex)
             }
@@ -37,7 +37,7 @@ class ProgramSerializer {
             rightBase[1] = 0x01.toByte()
             val deviceIndex = (
                     program.getDeviceIndex()
-                        ?: throw Error("Device index must be set before transforming to byte stream")
+                        ?: throw Error("FoundDevice index must be set before transforming to byte stream")
                     ).toByte()
             rightBase[2] = deviceIndex
             val leftBase = rightBase.clone()

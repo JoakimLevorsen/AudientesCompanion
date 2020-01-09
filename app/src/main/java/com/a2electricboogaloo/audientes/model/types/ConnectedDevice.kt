@@ -7,13 +7,13 @@ import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 
-class Device {
+class ConnectedDevice {
     companion object {
 
-        private val userDevices: MutableLiveData<List<Device>> = MutableLiveData()
+        private val userDevices: MutableLiveData<List<ConnectedDevice>> = MutableLiveData()
         private var hasAddedListener = false
 
-        fun getUserDevices(): MutableLiveData<List<Device>> {
+        fun getUserDevices(): MutableLiveData<List<ConnectedDevice>> {
             if (!hasAddedListener) {
                 val uid = Auth.signedIn.value?.uid
                 if (uid == null) {
@@ -30,7 +30,7 @@ class Device {
                         }
                         if (snapshot != null) {
                             userDevices.value =
-                                snapshot.documents.map { Device(it) }
+                                snapshot.documents.map { ConnectedDevice(it) }
                         }
                     }
             }
