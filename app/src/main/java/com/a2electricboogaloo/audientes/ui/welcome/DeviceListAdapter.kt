@@ -42,7 +42,7 @@ class DeviceListAdapter(private val foundDeviceList: ArrayList<FoundDevice>, var
         var name = item.name
         var address = item.address
 
-        holder.name.text = "FoundDevice: " + name
+        holder.name.text = "Device: " + name
 
         holder.setOnListItemClickListener(object :ListItemClickListener{
             override fun onListItemClickListener(view: View, pos: Int) {
