@@ -9,11 +9,8 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.view.View
-import androidx.annotation.RequiresApi
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -21,16 +18,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
-import com.a2electricboogaloo.audientes.model.types.FoundDevice
 import kotlinx.android.synthetic.main.activity_select_device.*
-import org.jetbrains.anko.toast
 
-class SelectDeviceActivity: AppCompatActivity(), ListItemClickListener {
+class SelectDeviceActivity : AppCompatActivity() {
 
     private var recyclerView: RecyclerView? = null
     private var adapter: DeviceListAdapter? = null
-    internal var list = java.util.ArrayList<FoundDevice>()
-    internal var BTDevicelist : ArrayList<BluetoothDevice> = ArrayList()
+    internal var btdevicelist: ArrayList<BluetoothDevice> = ArrayList()
     private var m_bluetoothAdapter: BluetoothAdapter? = null
     private val REQUEST_ENABLE_BLUETOOTH = 1
     private var connected = false
@@ -133,20 +127,6 @@ class SelectDeviceActivity: AppCompatActivity(), ListItemClickListener {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    fun connect(position: Int){
-        val device: BluetoothDevice = BTDevicelist[position]
-        val address: String = device.address
-        device.createBond()
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra(EXTRA_ADDRESS, address)
-        startActivity(intent)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.KITKAT)
-    override fun onListItemClickListener(view: View, pos: Int) {
-        toast("test")
-        connect(pos)
     private fun isBluetoothSupported() {
         m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if (m_bluetoothAdapter == null) {
@@ -177,61 +157,12 @@ class SelectDeviceActivity: AppCompatActivity(), ListItemClickListener {
         recyclerView?.adapter = adapter
     }
 
-    override fun onReceive(context: Context, intent: Intent) {
-            val action: String = intent.action
-            when(action) {
-                BluetoothDevice.ACTION_FOUND -> {
-                    // Discovery has found a device. Get the BluetoothDevice
-                    // object and its info from the Intent.
-                    val device: BluetoothDevice =
-                        intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE)
-                    val deviceName = device.name
-                    val deviceHardwareAddress = device.address // MAC address
-                    BTDevicelist.add(device)
-                    if(device.name==null) {
-                        list.add(
-                            FoundDevice(
-                                device.address,
-                                device.address
-                            )
-                        )
-                    }
-                    else{
-                        list.add(
-                            FoundDevice(
-                                device.name,
-                                device.address
-                            )
-                        )
-                    }
-                }
-            }
-        }
-    }
-    override fun onDestroy() {
-        super.onDestroy()
-        // Don't forget to unregister the ACTION_FOUND receiver.
-        unregisterReceiver(receiver)
     private fun discoverDevices() {
         m_bluetoothAdapter!!.startDiscovery()
         makeList()
         Toast.makeText(this, "Bluetooth has been enabled", Toast.LENGTH_LONG).show()
     }
 
-        if (!m_pairedDevices.isEmpty()) {
-            for (device: BluetoothDevice in m_pairedDevices) {
-                BTDevicelist.add(device)
-                list.add(
-                    FoundDevice(
-                        device.name,
-                        device.address
-                    )
-                )
-                Log.i("device", ""+device)
-            }
-        } else {
-            toast("no paired bluetooth devices found")
-        }
     fun connect(position: Int) {
         var device: BluetoothDevice = btdevicelist[position]
         val address: String = device.address
@@ -264,6 +195,3 @@ class SelectDeviceActivity: AppCompatActivity(), ListItemClickListener {
         unregisterReceiver(receiver)
     }
 }
-
-
-
