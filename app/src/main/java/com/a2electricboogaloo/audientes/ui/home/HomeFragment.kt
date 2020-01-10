@@ -51,7 +51,6 @@ class HomeFragment : Fragment() {
             OnSeekBarChangeListener {
             override fun onProgressChanged(seekBarOverall: SeekBar,
                                            progress: Int, fromUser: Boolean) {
-                //TODO TMJ... Call Tim if you see this :D
                 audio.setStreamVolume(AudioManager.STREAM_MUSIC, progress, AudioManager.FLAG_SHOW_UI)
             }
 
