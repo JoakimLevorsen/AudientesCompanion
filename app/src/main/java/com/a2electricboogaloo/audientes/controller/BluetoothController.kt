@@ -26,7 +26,6 @@ class BluetoothController {
         }
     }
 
-
     fun sendCommand(input: String) {
         if (m_bluetoothSocket != null) {
             try {
@@ -36,7 +35,6 @@ class BluetoothController {
             }
         }
     }
-
 
     fun disconnect() {
         if (m_bluetoothSocket != null) {
