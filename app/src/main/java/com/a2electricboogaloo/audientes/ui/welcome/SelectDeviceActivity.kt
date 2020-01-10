@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.model.types.FoundDevice
 import kotlinx.android.synthetic.main.activity_select_device.*
 
 class SelectDeviceActivity : AppCompatActivity() {
@@ -135,14 +136,14 @@ class SelectDeviceActivity : AppCompatActivity() {
         }
     }
 
-    private fun convertList(BTDList: ArrayList<BluetoothDevice>): ArrayList<Device> {
-        val list: ArrayList<Device> = ArrayList()
+    private fun convertList(BTDList: ArrayList<BluetoothDevice>): ArrayList<FoundDevice> {
+        val list: ArrayList<FoundDevice> = ArrayList()
         for (device in BTDList) {
             println(device.name + "  " + device.address)
             if (device.name == null) {
-                list.add(Device(device.address, device.address))
+                list.add(FoundDevice(device.address, device.address))
             } else {
-                list.add(Device(device.name, device.address))
+                list.add(FoundDevice(device.name, device.address))
             }
         }
         return list
