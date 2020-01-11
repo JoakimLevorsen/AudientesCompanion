@@ -46,9 +46,9 @@ class SelectDeviceActivity : AppCompatActivity() {
         button_devicelist.setOnClickListener { discoverDevices() }
     }
     private fun run(){
-        registerBroadcast()
         isBluetoothSupported()
         enableBluetooth()
+        registerBroadcast()
         addBondedDevices()
         accessCoarseLocation()
         discoverDevices()
@@ -179,6 +179,7 @@ class SelectDeviceActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 if (m_bluetoothAdapter!!.isEnabled) {
                     toast("Bluetooth has been enabled")
+                    addBondedDevices()
                 } else {
                     toast("Bluetooth has been disabled")
                 }
