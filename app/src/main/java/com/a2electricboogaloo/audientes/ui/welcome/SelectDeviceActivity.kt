@@ -57,7 +57,7 @@ class SelectDeviceActivity : AppCompatActivity() {
 
         @SuppressLint("NewApi")
         override fun onReceive(context: Context, intent: Intent) {
-            //Toast.makeText(context, "bluetooth devices found", Toast.LENGTH_LONG).show()
+            //toast("Bluetooth devices found")
             val action: String = intent.action
             if (BluetoothDevice.ACTION_ACL_CONNECTED == action) {
                 //Device is now connected
@@ -98,7 +98,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
         registerReceiver(receiver, filter)
-        Toast.makeText(this, "Searching", Toast.LENGTH_LONG).show()
+        toast("Searching")
     }
 
     private fun accessCoarseLocation() {
@@ -117,7 +117,7 @@ class SelectDeviceActivity : AppCompatActivity() {
                 Log.i("device", "" + device)
             }
         } else {
-            Toast.makeText(this, "No paired bluetooth devices found", Toast.LENGTH_LONG).show()
+            toast("No paired bluetooth devices found")
         }
     }
 
@@ -131,7 +131,7 @@ class SelectDeviceActivity : AppCompatActivity() {
     private fun isBluetoothSupported() {
         m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if (m_bluetoothAdapter == null) {
-            Toast.makeText(this, "Device doesn't support bluetooth", Toast.LENGTH_LONG).show()
+            toast("Device doesn't support bluetooth")
             return
         }
     }
@@ -178,17 +178,19 @@ class SelectDeviceActivity : AppCompatActivity() {
         if (requestCode == REQUEST_ENABLE_BLUETOOTH) {
             if (resultCode == Activity.RESULT_OK) {
                 if (m_bluetoothAdapter!!.isEnabled) {
-                    Toast.makeText(this, "Bluetooth has been enabled", Toast.LENGTH_LONG).show()
+                    toast("Bluetooth has been enabled")
                 } else {
-                    Toast.makeText(this, "Bluetooth has been disabled", Toast.LENGTH_LONG).show()
+                    toast("Bluetooth has been disabled")
                 }
             } else if (resultCode == Activity.RESULT_CANCELED) {
-                Toast.makeText(this, "Bluetooth enabling has been canceled", Toast.LENGTH_LONG)
-                    .show()
+                toast("Bluetooth enabling has been canceled")
             }
         }
     }
 
+    fun toast(message : String){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+    }
     override fun onDestroy() {
         super.onDestroy()
         m_bluetoothAdapter!!.cancelDiscovery()
