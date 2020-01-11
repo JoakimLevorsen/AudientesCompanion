@@ -28,7 +28,6 @@ class SelectDeviceActivity : AppCompatActivity() {
     internal var btdevicelist: ArrayList<BluetoothDevice> = ArrayList()
     private var m_bluetoothAdapter: BluetoothAdapter? = null
     private val REQUEST_ENABLE_BLUETOOTH = 1
-    private var connected = false
 
     companion object {
         var instance: SelectDeviceActivity? = null
@@ -59,13 +58,6 @@ class SelectDeviceActivity : AppCompatActivity() {
         override fun onReceive(context: Context, intent: Intent) {
             //toast("Bluetooth devices found")
             val action: String = intent.action
-            if (BluetoothDevice.ACTION_ACL_CONNECTED == action) {
-                //Device is now connected
-                connected = true
-            } else if (BluetoothDevice.ACTION_ACL_DISCONNECTED == action) {
-                //Device has disconnected
-                connected = false
-            }
             when (action) {
                 BluetoothDevice.ACTION_FOUND -> {
                     val device: BluetoothDevice =
