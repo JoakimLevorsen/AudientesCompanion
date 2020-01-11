@@ -57,7 +57,7 @@ class SelectDeviceActivity : AppCompatActivity() {
 
         @SuppressLint("NewApi")
         override fun onReceive(context: Context, intent: Intent) {
-            Toast.makeText(context, "bluetooth devices found", Toast.LENGTH_LONG).show()
+            //Toast.makeText(context, "bluetooth devices found", Toast.LENGTH_LONG).show()
             val action: String = intent.action
             if (BluetoothDevice.ACTION_ACL_CONNECTED == action) {
                 //Device is now connected
@@ -98,7 +98,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         // Register for broadcasts when a device is discovered.
         val filter = IntentFilter(BluetoothDevice.ACTION_FOUND)
         registerReceiver(receiver, filter)
-        Toast.makeText(this, "bluetooth searching", Toast.LENGTH_LONG).show()
+        Toast.makeText(this, "Searching", Toast.LENGTH_LONG).show()
     }
 
     private fun accessCoarseLocation() {
@@ -117,7 +117,7 @@ class SelectDeviceActivity : AppCompatActivity() {
                 Log.i("device", "" + device)
             }
         } else {
-            Toast.makeText(this, "no paired bluetooth devices found", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "No paired bluetooth devices found", Toast.LENGTH_LONG).show()
         }
     }
 
@@ -131,7 +131,7 @@ class SelectDeviceActivity : AppCompatActivity() {
     private fun isBluetoothSupported() {
         m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
         if (m_bluetoothAdapter == null) {
-            Toast.makeText(this, "device doesn't support bluetooth", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Device doesn't support bluetooth", Toast.LENGTH_LONG).show()
             return
         }
     }
@@ -161,7 +161,6 @@ class SelectDeviceActivity : AppCompatActivity() {
     private fun discoverDevices() {
         m_bluetoothAdapter!!.startDiscovery()
         makeList()
-        Toast.makeText(this, "Bluetooth has been enabled", Toast.LENGTH_LONG).show()
     }
 
     fun connect(position: Int) {
