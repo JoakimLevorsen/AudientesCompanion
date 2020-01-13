@@ -84,14 +84,14 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Change language"
+                    android:text="Delete app data"
                     android:textColor="@color/gray6" />
 
                 <TextView
                     android:id="@+id/textView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Change the app’s display language"
+                    android:text="Delete all data from the app"
                     android:textColor="@color/gray4" />
             </LinearLayout>
         </LinearLayout>
