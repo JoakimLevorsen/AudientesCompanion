@@ -26,7 +26,7 @@ class SelectDeviceActivity : AppCompatActivity() {
     private var recyclerView: RecyclerView? = null
     private var adapter: DeviceListAdapter? = null
     internal var btdevicelist: ArrayList<BluetoothDevice> = ArrayList()
-    private var m_bluetoothAdapter: BluetoothAdapter? = null
+    private var bluetoothAdapter: BluetoothAdapter? = null
     private val REQUEST_ENABLE_BLUETOOTH = 1
 
     companion object {
@@ -102,9 +102,9 @@ class SelectDeviceActivity : AppCompatActivity() {
     }
 
     private fun addBondedDevices() {
-        val m_pairedDevices = m_bluetoothAdapter!!.bondedDevices
-        if (m_pairedDevices.isNotEmpty()) {
-            for (device: BluetoothDevice in m_pairedDevices) {
+        val pairedDevices = bluetoothAdapter!!.bondedDevices
+        if (pairedDevices.isNotEmpty()) {
+            for (device: BluetoothDevice in pairedDevices) {
                 btdevicelist.add(device)
                 Log.i("device", "" + device)
             }
@@ -114,15 +114,15 @@ class SelectDeviceActivity : AppCompatActivity() {
     }
 
     private fun enableBluetooth() {
-        if (!m_bluetoothAdapter!!.isEnabled) {
+        if (!bluetoothAdapter!!.isEnabled) {
             val enableBluetoothIntent = Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE)
             startActivityForResult(enableBluetoothIntent, REQUEST_ENABLE_BLUETOOTH)
         }
     }
 
     private fun isBluetoothSupported() {
-        m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        if (m_bluetoothAdapter == null) {
+        bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        if (bluetoothAdapter == null) {
             toast("Device doesn't support bluetooth")
             return
         }
@@ -151,14 +151,14 @@ class SelectDeviceActivity : AppCompatActivity() {
     }
 
     private fun discoverDevices() {
-        m_bluetoothAdapter!!.startDiscovery()
+        bluetoothAdapter!!.startDiscovery()
         makeList()
     }
 
     fun connect(position: Int) {
         var device: BluetoothDevice = btdevicelist[position]
         val address: String = device.address
-        device = m_bluetoothAdapter!!.getRemoteDevice(address)
+        device = bluetoothAdapter!!.getRemoteDevice(address)
         device.createBond()
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
@@ -169,7 +169,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
         if (requestCode == REQUEST_ENABLE_BLUETOOTH) {
             if (resultCode == Activity.RESULT_OK) {
-                if (m_bluetoothAdapter!!.isEnabled) {
+                if (bluetoothAdapter!!.isEnabled) {
                     toast("Bluetooth has been enabled")
                     addBondedDevices()
                 } else {
@@ -186,7 +186,7 @@ class SelectDeviceActivity : AppCompatActivity() {
     }
     override fun onDestroy() {
         super.onDestroy()
-        m_bluetoothAdapter!!.cancelDiscovery()
+        bluetoothAdapter!!.cancelDiscovery()
         unregisterReceiver(receiver)
     }
 }

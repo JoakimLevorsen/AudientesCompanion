@@ -14,12 +14,12 @@ import java.util.*
 
 class BluetoothController {
     companion object {
-        var m_myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
-        var m_bluetoothSocket: BluetoothSocket? = null
-        lateinit var m_progress: ProgressDialog
-        lateinit var m_bluetoothAdapter: BluetoothAdapter
-        var m_isConnected: Boolean = false
-        var m_address: String? = MainActivity.m_address
+        var myUUID: UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB")
+        var bluetoothSocket: BluetoothSocket? = null
+        lateinit var progress: ProgressDialog
+        lateinit var bluetoothAdapter: BluetoothAdapter
+        var isConnected: Boolean = false
+        var address: String? = MainActivity.address
         var instance: BluetoothController? = null
         fun setGlobalInstance(BluetoothController: BluetoothController) {
             instance = BluetoothController
@@ -27,9 +27,9 @@ class BluetoothController {
     }
 
     fun sendCommand(input: String) {
-        if (m_bluetoothSocket != null) {
+        if (bluetoothSocket != null) {
             try {
-                m_bluetoothSocket!!.outputStream.write(input.toByteArray())
+                bluetoothSocket!!.outputStream.write(input.toByteArray())
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -37,11 +37,11 @@ class BluetoothController {
     }
 
     fun disconnect() {
-        if (m_bluetoothSocket != null) {
+        if (bluetoothSocket != null) {
             try {
-                m_bluetoothSocket!!.close()
-                m_bluetoothSocket = null
-                m_isConnected = false
+                bluetoothSocket!!.close()
+                bluetoothSocket = null
+                isConnected = false
             } catch (e: IOException) {
                 e.printStackTrace()
             }
@@ -58,17 +58,17 @@ class BluetoothController {
 
         override fun onPreExecute() {
             super.onPreExecute()
-            m_progress = ProgressDialog.show(context, "Connecting...", "please wait")
+            progress = ProgressDialog.show(context, "Connecting...", "please wait")
         }
 
         override fun doInBackground(vararg p0: Void?): String? {
             try {
-                if (m_bluetoothSocket == null || !m_isConnected) {
-                    m_bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-                    val device: BluetoothDevice = m_bluetoothAdapter.getRemoteDevice(m_address)
-                    m_bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(m_myUUID)
+                if (bluetoothSocket == null || !isConnected) {
+                    bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+                    val device: BluetoothDevice = bluetoothAdapter.getRemoteDevice(address)
+                    bluetoothSocket = device.createInsecureRfcommSocketToServiceRecord(myUUID)
                     BluetoothAdapter.getDefaultAdapter().cancelDiscovery()
-                    m_bluetoothSocket!!.connect()
+                    bluetoothSocket!!.connect()
                 }
             } catch (e: IOException) {
                 connectSuccess = false
@@ -82,9 +82,9 @@ class BluetoothController {
             if (!connectSuccess) {
                 Log.i("data", "couldn't connect")
             } else {
-                m_isConnected = true
+                isConnected = true
             }
-            m_progress.dismiss()
+            progress.dismiss()
         }
     }
 }
