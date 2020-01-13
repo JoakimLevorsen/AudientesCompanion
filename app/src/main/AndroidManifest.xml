@@ -23,13 +23,13 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ui.welcome.WelcomeActivity"
-            android:theme="@style/AppTheme.Launcher">
+            android:theme="@style/AppTheme.Launcher"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            android:screenOrientation="portrait">
         </activity>
         <activity android:name=".ui.hearing.HearingTest" />
         <activity
