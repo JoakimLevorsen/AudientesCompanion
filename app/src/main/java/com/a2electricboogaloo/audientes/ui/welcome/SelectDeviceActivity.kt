@@ -77,6 +77,7 @@ class SelectDeviceActivity : AppCompatActivity() {
             if (device.address == btdevicelist[i].address) {
                 addToList = false
                 if (btdevicelist[i].name == btdevicelist[i].address && device.name != btdevicelist[i].name) {
+                    btdevicelist.distinct() // remove duplicates
                     btdevicelist.drop(i)
                     adapter!!.notifyDataSetChanged()
                     addToList = true
@@ -159,7 +160,9 @@ class SelectDeviceActivity : AppCompatActivity() {
         var device: BluetoothDevice = btdevicelist[position]
         val address: String = device.address
         device = bluetoothAdapter!!.getRemoteDevice(address)
-        device.createBond()
+        if(!device.createBond()){
+            toast("connection didn't succeed")
+        }
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
         startActivity(intent)
