@@ -103,6 +103,7 @@
             android:layout_height="@dimen/activity_horizontal_margin" />
 
         <LinearLayout
+            android:id="@+id/SignIn"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="horizontal">

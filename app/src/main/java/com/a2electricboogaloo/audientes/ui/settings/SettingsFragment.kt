@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import kotlinx.android.synthetic.main.fragment_settings.*
 
 
 class SettingsFragment : Fragment() {
@@ -28,17 +29,17 @@ class SettingsFragment : Fragment() {
         val root = inflater.inflate(R.layout.fragment_settings, container, false)
         return root
 
-        val buttonSignIn = root.findViewById<Button>(R.id.button_signIn)
-        buttonSignIn.setOnClickListener{
-
-                  }
-        val buttonSignUp = root.findViewById<Button>(R.id.button_signUp)
-        buttonSignIn.setOnClickListener{
-
-        }
-        val buttonSignOut = root.findViewById<Button>(R.id.button_signOut)
-        buttonSignIn.setOnClickListener{
-
+        SignIn.setOnClickListener{
+            //Ikke logget ind
+            if(true){
+                signInText.setText(R.string.sign_in)
+                SignInundertext.setText(R.string.sign_in_to_audientes_companion)
+            }
+            //Allerede logget ind
+            else{
+                signInText.setText(R.string.sign_out)
+                SignInundertext.setText(R.string.sign_out_of_audientes_companion)
+            }
         }
     }
 }

@@ -45,4 +45,6 @@
     <string name="start">Start</string>
     <string name="sign_in_to_audientes_companion">Sign in to Audientes Companion</string>
     <string name="sign_in">Sign In</string>
+    <string name="sign_out_of_audientes_companion">Sign out of Audientes Companion</string>
+    <string name="sign_out">Sign Out</string>
 </resources>
