@@ -77,6 +77,7 @@ class SelectDeviceActivity : AppCompatActivity() {
             if (device.address == btdevicelist[i].address) {
                 addToList = false
                 if (btdevicelist[i].name == btdevicelist[i].address && device.name != btdevicelist[i].name) {
+                    btdevicelist.distinct() // remove duplicates
                     btdevicelist.drop(i)
                     adapter!!.notifyDataSetChanged()
                     addToList = true
