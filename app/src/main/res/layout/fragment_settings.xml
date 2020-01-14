@@ -99,5 +99,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/button_signIn"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+        <Button
+            android:id="@+id/button_signOut"
+            android:text="@string/SignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

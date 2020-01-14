@@ -16,7 +16,7 @@ class HearingTest : AppCompatActivity() {
         val fragment = HearingTest_running_frag()
 
         button.setOnClickListener {
-            val transaction = getSupportFragmentManager().beginTransaction()
+            val transaction = supportFragmentManager.beginTransaction()
             transaction.add(R.id.fragmentindhold, fragment)
             transaction.commit()
         }

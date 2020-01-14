@@ -22,5 +22,8 @@
     <string name="ble_not_supported">Bluetooth Low Energy is not supported</string>
     <string name="refresh">refresh</string>
     <string name="search">search</string>
+    <string name="SignIn">Sign in</string>
+    <string name="SignOut">Sign out</string>
+
 
 </resources>
