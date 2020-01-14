@@ -1,12 +1,13 @@
 package com.a2electricboogaloo.audientes.model.bluetooth
 
+import com.a2electricboogaloo.audientes.model.types.HearingChannelData
 import com.a2electricboogaloo.audientes.model.types.Program
 
 class ProgramSerializer {
     companion object {
-        fun buildProgram(rawRightChannel: Array<Int>, audiogramID: String): (Array<Int>) -> Program?  {
+        fun buildProgram(rawRightChannel: HearingChannelData, audiogramID: String): (Array<Int>) -> Program?  {
             val (deviceIndex, rightChannel) = extractProgramData(rawRightChannel, true)
-            return { rawLeftChannel: Array<Int> ->
+            return { rawLeftChannel: HearingChannelData ->
                 val (otherDeviceIndex, leftChannel) = extractProgramData(rawLeftChannel, false)
                 if (deviceIndex != otherDeviceIndex) {
                     throw Error("FoundDevice indexes for streams did not match")

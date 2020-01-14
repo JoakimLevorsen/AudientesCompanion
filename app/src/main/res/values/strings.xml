@@ -45,4 +45,6 @@
     <string name="start">Start</string>
     <string name="SignIn">Sign in</string>
     <string name="SignOut">Sign out</string>
+    <string name="programName">program name</string>
+    <string name="basedOnAudiogram">based on audiogram</string>
 </resources>
