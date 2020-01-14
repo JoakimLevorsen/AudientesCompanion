@@ -26,10 +26,10 @@
 
             <TextView
                 android:id="@+id/textView5"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Hearing test text text text text"
+                android:text="@string/hearing_test_text_text_text_text"
                 android:textAlignment="center"
                 android:textColor="@color/gray6" />
         </LinearLayout>
@@ -45,11 +45,11 @@
 
             <Button
                 android:id="@+id/confirmButton4"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="@color/green"
-                android:text="amazingRoundConfirm button"
+                android:text="@string/amazingroundconfirm_button"
                 android:textSize="18sp" />
         </LinearLayout>
 
@@ -65,7 +65,7 @@
 
             <Button
                 android:id="@+id/cancelButton5"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_weight="1"
                 android:background="@color/primary"

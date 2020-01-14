@@ -31,10 +31,10 @@
 
                 <TextView
                     android:id="@+id/textView9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Hearing test completed"
+                    android:text="@string/hearing_test_completed"
                     android:textAlignment="center"
                     android:textColor="@color/gray6"
                     android:textSize="24sp" />
@@ -59,11 +59,11 @@
 
                 <Button
                     android:id="@+id/button9"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/primary"
-                    android:text="See my results"
+                    android:text="@string/see_my_results"
                     android:textColor="@color/gray1"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -86,11 +86,11 @@
 
                 <Button
                     android:id="@+id/button10"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@color/primary"
-                    android:text="amazing Home Button"
+                    android:text="@string/amazing_home_button"
                     android:textColor="@color/gray1"
                     android:textSize="18sp" />
             </LinearLayout>

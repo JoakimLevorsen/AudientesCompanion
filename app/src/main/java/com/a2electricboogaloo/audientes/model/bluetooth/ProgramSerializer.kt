@@ -4,9 +4,9 @@ import com.a2electricboogaloo.audientes.model.types.Program
 
 class ProgramSerializer {
     companion object {
-        fun buildProgram(rawRightChannel: Array<Byte>, audiogramID: String): (Array<Byte>) -> Program?  {
+        fun buildProgram(rawRightChannel: Array<Int>, audiogramID: String): (Array<Int>) -> Program?  {
             val (deviceIndex, rightChannel) = extractProgramData(rawRightChannel, true)
-            return { rawLeftChannel: Array<Byte> ->
+            return { rawLeftChannel: Array<Int> ->
                 val (otherDeviceIndex, leftChannel) = extractProgramData(rawLeftChannel, false)
                 if (deviceIndex != otherDeviceIndex) {
                     throw Error("FoundDevice indexes for streams did not match")
@@ -15,14 +15,14 @@ class ProgramSerializer {
             }
         }
 
-        fun extractProgramData(program: Array<Byte>, isRightChannel: Boolean): Pair<Int, Array<Byte>> {
+        fun extractProgramData(program: Array<Int>, isRightChannel: Boolean): Pair<Int, Array<Int>> {
             if (program.size != 8) {
                 throw Error("Invalid program")
             }
-            if (program[0] == AppCommands.ADD_PROGRAM.hex) {
+            if (program[0].toByte() == AppCommands.ADD_PROGRAM.hex) {
                 if (
-                    (isRightChannel && program[2] == 0x00.toByte())
-                    || (!isRightChannel && program[2] == 0x01.toByte())
+                    (isRightChannel && program[2] == 0x00/*.toByte()*/)
+                    || (!isRightChannel && program[2] == 0x01/*.toByte()*/)
                 ) {
                     val deviceIndex = program[1].toInt()
                     val channel = program.copyOfRange(3, 7)
@@ -31,18 +31,18 @@ class ProgramSerializer {
             } else throw Error("Invalid first byte")
         }
 
-        fun programToByteStream(program: Program): Pair<Array<Byte>, Array<Byte>> {
-            val rightBase = Array(4) {0.toByte()}
-            rightBase[0] = AppCommands.ADD_PROGRAM.hex
-            rightBase[1] = 0x01.toByte()
+        fun programToByteStream(program: Program): Pair<Array<Int>, Array<Int>> {
+            val rightBase = Array(4) {0/*.toByte()*/}
+            rightBase[0] = AppCommands.ADD_PROGRAM.hex.toInt()
+            rightBase[1] = 0x01/*.toByte()*/
             val deviceIndex = (
                     program.getDeviceIndex()
                         ?: throw Error("FoundDevice index must be set before transforming to byte stream")
-                    ).toByte()
+                    )/*.toByte()*/
             rightBase[2] = deviceIndex
             val leftBase = rightBase.clone()
-            rightBase[3] = 0x00.toByte()
-            leftBase[3] = 0x01.toByte()
+            rightBase[3] = 0x00/*.toByte()*/
+            leftBase[3] = 0x01/*.toByte()*/
             return Pair(rightBase + program.getRightEar(), leftBase + program.getLeftEar())
         }
     }
