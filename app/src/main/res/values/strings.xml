@@ -43,7 +43,6 @@
     <string name="blahblah2">blahblah2</string>
     <string name="blahblah3">blahblah3</string>
     <string name="start">Start</string>
-    <string name="SignIn">Sign in</string>
-    <string name="SignOut">Sign out</string>
-    <string name="SignUp">Sign up</string>
+    <string name="sign_in_to_audientes_companion">Sign in to Audientes Companion</string>
+    <string name="sign_in">Sign In</string>
 </resources>
