@@ -19,7 +19,7 @@
             android:id="@+id/titleView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Welcome"
+            android:text="@string/welcome"
             android:textAlignment="center"
             android:textColor="@color/primary"
             android:textSize="50sp" />
@@ -34,14 +34,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/activity_outer_horizontal_margin"
             android:layout_marginRight="@dimen/activity_outer_horizontal_margin"
-            android:text="To the audientes companion app.  Please do whatever to turn on your device."
+            android:text="@string/to_the_audientes_companion_app_please_do_whatever_to_turn_on_your_device"
             android:textAlignment="center"
             android:textColor="@color/gray6"
             android:textSize="20sp" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1" />
 
         <LinearLayout

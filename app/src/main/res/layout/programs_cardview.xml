@@ -30,7 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/leftSpace"
-                android:text="TextView"
+                android:text="@string/textview"
                 android:textColor="#000000"
                 android:textSize="24sp" />
 
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/programName"
                 android:layout_toEndOf="@id/leftSpace"
-                android:text="TextView"
+                android:text="@string/textview"
                 android:textColor="#8C000000" />
 
             <CheckBox
