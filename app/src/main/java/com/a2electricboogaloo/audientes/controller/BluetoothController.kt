@@ -48,7 +48,7 @@ class BluetoothController {
         }
     }
 
-     class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
+    class ConnectToDevice(c: Context) : AsyncTask<Void, Void, String>() {
         private var connectSuccess: Boolean = true
         private val context: Context
 

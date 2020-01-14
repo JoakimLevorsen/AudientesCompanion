@@ -18,9 +18,9 @@ class WelcomeActivity : AppCompatActivity() {
         setTheme(R.style.AppTheme)
         setContentView(R.layout.activity_welcome)
 
-        nextButton = findViewById<Button>(R.id.button11)
-        titleText = findViewById<TextView>(R.id.titleView)
-        contentText = findViewById<TextView>(R.id.contentView)
+        nextButton = findViewById(R.id.button11)
+        titleText = findViewById(R.id.titleView)
+        contentText = findViewById(R.id.contentView)
         nextButton?.setOnClickListener {
             titleText?.text = "Loading..."
             contentText?.text = "Connecting to device."

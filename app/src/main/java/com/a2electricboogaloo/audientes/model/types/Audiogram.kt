@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import java.util.*
 
-typealias HearingChannelData = Array<Byte>
+typealias HearingChannelData = Array<Int>
 
 class Audiogram {
     companion object {
@@ -48,6 +48,7 @@ class Audiogram {
     val left get() = leftEar
     val right get() = rightEar
     val date get() = creationDate
+    val id get() = documentReference?.id
 
     constructor(
         leftEar: HearingChannelData,
@@ -67,8 +68,8 @@ class Audiogram {
     }
 
     constructor(fireDoc: DocumentSnapshot) {
-        val leftEar = fireDoc.get(ObjectKeys.LEFT_EAR.name) as? Array<Byte>
-        val rightEar = fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? Array<Byte>
+        val leftEar = fireDoc.get(ObjectKeys.LEFT_EAR.name) as? HearingChannelData
+        val rightEar = fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? HearingChannelData
         val recordDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
         val owner = fireDoc.getString(ObjectKeys.OWNER.name)
         if (

@@ -14,7 +14,7 @@
         android:id="@+id/textView_deviceList"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="device Adress"
+        android:text="@string/device_adress"
         android:textSize="20sp"
         android:textColor="@color/primary"
         android:textStyle="normal"

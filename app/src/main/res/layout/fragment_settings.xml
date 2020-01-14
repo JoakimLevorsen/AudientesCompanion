@@ -26,6 +26,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="0"
+                android:contentDescription="@string/world"
                 app:srcCompat="@drawable/ic_globe" />
 
             <Space
@@ -39,17 +40,17 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/textView"
+                    android:id="@+id/hearingtesttext"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Change language"
+                    android:text="@string/change_language"
                     android:textColor="@color/gray6" />
 
                 <TextView
                     android:id="@+id/programsTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Change the app’s display language"
+                    android:text="@string/change_the_app_s_display_language"
                     android:textColor="@color/gray4" />
             </LinearLayout>
         </LinearLayout>
@@ -68,6 +69,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="0"
+                android:contentDescription="@string/trash"
                 app:srcCompat="@drawable/ic_trash" />
 
             <Space
@@ -84,14 +86,14 @@
                     android:id="@+id/textView3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Delete app data"
+                    android:text="@string/delete_app_data"
                     android:textColor="@color/gray6" />
 
                 <TextView
-                    android:id="@+id/textView4"
+                    android:id="@+id/hearingtesttext2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Delete all data from the app"
+                    android:text="@string/delete_all_data_from_the_app"
                     android:textColor="@color/gray4" />
             </LinearLayout>
         </LinearLayout>
@@ -99,5 +101,14 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+        <com.google.android.gms.common.SignInButton
+            android:id="@+id/button_signIn"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content" />
+        <Button
+            android:id="@+id/button_signOut"
+            android:text="@string/SignOut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
