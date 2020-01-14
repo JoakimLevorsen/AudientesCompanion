@@ -39,6 +39,8 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
+
+        <service android:name=".services.VolumeService" />
     </application>
 
 </manifest>
