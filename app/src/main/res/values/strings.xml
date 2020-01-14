@@ -39,7 +39,5 @@
     <string name="trash">trash</string>
     <string name="delete_app_data">Delete app data</string>
     <string name="delete_all_data_from_the_app">Delete all data from the app</string>
-    <string name="textview">TextView</string>
-    <string name="textview">TextView</string>
 
 </resources>
