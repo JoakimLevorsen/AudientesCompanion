@@ -45,4 +45,5 @@
     <string name="start">Start</string>
     <string name="SignIn">Sign in</string>
     <string name="SignOut">Sign out</string>
+    <string name="SignUp">Sign up</string>
 </resources>
