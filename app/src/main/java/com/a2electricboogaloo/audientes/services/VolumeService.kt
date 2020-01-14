@@ -16,14 +16,18 @@ class VolumeService : Service() {
     override fun onCreate() {
         super.onCreate()
         mediaSession = MediaSessionCompat(this, "VolumeService")
-        mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS) //TODO OBS TIMMY: Possibly: needs another FLAG
+        mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS)
         mediaSession.setPlaybackState(PlaybackStateCompat.Builder().setState(PlaybackStateCompat.STATE_PLAYING, 0,
             0F
         ).build())
 
 
+        //TODO TIMMY: Ensure seekbar slider is in sync with volume stuff
+        //TODO TIMMY: Ensure seekbar slider changes app volume stuff??? or no???
+        //TODO TIMMY: App volume VS media volume
+        //TODO TIMMY: VolumeService actually does something
         
-        val audio = this!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager //TODO OBS TIMMY: Changed "context" to "this" - no idea if thats okay...
+        val audio = this!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val maxVol = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC) //Gets bluetooth device max vol
         val currentVol = audio.getStreamVolume(AudioManager.STREAM_MUSIC) //Bluetooth device!
         
