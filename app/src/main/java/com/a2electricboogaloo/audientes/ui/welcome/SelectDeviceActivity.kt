@@ -160,7 +160,9 @@ class SelectDeviceActivity : AppCompatActivity() {
         var device: BluetoothDevice = btdevicelist[position]
         val address: String = device.address
         device = bluetoothAdapter!!.getRemoteDevice(address)
-        device.createBond()
+        if(!device.createBond()){
+            toast("connection didn't succeed")
+        }
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
         startActivity(intent)
