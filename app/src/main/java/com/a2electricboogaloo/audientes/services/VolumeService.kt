@@ -22,11 +22,13 @@ class VolumeService : Service() {
         ).build())
 
 
-//        val audio = this!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager //TODO OBS TIMMY: Changed "context" to "this" - no idea if thats okay...
-
-//TODO: Change (in myVolumeProvider) hardcoded values to something with device
+        
+        val audio = this!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager //TODO OBS TIMMY: Changed "context" to "this" - no idea if thats okay...
+        val maxVol = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC) //Gets bluetooth device max vol
+        val currentVol = audio.getStreamVolume(AudioManager.STREAM_MUSIC) //Bluetooth device!
+        
         val myVolumeProvider : VolumeProviderCompat = object : VolumeProviderCompat(VolumeProviderCompat.VOLUME_CONTROL_RELATIVE,
-            100, 50) {
+            maxVol, currentVol) {
             override fun onAdjustVolume(direction : Int) {
             //TODO IMPORTANT STUFF
             }
