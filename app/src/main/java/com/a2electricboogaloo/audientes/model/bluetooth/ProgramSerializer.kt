@@ -3,6 +3,7 @@ package com.a2electricboogaloo.audientes.model.bluetooth
 import com.a2electricboogaloo.audientes.model.types.Program
 
 class ProgramSerializer {
+    /*
     companion object {
         fun buildProgram(rawRightChannel: Array<Int>, audiogramID: String): (Array<Int>) -> Program?  {
             val (deviceIndex, rightChannel) = extractProgramData(rawRightChannel, true)
@@ -46,4 +47,6 @@ class ProgramSerializer {
             return Pair(rightBase + program.getRightEar(), leftBase + program.getLeftEar())
         }
     }
+
+     */
 }
