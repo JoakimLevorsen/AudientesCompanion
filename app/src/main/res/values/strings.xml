@@ -26,7 +26,7 @@
     <string name="r">R</string>
     <string name="welcome">Welcome</string>
     <string name="to_the_audientes_companion_app_please_do_whatever_to_turn_on_your_device">To the audientes companion app. Please do whatever to turn on your device.</string>
-    <string name="device_adress">device Adress</string>
+    <string name="device_adress">device Address</string>
     <string name="take_new_hearing_test">Take new hearing test</string>
     <string name="hearing_test_completed">Hearing test completed</string>
     <string name="see_my_results">See my results</string>
@@ -45,6 +45,6 @@
     <string name="start">Start</string>
     <string name="sign_in_to_audientes_companion">Sign in to Audientes Companion</string>
     <string name="sign_in">Sign In</string>
-    <string name="sign_out_of_audientes_companion">Sign out of Audientes Companion</string>
-    <string name="sign_out">Sign Out</string>
+    <string name="textview2">textview2</string>
+    <string name="textview1">textview1</string>
 </resources>
