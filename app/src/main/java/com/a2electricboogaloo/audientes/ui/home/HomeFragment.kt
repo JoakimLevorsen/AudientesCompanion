@@ -55,11 +55,9 @@ class HomeFragment : Fragment() {
             }
 
             override fun onStartTrackingTouch(seekBarOverall: SeekBar) {
-                //TODO write custom code for progress is started
             }
 
             override fun onStopTrackingTouch(seekBarOverall: SeekBar) {
-                //TODO write custom code for progress is started
                 var currentVolume = seekBarOverall.progress
                 val snackyText = Snackbar.make(view!!, "Volume is: ${currentVolume}", Snackbar.LENGTH_SHORT)
                 snackyText.show()
