@@ -17,6 +17,7 @@ import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 import com.google.android.material.snackbar.Snackbar
 import android.content.Context.AUDIO_SERVICE
+import android.view.KeyEvent
 
 
 class HomeFragment : Fragment() {
@@ -46,6 +47,22 @@ class HomeFragment : Fragment() {
         val seekBarOverall = root.findViewById<SeekBar>(R.id.sliderOverall)!!
         seekBarOverall.max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
         seekBarOverall.progress = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
+
+
+        //TODO TIM: THE BELOW FUNCTION IS SUPPOSED TO EXISTS SOMEWHERE AND BE GOD FUCKING DAMN OVERWRITTEN
+//        override fun onKeyDown(keyCode:Int, event: KeyEvent):Boolean {
+//            if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN))
+//            {
+//                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI)
+//                //TODO Test: setting the slider
+//                seekBarOverall.progress = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
+//            } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
+//                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI)
+//                //TODO Test: setting the slider
+//                seekBarOverall.progress = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
+//            }
+//            return true
+//        }
 
         seekBarOverall.setOnSeekBarChangeListener(object :
             OnSeekBarChangeListener {

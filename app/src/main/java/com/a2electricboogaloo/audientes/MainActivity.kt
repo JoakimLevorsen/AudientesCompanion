@@ -1,7 +1,10 @@
 package com.a2electricboogaloo.audientes
 
 
+import android.content.Context
 import android.content.Intent
+import android.media.AudioManager
+import android.media.VolumeShaper
 import android.os.Bundle
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
@@ -10,7 +13,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.a2electricboogaloo.audientes.controller.BluetoothController
-import com.a2electricboogaloo.audientes.services.VolumeService
+//import com.a2electricboogaloo.audientes.services.VolumeService //TODO TIM: Clean up note
 
 import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
 
@@ -41,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         bluetoothController = BluetoothController()
         bluetoothController!!.sendCommand("0x00")
 
-        startService(Intent(this, VolumeService::class.java))
-//TODO STOP SERVICE SOMEWHERE
+//        startService(Intent(this, VolumeService::class.java)) //Stop Service somewhere! [And possibly StartService somewhere else] //TODO TIM: Clean up note
+        this.volumeControlStream = AudioManager.STREAM_MUSIC
     }
 }
