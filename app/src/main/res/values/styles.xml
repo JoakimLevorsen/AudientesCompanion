@@ -5,6 +5,7 @@
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primaryDark</item>
         <item name="colorAccent">@color/primaryLight</item>
+
     </style>
     <style name="AppTheme.Launcher" parent="Theme.AppCompat.Light.NoActionBar">
     <item name="android:windowBackground">@drawable/launch_screen</item>

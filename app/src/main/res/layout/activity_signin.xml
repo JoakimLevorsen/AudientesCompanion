@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray1">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
         android:background="@color/gray1"
         android:orientation="vertical">
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="100dp" />
-
         <TextView
-            android:id="@+id/titleView"
+            android:id="@+id/titleSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/SignIn"
@@ -24,7 +25,7 @@
             android:textSize="50sp" />
         <Space
             android:layout_width="match_parent"
-            android:layout_height="50dp" />
+            android:layout_height="125dp" />
         <TextView
             android:id="@+id/email"
             android:layout_width="match_parent"
@@ -33,13 +34,9 @@
             android:textColor="@color/primary"
             android:textSize="20sp" />
         <EditText
-
-            android:textAlignment="center"
+            android:backgroundTint="@color/primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
         <TextView
             android:id="@+id/password"
             android:layout_width="match_parent"
@@ -49,9 +46,7 @@
             android:textColor="@color/primary"
             android:textSize="20sp" />
         <EditText
-            android:background="@color/primary"
-            android:textColor="@color/primary"
-            android:textAlignment="center"
+            android:backgroundTint="@color/primary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
         <Space
@@ -66,9 +61,6 @@
             android:textColor="@color/gray1"
             android:textSize="20sp"
             />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
         <Button
             android:id="@+id/buttonSignUp"
             android:layout_width="match_parent"
@@ -76,7 +68,9 @@
             android:background="@color/gray1"
             android:text="@string/SignUpText"
             android:textColor="@color/primary"
-            android:textSize="15sp"
-            />
+            android:textSize="15sp"/>
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="50dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
