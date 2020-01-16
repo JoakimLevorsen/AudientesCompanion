@@ -21,10 +21,11 @@
         android:roundIcon="@drawable/ic_audientes_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ui.login.SignUpActivity"></activity>
         <activity
             android:name=".ui.welcome.WelcomeActivity"
-            android:theme="@style/AppTheme.Launcher"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
