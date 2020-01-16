@@ -19,15 +19,20 @@ class SignUpActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         auth = FirebaseAuth.getInstance()
-
+        var email = edittext_emailSignUp!!.text.toString()
+        var password = edittext_passwordSignUp!!.text.toString()
         buttonSignUpDone.setOnClickListener{
-            signUp(
-                edittext_emailSignUp!!
-                    .text.toString(),
-                edittext_passwordSignUp!!.text.toString()
-            )
+            if(password.isEmpty()||email.isEmpty()){
+                toast("email or password was blank")
+            }
+            else{
+                signUp(email,password)
+            }
         }
 
+    }
+    fun toast(message : String){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
     }
     fun signUp(email : String, password : String){
         auth.createUserWithEmailAndPassword(email, password)

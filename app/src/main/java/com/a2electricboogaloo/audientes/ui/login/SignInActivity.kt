@@ -29,14 +29,16 @@ class SignInActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
-
+        var email=edittext_email!!.text.toString()
+        var password = edittext_password!!.text.toString()
 
         buttonSignInDone.setOnClickListener{
-            signIn(
-                edittext_email!!
-                    .text.toString(),
-                edittext_password!!.text.toString()
-            )
+            if(password.isEmpty()||email.isEmpty()){
+                toast("email or password was blank")
+            }
+            else{
+                signIn(email,password)
+            }
         }
 
     }
@@ -61,5 +63,9 @@ class SignInActivity : AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
+
+    }
+    fun toast(message : String){
+        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
     }
 }
