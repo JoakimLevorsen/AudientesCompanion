@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_up.*
@@ -35,6 +36,11 @@ class SignUpActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("login", "createUserWithEmail:success")
                     val user = auth.currentUser
+                    Toast.makeText(baseContext, "Sign up succeeded." + user.toString(),
+                        Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, SignInActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("login", "createUserWithEmail:failure", task.exception)

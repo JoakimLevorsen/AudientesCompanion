@@ -7,6 +7,7 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_signin.*
@@ -45,6 +46,11 @@ class SignInActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d("login", "signInWithEmail:success")
                     val user = auth.currentUser
+                    Toast.makeText(baseContext, "Authentication succeeded." + user.toString(),
+                        Toast.LENGTH_SHORT).show()
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w("login", "signInWithEmail:failure", task.exception)
