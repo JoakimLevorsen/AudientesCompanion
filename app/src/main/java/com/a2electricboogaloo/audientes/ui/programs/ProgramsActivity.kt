@@ -14,7 +14,7 @@ class ProgramsActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_programs)
+        setContentView(R.layout.programs_activity)
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = ProgramsAdapter(dataset)

@@ -1,24 +1,23 @@
 package com.a2electricboogaloo.audientes.ui.hearing
 
 import android.os.Bundle
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.R
-
+import kotlinx.android.synthetic.main.hearing_test_activity.*
+import kotlinx.coroutines.InternalCoroutinesApi
 
 class HearingTest : AppCompatActivity() {
 
+    @InternalCoroutinesApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_hearing_test)
+        setContentView(R.layout.hearing_test_activity)
 
-        val button = findViewById<Button>(R.id.startButton3)
-        val fragment = HearingTest_running_frag()
-
-        button.setOnClickListener {
-            val transaction = supportFragmentManager.beginTransaction()
-            transaction.add(R.id.fragmentindhold, fragment)
-            transaction.commit()
+        startButton.setOnClickListener {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.fragmentindhold, HearingTestRunningFragment())
+                .commit()
         }
     }
 }
