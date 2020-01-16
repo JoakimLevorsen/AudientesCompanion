@@ -50,7 +50,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
             android:hint="@string/Password"
-            android:inputType="text"
+            android:inputType="textPassword"
             android:textColor="@android:color/white"
             android:textColorHint="@color/primary" />
 
@@ -74,7 +74,7 @@
             android:background="@color/gray1"
             android:text="@string/SignUpText"
             android:textColor="@color/primary"
-            android:textSize="15sp"
+            android:textSize="14sp"
             />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
