@@ -12,6 +12,7 @@ import com.a2electricboogaloo.audientes.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_signin.*
 import kotlinx.android.synthetic.main.activity_signin.view.*
+import kotlinx.android.synthetic.main.settings_fragment.*
 
 
 class SignInActivity : AppCompatActivity() {
@@ -48,6 +49,8 @@ class SignInActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     Toast.makeText(baseContext, "Authentication succeeded." + user.toString(),
                         Toast.LENGTH_SHORT).show()
+                    signInText.setText("Sign Out")
+                    SignInundertext.setText("Sign out of audientes companion")
                     val intent = Intent(this, MainActivity::class.java)
                     startActivity(intent)
                     finish()
