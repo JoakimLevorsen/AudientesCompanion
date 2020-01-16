@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.login.SignInActivity
 
@@ -27,7 +28,7 @@ class WelcomeActivity : AppCompatActivity() {
             contentText?.text = "Connecting to device."
 
             //indsæt bluetooth check
-            val intent = Intent(this, SignInActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
         }
