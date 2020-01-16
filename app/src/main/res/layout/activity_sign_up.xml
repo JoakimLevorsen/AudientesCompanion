@@ -15,10 +15,12 @@
         android:layout_marginBottom="20dp"
         android:background="@color/gray1"
         android:orientation="vertical">
+
         <TextView
             android:id="@+id/titleSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="50sp"
             android:text="@string/SignUp"
             android:textAlignment="center"
             android:textColor="@color/primary"
@@ -26,29 +28,24 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="125dp" />
-        <TextView
-            android:id="@+id/emailSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/email"
-            android:textColor="@color/primary"
-            android:textSize="20sp" />
-        <EditText
-            android:backgroundTint="@color/primary"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/passwordSignUp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/password"
 
-            android:textColor="@color/primary"
-            android:textSize="20sp" />
         <EditText
-            android:backgroundTint="@color/primary"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:hint="@string/Email"
+            android:textColorHint="@color/primary" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="40dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/primary"
+            android:hint="@string/Password"
+            android:textColorHint="@color/primary" />
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
