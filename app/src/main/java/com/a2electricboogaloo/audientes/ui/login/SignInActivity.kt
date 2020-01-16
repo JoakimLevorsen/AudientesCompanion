@@ -30,12 +30,11 @@ class SignInActivity : AppCompatActivity() {
 
 
         buttonSignInDone.setOnClickListener{
-            var editTextEmail = findViewById<EditText>(R.id.edittext_email)
-            var email= editTextEmail.text.toString()
-
-            var editTextPassword = findViewById<EditText>(R.id.edittext_password)
-            var password= editTextPassword.text.toString()
-            signIn(email,password)
+            signIn(
+                edittext_email!!
+                    .text.toString(),
+                edittext_password!!.text.toString()
+            )
         }
 
     }

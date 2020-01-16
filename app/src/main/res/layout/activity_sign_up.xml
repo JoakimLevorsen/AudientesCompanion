@@ -31,9 +31,11 @@
             android:layout_height="125dp" />
 
         <EditText
+            android:id="@+id/edittext_emailSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
+            android:inputType="textEmailAddress"
             android:hint="@string/Email"
             android:textColorHint="@color/primary"
             android:textColor="@android:color/white"
@@ -44,6 +46,7 @@
             android:layout_height="40dp" />
 
         <EditText
+            android:id="@+id/edittext_passwordSignUp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
