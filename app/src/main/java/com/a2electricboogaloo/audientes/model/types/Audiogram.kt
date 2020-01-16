@@ -48,6 +48,7 @@ class Audiogram {
     val left get() = leftEar
     val right get() = rightEar
     val date get() = creationDate
+    val id get() = documentReference?.id
 
     constructor(
         leftEar: HearingChannelData,

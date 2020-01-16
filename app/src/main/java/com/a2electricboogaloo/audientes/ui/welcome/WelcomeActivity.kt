@@ -16,7 +16,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
-        setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.welcome_activity)
 
         nextButton = findViewById(R.id.button11)
         titleText = findViewById(R.id.titleView)
@@ -28,6 +28,7 @@ class WelcomeActivity : AppCompatActivity() {
             //indsæt bluetooth check
             val intent = Intent(this, SelectDeviceActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

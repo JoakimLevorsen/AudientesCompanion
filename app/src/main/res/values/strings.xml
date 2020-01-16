@@ -47,4 +47,6 @@
     <string name="sign_in">Sign In</string>
     <string name="textview2">textview2</string>
     <string name="textview1">textview1</string>
+    <string name="programName">program name</string>
+    <string name="basedOnAudiogram">based on audiogram</string>
 </resources>
