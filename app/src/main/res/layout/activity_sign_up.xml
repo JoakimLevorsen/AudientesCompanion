@@ -35,6 +35,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
             android:hint="@string/Email"
+            android:textColorHint="@color/primary"
             android:textColor="@android:color/white"
             />
 
