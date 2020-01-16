@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray1"
     tools:context=".ui.hearing.HearingTest">
 
@@ -32,8 +33,8 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hearingtesttext"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/hearing_test"
@@ -55,11 +56,11 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView4"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hearingtesttext2"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="blahblah"
+                        android:text="@string/blahblah"
                         android:textAlignment="center"
                         android:textColor="@color/gray6" />
 
@@ -77,11 +78,11 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView6"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hearingtesttext3"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="blahblah"
+                        android:text="@string/blahblah2"
                         android:textAlignment="center"
                         android:textColor="@color/gray6" />
                 </LinearLayout>
@@ -98,27 +99,35 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/textView7"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/hearingtesttext4"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="blahblah"
+                        android:text="@string/blahblah3"
                         android:textAlignment="center"
                         android:textColor="@color/gray6" />
                 </LinearLayout>
             </LinearLayout>
 
-            <Space
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="299dp" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/startButton3"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@color/primary"
-                android:text="Start"
-                android:textColor="@color/gray6" />
+                <Button
+                    android:id="@+id/startButton3"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="92dp"
+                    android:background="@color/primary"
+                    android:text="@string/start"
+                    android:textColor="@color/gray1"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </FrameLayout>
 
