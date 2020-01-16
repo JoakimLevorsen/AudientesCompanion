@@ -54,4 +54,6 @@
     <string name="Password">Password</string>
     <string name="SignUpText">Don\'t have an audientes account? Sign up</string>
     <string name="SignUp">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
 </resources>

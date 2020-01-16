@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,11 +30,13 @@
             android:layout_height="125dp" />
 
         <EditText
+            android:id="@+id/edittext_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:backgroundTint="@color/primary"
             android:hint="@string/Email"
+            android:inputType="text"
             android:textColor="@android:color/white"
             android:textColorHint="@color/primary" />
 
@@ -44,10 +45,12 @@
             android:layout_height="40dp" />
 
         <EditText
+            android:id="@+id/edittext_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
             android:hint="@string/Password"
+            android:inputType="text"
             android:textColor="@android:color/white"
             android:textColorHint="@color/primary" />
 
@@ -72,10 +75,6 @@
             android:text="@string/SignUpText"
             android:textColor="@color/primary"
             android:textSize="15sp"
-            android:style="?android:attr/borderlessButtonStyle"
             />
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="50dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

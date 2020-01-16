@@ -24,6 +24,7 @@
             android:textAlignment="center"
             android:textColor="@color/primary"
             android:textSize="50sp" />
+
         <Space
             android:layout_width="match_parent"
             android:layout_height="125dp" />
@@ -34,6 +35,8 @@
             android:autofillHints=""
             android:backgroundTint="@color/primary"
             android:hint="@string/Email"
+            android:textColor="@android:color/white"
+            android:inputType="text"
             android:textColorHint="@color/primary" />
 
         <Space
@@ -41,10 +44,12 @@
             android:layout_height="40dp" />
 
         <EditText
+            android:textColor="@android:color/white"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/primary"
             android:hint="@string/Password"
+            android:inputType="text"
             android:textColorHint="@color/primary" />
 
         <Space
@@ -66,7 +71,7 @@
             android:background="@color/gray1"
             android:text="@string/SignUpText"
             android:textColor="@color/primary"
-            android:textSize="15sp"/>
+            android:textSize="14sp"/>
         <Space
             android:layout_width="match_parent"
             android:layout_height="50dp" />
