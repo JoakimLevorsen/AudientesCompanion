@@ -10,7 +10,7 @@ import com.a2electricboogaloo.audientes.R
 import com.google.firebase.auth.FirebaseAuth
 
 
-class SettingsFragment : Fragment() {
+class  SettingsFragment : Fragment() {
 
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var auth: FirebaseAuth

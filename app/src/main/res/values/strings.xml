@@ -49,4 +49,8 @@
     <string name="textview1">textview1</string>
     <string name="programName">program name</string>
     <string name="basedOnAudiogram">based on audiogram</string>
+    <string name="SignIn">Sign In</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="SignUpText">Don\'t have an audientes account? Sign up</string>
 </resources>
