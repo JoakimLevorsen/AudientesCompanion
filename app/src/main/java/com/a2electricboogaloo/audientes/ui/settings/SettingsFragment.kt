@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.login.SignInActivity
+import com.a2electricboogaloo.audientes.ui.settings.aboutUs.AboutUs
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -18,6 +19,7 @@ class SettingsFragment : Fragment() {
     private lateinit var settingsViewModel: SettingsViewModel
     private lateinit var auth: FirebaseAuth
     private lateinit var signIn: LinearLayout
+    private lateinit var aboutUs: LinearLayout
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -33,6 +35,13 @@ class SettingsFragment : Fragment() {
             val intent = Intent(context, SignInActivity::class.java)
             startActivity(intent)
         }
+
+        aboutUs = root.findViewById(R.id.aboutUs)
+        aboutUs.setOnClickListener {
+            val intent = Intent(context, AboutUs::class.java)
+            startActivity(intent)
+        }
+
         return root
     }
 }
