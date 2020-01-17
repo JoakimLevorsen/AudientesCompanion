@@ -19,6 +19,7 @@ import com.google.android.material.snackbar.Snackbar
 import android.content.Context.AUDIO_SERVICE
 import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), VolumeListener {
 
@@ -69,6 +70,11 @@ class HomeFragment : Fragment(), VolumeListener {
                 snackyText.show()
             }
         })
+
+        var seekBarLeft = root.findViewById<SeekBar>(R.id.sliderLeft)!!
+        var seekbarRight = root.findViewById<SeekBar>(R.id.sliderRight)!!
+        seekBarLeft.isEnabled = false //Disabled, Left and Right ear volume is not implemented
+        seekbarRight.isEnabled = false //Disabled, Left and Right ear volume is not implemented
 
         return root
     }
