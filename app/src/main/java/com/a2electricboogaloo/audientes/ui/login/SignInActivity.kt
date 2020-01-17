@@ -33,7 +33,8 @@ class SignInActivity : AppCompatActivity() {
         var password = edittext_password!!.text.toString()
 
         buttonSignInDone.setOnClickListener{
-            if(password.isEmpty()||email.isEmpty()){
+            signIn(email,password)
+            if(password.isBlank()||email.isBlank()){
                 toast("email or password was blank")
             }
             else{

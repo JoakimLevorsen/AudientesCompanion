@@ -22,7 +22,8 @@ class SignUpActivity : AppCompatActivity() {
         var email = edittext_emailSignUp!!.text.toString()
         var password = edittext_passwordSignUp!!.text.toString()
         buttonSignUpDone.setOnClickListener{
-            if(password.isEmpty()||email.isEmpty()){
+            signUp(email,password)
+            if(password.isBlank()||email.isBlank()){
                 toast("email or password was blank")
             }
             else{
