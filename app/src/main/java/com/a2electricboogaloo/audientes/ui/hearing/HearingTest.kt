@@ -50,7 +50,7 @@ class HearingTest : AppCompatActivity() {
            checkEnvironmentNoise()
        }
        else {
-        checkEnvironmentNoise()
+        //checkEnvironmentNoise()
        }
    }
 
