@@ -60,7 +60,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/blahblah"
+                        android:text="blahblah"
                         android:textAlignment="center"
                         android:textColor="@color/gray6" />
 
@@ -82,7 +82,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/blahblah2"
+                        android:text="blahblah2"
                         android:textAlignment="center"
                         android:textColor="@color/gray6" />
                 </LinearLayout>
@@ -103,7 +103,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/blahblah3"
+                        android:text="blahblah3"
                         android:textAlignment="center"
                         android:textColor="@color/gray6" />
                 </LinearLayout>
@@ -117,9 +117,9 @@
                     android:id="@+id/startButton3"
                     android:layout_width="0dp"
                     android:layout_height="60dp"
-                    android:layout_marginBottom="92dp"
+                    android:layout_marginBottom="48dp"
                     android:background="@color/primary"
-                    android:text="@string/start"
+                    android:text="start"
                     android:textColor="@color/gray1"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"

@@ -17,7 +17,7 @@
         <ListView
             android:id="@+id/audiogramList"
             android:layout_width="wrap_content"
-            android:layout_height="0dp"
+            android:layout_height="603dp"
             android:layout_weight="1" />
 
         <Space
@@ -35,11 +35,16 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/button5"
-                android:layout_width="80dp"
-                android:layout_height="80dp"
-                android:layout_weight="0"
-                android:background="@drawable/ic_plus" />
+                android:id="@+id/addTest"
+                android:layout_width="wrap_content"
+                android:layout_height="71dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:text="take new hearing test"
+                android:textColor="@color/gray1"
+                android:textSize="20sp"
+                 />
+
 
             <Space
                 android:layout_width="wrap_content"
@@ -48,7 +53,7 @@
         </LinearLayout>
 
         <Space
-            android:layout_width="16dp"
-            android:layout_height="16dp" />
+            android:layout_width="match_parent"
+            android:layout_height="30dp" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

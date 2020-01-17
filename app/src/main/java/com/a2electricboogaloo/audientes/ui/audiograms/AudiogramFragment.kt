@@ -27,7 +27,7 @@ class AudiogramFragment : Fragment() {
         audiogramViewModel.text.observe(this, Observer {
             //textView.text = it
         })
-        val button = root.findViewById<Button>(R.id.button5)
+        val button = root.findViewById<Button>(R.id.addTest)
         val intent = Intent(this.context, HearingTest::class.java)
         button?.setOnClickListener { startActivity(intent) }
 
