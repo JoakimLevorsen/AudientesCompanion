@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray1"
     tools:context=".ui.hearing.HearingTest">
 
@@ -108,18 +109,25 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <Space
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="299dp" />
+                android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/startButton3"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@color/primary"
-                android:text="@string/start"
-                android:textColor="@color/gray1"
-                android:textSize="18sp" />
+                <Button
+                    android:id="@+id/startButton3"
+                    android:layout_width="0dp"
+                    android:layout_height="60dp"
+                    android:layout_marginBottom="48dp"
+                    android:background="@color/primary"
+                    android:text="@string/start"
+                    android:textColor="@color/gray1"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </FrameLayout>
 
