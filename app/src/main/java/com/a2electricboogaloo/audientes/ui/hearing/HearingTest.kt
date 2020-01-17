@@ -1,9 +1,11 @@
 package com.a2electricboogaloo.audientes.ui.hearing
 
+
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.R
+
 
 
 class HearingTest : AppCompatActivity() {
@@ -20,5 +22,7 @@ class HearingTest : AppCompatActivity() {
             transaction.add(R.id.fragmentindhold, fragment)
             transaction.commit()
         }
+        
     }
+ 
 }
