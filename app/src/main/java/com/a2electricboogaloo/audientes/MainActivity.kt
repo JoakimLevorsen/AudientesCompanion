@@ -42,7 +42,12 @@ class MainActivity : AppCompatActivity() {
         bluetoothController = BluetoothController()
         bluetoothController!!.sendCommand("0x00")
 
-        startService(Intent(this, VolumeService::class.java)) //TODO !!!IMPORTANT!!! Stop Service somewhere! [And possibly StartService somewhere else]
+        startService(Intent(this, VolumeService::class.java))
         this.volumeControlStream = AudioManager.STREAM_MUSIC
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        stopService(Intent(this, VolumeService::class.java))
     }
 }
