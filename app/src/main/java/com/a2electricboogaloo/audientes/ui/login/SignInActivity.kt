@@ -30,6 +30,7 @@ class SignInActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_signin)
         auth = FirebaseAuth.getInstance()
+        settingsfragment = SettingsFragment.instance!!
         emailSignIn = findViewById(R.id.edittext_email) as EditText
         passwordSignIn = findViewById(R.id.edittext_password) as EditText
         buttonSignInDone.setOnClickListener{

@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.login.SignInActivity
 import com.a2electricboogaloo.audientes.ui.settings.aboutUs.AboutUs
+import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -25,13 +26,19 @@ class SettingsFragment : Fragment() {
     private lateinit var signInText: TextView
     private lateinit var SignInundertext: TextView
 
+    companion object {
+        var instance: SettingsFragment? = null
+        fun setGlobalInstance(fragment: SettingsFragment) {
+            instance = fragment
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
 
     ): View? {
-
+        setGlobalInstance(this)
         auth = FirebaseAuth.getInstance()
         //if logged in with email, changee sign in to sign out
         settingsViewModel =
