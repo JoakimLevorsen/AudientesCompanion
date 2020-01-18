@@ -27,18 +27,18 @@
             android:textSize="50sp" />
         <Space
             android:layout_width="match_parent"
-            android:layout_height="125dp" />
+            android:layout_height="100dp" />
 
         <EditText
             android:id="@+id/edittext_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:autofillHints=""
             android:backgroundTint="@color/primary"
             android:hint="@string/Email"
             android:inputType="textEmailAddress"
             android:textColor="@android:color/white"
-            android:textColorHint="@color/primary" />
+            android:textColorHint="@color/primary"
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="match_parent"
@@ -52,7 +52,8 @@
             android:hint="@string/Password"
             android:inputType="textPassword"
             android:textColor="@android:color/white"
-            android:textColorHint="@color/primary" />
+            android:textColorHint="@color/primary"
+            android:importantForAutofill="no" />
 
         <Space
             android:layout_width="match_parent"

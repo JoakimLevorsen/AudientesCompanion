@@ -2,7 +2,6 @@ package com.a2electricboogaloo.audientes.ui.settings
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,12 +12,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.login.SignInActivity
-import com.google.firebase.auth.AuthCredential
-import com.google.firebase.auth.EmailAuthCredential
-import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.settings_fragment.*
 import com.a2electricboogaloo.audientes.ui.settings.aboutUs.AboutUs
+import com.google.firebase.auth.FirebaseAuth
 
 
 class SettingsFragment : Fragment() {
@@ -53,6 +48,10 @@ class SettingsFragment : Fragment() {
                 auth.signOut()
                 signInText.setText(R.string.sign_in)
                 SignInundertext.setText(R.string.sign_in_to_audientes_companion)
+                signIn.setOnClickListener {
+                    val intent = Intent(context, SignInActivity::class.java)
+                    startActivity(intent)
+                }
                 }
             }
         else{
@@ -71,6 +70,12 @@ class SettingsFragment : Fragment() {
 
         return root
     }
+    fun changesignInText(text: String?) {
+        signInText.setText(text)
+    }
+    fun changeSignInundertext(text: String?) {
+        SignInundertext.setText(text)
+    }
     fun getAuthProviders() :  Boolean{
         var returnBoolean : Boolean = false
         val list = auth.currentUser?.providerData
@@ -85,6 +90,7 @@ class SettingsFragment : Fragment() {
         else{
             returnBoolean = false
         }
+        toast(returnBoolean.toString())
         return returnBoolean
     }
     fun toast(message : String){

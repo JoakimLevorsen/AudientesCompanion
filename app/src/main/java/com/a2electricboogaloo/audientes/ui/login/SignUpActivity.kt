@@ -4,30 +4,38 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import android.widget.Toast
-import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_sign_up.*
-import kotlinx.android.synthetic.main.activity_signin.*
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
+    private lateinit var emailSignUp: EditText
+    private lateinit var passwordSignUp: EditText
+    private lateinit var email : String
+    private lateinit  var password : String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
         auth = FirebaseAuth.getInstance()
-        var email = edittext_emailSignUp!!.text.toString()
-        var password = edittext_passwordSignUp!!.text.toString()
+
+        emailSignUp = findViewById(R.id.edittext_emailSignUp) as EditText
+        passwordSignUp = findViewById(R.id.edittext_passwordSignUp) as EditText
+
         buttonSignUpDone.setOnClickListener{
-            signUp(email,password)
-            if(password.isBlank()||email.isBlank()){
-                toast("email or password was blank")
+            email = emailSignUp.text.toString()
+            password = passwordSignUp.text.toString()
+            if(password.isEmpty()||email.isEmpty()){
+                toast("email or password was blank "+password +" "+email)
             }
             else{
-                signUp(email,password)
+                signUp(
+                    email,
+                    password)
             }
         }
 
