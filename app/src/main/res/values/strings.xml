@@ -26,7 +26,7 @@
     <string name="r">R</string>
     <string name="welcome">Welcome</string>
     <string name="to_the_audientes_companion_app_please_do_whatever_to_turn_on_your_device">To the audientes companion app. Please do whatever to turn on your device.</string>
-    <string name="device_adress">device Adress</string>
+    <string name="device_adress">device Address</string>
     <string name="take_new_hearing_test">Take new hearing test</string>
     <string name="hearing_test_completed">Hearing test completed</string>
     <string name="see_my_results">See my results</string>
@@ -43,8 +43,23 @@
     <string name="blahblah2">blahblah2</string>
     <string name="blahblah3">blahblah3</string>
     <string name="start">Start</string>
-    <string name="SignIn">Sign in</string>
-    <string name="SignOut">Sign out</string>
+    <string name="sign_in_to_audientes_companion">Sign in to Audientes Companion</string>
+    <string name="sign_in">Sign In</string>
+    <string name="textview2">textview2</string>
+    <string name="textview1">textview1</string>
     <string name="programName">program name</string>
     <string name="basedOnAudiogram">based on audiogram</string>
+    <string name="SignIn">Sign In</string>
+    <string name="Email">Email</string>
+    <string name="Password">Password</string>
+    <string name="SignUpText">Don\'t have an audientes account? Sign up</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="about_us">About Us</string>
+    <string name="learn_about_audientes_companion">Learn about Audientes Companion</string>
+    <string name="audientes_formaal">Audientes går ind for blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  </string>
+    <string name="appensskabere">Denne app er lavet af gruppe A2. Gruppen består af 6 medlemmer. Sersan Aslan, Theodor Guttesen, Joakim Levorsen, Tim Jensen, Ida Christensen og Cecilie Drejer</string>
+    <string name="sign_out_text">Sign Out</string>
+    <string name="sign_out_undertext">Sign out of audientes companion</string>
 </resources>

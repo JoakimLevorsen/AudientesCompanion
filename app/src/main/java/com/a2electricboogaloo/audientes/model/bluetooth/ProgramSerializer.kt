@@ -4,6 +4,7 @@ import com.a2electricboogaloo.audientes.model.types.HearingChannelData
 import com.a2electricboogaloo.audientes.model.types.Program
 
 class ProgramSerializer {
+    /*
     companion object {
         fun buildProgram(rawRightChannel: HearingChannelData, audiogramID: String): (Array<Int>) -> Program?  {
             val (deviceIndex, rightChannel) = extractProgramData(rawRightChannel, true)
@@ -47,4 +48,6 @@ class ProgramSerializer {
             return Pair(rightBase + program.getRightEar(), leftBase + program.getLeftEar())
         }
     }
+
+     */
 }

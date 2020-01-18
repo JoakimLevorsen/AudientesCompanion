@@ -40,7 +40,7 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/hearingtesttext"
+                    android:id="@+id/languageText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/change_language"
@@ -57,7 +57,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="@dimen/default_gap" />
+            android:layout_height="@dimen/activity_horizontal_margin" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -100,15 +100,91 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/button_signIn"
+            android:layout_height="@dimen/activity_horizontal_margin" />
+
+        <LinearLayout
+            android:id="@+id/SignIn"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_width="wrap_content" />
-        <Button
-            android:id="@+id/button_signOut"
-            android:text="@string/SignOut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/signInImage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                android:contentDescription="@string/world"
+                app:srcCompat="@drawable/ic_account_circle_24px_outlined" />
+
+            <Space
+                android:layout_width="@dimen/activity_horizontal_margin"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/signInText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in"
+                    android:textColor="@color/gray6" />
+
+                <TextView
+                    android:id="@+id/SignInundertext"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sign_in_to_audientes_companion"
+                    android:textColor="@color/gray4" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/activity_horizontal_margin" />
+
+        <LinearLayout
+            android:id="@+id/aboutUs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView3"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_weight="0"
+                app:srcCompat="@drawable/ic_icons_info" />
+
+            <Space
+                android:layout_width="@dimen/activity_horizontal_margin"
+                android:layout_height="wrap_content"
+                android:layout_weight="0" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/aboutUsText1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/about_us"
+                    android:textColor="@color/gray6" />
+
+                <TextView
+                    android:id="@+id/aboutUsText2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/learn_about_audientes_companion"
+                    android:textColor="@color/gray4" />
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
