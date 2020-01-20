@@ -24,7 +24,7 @@ class ProgramController {
         }
 
         fun generatePrograms(audiogram: Audiogram) {
-            val audiID = audiogram.id ?: throw error("Expects audiogram with id")
+            val audiID = audiogram.id
             // We create two programs parabola programs where mids are higher or lower than the rest.
             Program(arrayOf(-1000, 0, 1000, 0, -1000), arrayOf(-1000, 0, 1000, 0, -1000), "Auto 1", audiID, 0)
             Program(arrayOf(1000, 0, -1000, 0, 1000), arrayOf(1000, 0, -1000, 0, 1000), "Auto 2", audiID, 1)
