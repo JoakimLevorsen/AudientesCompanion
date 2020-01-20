@@ -19,7 +19,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.model.types.FoundDevice
-import kotlinx.android.synthetic.main.activity_select_device.*
+import kotlinx.android.synthetic.main.select_device_activity.*
 
 class SelectDeviceActivity : AppCompatActivity() {
 
@@ -40,7 +40,7 @@ class SelectDeviceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setGlobalInstance(this)
-        setContentView(R.layout.activity_select_device)
+        setContentView(R.layout.select_device_activity)
         run()
         button_devicelist.setOnClickListener { discoverDevices() }
     }
@@ -166,6 +166,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
         startActivity(intent)
+        finish()
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

@@ -1,6 +1,5 @@
 package com.a2electricboogaloo.audientes
 
-
 import android.content.Context
 import android.content.Intent
 import android.media.AudioManager
@@ -13,10 +12,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.a2electricboogaloo.audientes.controller.BluetoothController
-//import com.a2electricboogaloo.audientes.services.VolumeService //TODO TIM: Clean up note
-
 import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
-
+//import com.a2electricboogaloo.audientes.services.VolumeService //TODO TIM: Clean up note
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_mis)
+        setContentView(R.layout.main_activity)
         val navView: BottomNavigationView = findViewById(R.id.nav_view)
         val navController = findNavController(R.id.nav_host_fragment)
         // Passing each menu ID as a set of IDs because each

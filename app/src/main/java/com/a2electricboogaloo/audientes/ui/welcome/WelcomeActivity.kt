@@ -5,7 +5,10 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.ui.home.HomeFragment
+import com.a2electricboogaloo.audientes.ui.login.SignInActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private var didStartActivation = false
@@ -16,7 +19,7 @@ class WelcomeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
-        setContentView(R.layout.activity_welcome)
+        setContentView(R.layout.welcome_activity)
 
         nextButton = findViewById(R.id.button11)
         titleText = findViewById(R.id.titleView)
@@ -26,8 +29,9 @@ class WelcomeActivity : AppCompatActivity() {
             contentText?.text = "Connecting to device."
 
             //indsæt bluetooth check
-            val intent = Intent(this, SelectDeviceActivity::class.java)
+            val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }

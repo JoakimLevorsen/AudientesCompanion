@@ -17,10 +17,14 @@ import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 import com.google.android.material.snackbar.Snackbar
 import android.content.Context.AUDIO_SERVICE
-import android.view.KeyEvent
+import com.a2electricboogaloo.audientes.model.VolumeListener
+import com.a2electricboogaloo.audientes.model.VolumeObservable
+import kotlinx.android.synthetic.main.fragment_home.*
 
+class HomeFragment : Fragment(), VolumeListener {
 
-class HomeFragment : Fragment() {
+    private var seekBarOverall: SeekBar? = null
+    private var audio: AudioManager? = null
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -31,44 +35,30 @@ class HomeFragment : Fragment() {
     ): View? {
         homeViewModel =
             ViewModelProviders.of(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
+        val root = inflater.inflate(R.layout.home_fragment, container, false)
         val textView: TextView = root.findViewById(R.id.text_dashboard)
         homeViewModel.text.observe(this, Observer {
             textView.text = it
         })
+
+        VolumeObservable.getShared().addAsListener(this)
 
         val button = root.findViewById<Button>(R.id.goButton)
         val intent = Intent(this.context, HearingTest::class.java)
         button?.setOnClickListener { startActivity(intent) }
 
 
-        val audio = context!!.getSystemService(AUDIO_SERVICE) as AudioManager
+        audio = context!!.getSystemService(AUDIO_SERVICE) as AudioManager
 
-        val seekBarOverall = root.findViewById<SeekBar>(R.id.sliderOverall)!!
-        seekBarOverall.max = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
-        seekBarOverall.progress = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
+        seekBarOverall = root.findViewById<SeekBar>(R.id.sliderOverall)!!
+        seekBarOverall!!.max = audio!!.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
+        seekBarOverall!!.progress = audio!!.getStreamVolume(AudioManager.STREAM_MUSIC)
 
-
-        //TODO TIM: THE BELOW FUNCTION IS SUPPOSED TO EXISTS SOMEWHERE AND BE GOD FUCKING DAMN OVERWRITTEN
-//        override fun onKeyDown(keyCode:Int, event: KeyEvent):Boolean {
-//            if ((keyCode == KeyEvent.KEYCODE_VOLUME_DOWN))
-//            {
-//                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, AudioManager.FLAG_SHOW_UI)
-//                //TODO Test: setting the slider
-//                seekBarOverall.progress = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
-//            } else if ((keyCode == KeyEvent.KEYCODE_VOLUME_UP)) {
-//                audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, AudioManager.FLAG_SHOW_UI)
-//                //TODO Test: setting the slider
-//                seekBarOverall.progress = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
-//            }
-//            return true
-//        }
-
-        seekBarOverall.setOnSeekBarChangeListener(object :
+        seekBarOverall!!.setOnSeekBarChangeListener(object :
             OnSeekBarChangeListener {
             override fun onProgressChanged(seekBarOverall: SeekBar,
                                            progress: Int, fromUser: Boolean) {
-                audio.setStreamVolume(AudioManager.STREAM_MUSIC, progress, AudioManager.FLAG_SHOW_UI)
+                audio!!.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0)
             }
 
             override fun onStartTrackingTouch(seekBarOverall: SeekBar) {
@@ -81,6 +71,22 @@ class HomeFragment : Fragment() {
             }
         })
 
+        var seekBarLeft = root.findViewById<SeekBar>(R.id.sliderLeft)!!
+        var seekbarRight = root.findViewById<SeekBar>(R.id.sliderRight)!!
+        seekBarLeft.isEnabled = false //Disabled, Left and Right ear volume is not implemented
+        seekbarRight.isEnabled = false //Disabled, Left and Right ear volume is not implemented
+
         return root
+    }
+
+    override fun didChange() {
+        if (audio != null ) {
+            seekBarOverall?.progress = audio!!.getStreamVolume(AudioManager.STREAM_MUSIC)
+        }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        VolumeObservable.getShared().removeAsListener(this)
     }
 }
