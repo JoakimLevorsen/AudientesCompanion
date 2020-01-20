@@ -23,6 +23,13 @@ class ProgramController {
             val ranges = eq.getBandFreqRange(0)
         }
 
+        fun applySelectedProgram(audioSessionID: Int) {
+            val program = sharedInstance.activeProgram
+            if (program != null) {
+                useProgram(program, audioSessionID)
+            }
+        }
+
         fun generatePrograms(audiogram: Audiogram) {
             val audiID = audiogram.id
             // We create two programs parabola programs where mids are higher or lower than the rest.
