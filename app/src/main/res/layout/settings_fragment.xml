@@ -61,6 +61,7 @@
             android:layout_height="@dimen/activity_horizontal_margin" />
 
         <LinearLayout
+            android:id="@+id/delete"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:orientation="horizontal">
@@ -79,7 +80,6 @@
                 android:layout_weight="0" />
 
             <LinearLayout
-                android:id="@+id/delete"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
