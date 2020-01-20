@@ -109,8 +109,6 @@ class SelectDeviceActivity : AppCompatActivity() {
                 btdevicelist.add(device)
                 Log.i("device", "" + device)
             }
-        } else {
-            toast("No paired bluetooth devices found")
         }
     }
 
@@ -162,6 +160,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         device = bluetoothAdapter!!.getRemoteDevice(address)
         if(!device.createBond()){
             toast("connection didn't succeed")
+            toast("Make sure your phone isn't already connected to a Bluetooth device")
         }
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)

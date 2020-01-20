@@ -1,6 +1,7 @@
 package com.a2electricboogaloo.audientes.model.types
 
 import androidx.lifecycle.MutableLiveData
+import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.firebase.Auth
 import com.a2electricboogaloo.audientes.model.firebase.ObjectKeys
 import com.google.firebase.firestore.DocumentReference
@@ -42,7 +43,7 @@ class Audiogram {
     private val leftEar: HearingChannelData
     private val rightEar: HearingChannelData
     private val creationDate: Date
-    private val documentReference: DocumentReference?
+    private val documentReference: DocumentReference
     private val owner: String
 
     val left get() = leftEar
@@ -53,7 +54,8 @@ class Audiogram {
     constructor(
         leftEar: HearingChannelData,
         rightEar: HearingChannelData,
-        recordDate: Date
+        recordDate: Date,
+        createPrograms: Boolean = true
     ) {
         // Check array sizes are correct
         if (leftEar.size != 5 && rightEar.size != 5) throw Error("Only exactly 5 values are allowed for each ear")
@@ -61,7 +63,14 @@ class Audiogram {
         this.rightEar = rightEar
         this.creationDate = recordDate
         this.owner = Auth.getUID()
-        this.documentReference = null
+        this.documentReference = FirebaseFirestore
+            .getInstance()
+            .collection(ObjectKeys.AUDIOGRAMS.name)
+            .document()
+
+        if (createPrograms) {
+            ProgramController.generatePrograms(this)
+        }
 
         // We need to save the object, so the data doesn't get lost on a new snapshot.
         this.save()
@@ -88,10 +97,7 @@ class Audiogram {
         }
     }
 
-    private fun save() = FirebaseFirestore
-        .getInstance()
-        .collection(ObjectKeys.AUDIOGRAMS.name)
-        .add(this.toFirebase())
+    private fun save() = this.documentReference.set(this.toFirebase())
 
     private fun toFirebase(): Map<String, Any> = mutableMapOf(
         ObjectKeys.LEFT_EAR.name to leftEar,

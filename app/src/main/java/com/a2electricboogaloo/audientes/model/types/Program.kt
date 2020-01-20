@@ -46,7 +46,7 @@ class Program {
     private var deviceIndex: Int?
     private val audiogramID: String
     private val owner: String
-    private val documentReference: DocumentReference?
+    private val documentReference: DocumentReference
 
     val onDevice get() = deviceIndex != null
     val modified get() = creationDate.time != modificationDate.time
@@ -67,7 +67,9 @@ class Program {
         this.audiogramID = audiogramID
         this.deviceIndex = deviceIndex
         this.owner = Auth.getUID()
-        this.documentReference = null
+        this.documentReference = FirebaseFirestore
+            .getInstance()
+            .collection(ObjectKeys.PROGRAMS.name).document()
 
         // We need to save the object, so the data doesn't get lost on a new snapshot.
         this.save()
@@ -106,10 +108,7 @@ class Program {
         }
     }
 
-    private fun save() = FirebaseFirestore
-        .getInstance()
-        .collection(ObjectKeys.PROGRAMS.name)
-        .add(this.toFirebase())
+    private fun save() = this.documentReference.set(this.toFirebase())
 
     private fun toFirebase() = mutableMapOf(
         ObjectKeys.LEFT_EAR.name to leftEar,

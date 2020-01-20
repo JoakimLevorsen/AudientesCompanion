@@ -29,7 +29,7 @@ class WelcomeActivity : AppCompatActivity() {
             contentText?.text = "Connecting to device."
 
             //indsæt bluetooth check
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, SelectDeviceActivity::class.java)
             startActivity(intent)
             finish()
         }
