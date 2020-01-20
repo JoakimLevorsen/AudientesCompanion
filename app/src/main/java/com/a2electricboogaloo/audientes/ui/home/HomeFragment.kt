@@ -19,7 +19,6 @@ import com.google.android.material.snackbar.Snackbar
 import android.content.Context.AUDIO_SERVICE
 import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment(), VolumeListener {
 
