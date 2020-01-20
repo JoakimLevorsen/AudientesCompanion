@@ -48,7 +48,6 @@ class SettingsFragment : Fragment() {
         signInText = root.findViewById(R.id.signInText)
         SignInundertext = root.findViewById(R.id.SignInundertext)
         if(getAuthProviders()){
-            toast("sign out")
             signInText.setText(R.string.sign_out_text)
             SignInundertext.setText(R.string.sign_out_undertext)
             signIn.setOnClickListener {
@@ -62,7 +61,6 @@ class SettingsFragment : Fragment() {
                 }
             }
         else{
-            toast("sign in")
             signIn.setOnClickListener {
                 val intent = Intent(context, SignInActivity::class.java)
                 startActivity(intent)
