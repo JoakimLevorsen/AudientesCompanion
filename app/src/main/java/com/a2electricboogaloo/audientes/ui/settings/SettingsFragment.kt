@@ -25,7 +25,8 @@ class SettingsFragment : Fragment() {
     private lateinit var aboutUs: LinearLayout
     private lateinit var signInText: TextView
     private lateinit var SignInundertext: TextView
-
+    private lateinit var deleteData: LinearLayout
+    private lateinit var changeLanguage: LinearLayout
     companion object {
         var instance: SettingsFragment? = null
         fun setGlobalInstance(fragment: SettingsFragment) {
@@ -47,6 +48,14 @@ class SettingsFragment : Fragment() {
         signIn = root.findViewById(R.id.SignIn)
         signInText = root.findViewById(R.id.signInText)
         SignInundertext = root.findViewById(R.id.SignInundertext)
+        deleteData =  root.findViewById(R.id.delete)
+        changeLanguage =  root.findViewById(R.id.language)
+        deleteData.setOnClickListener{
+            toast("Delete data is not supported")
+        }
+        changeLanguage.setOnClickListener{
+            toast("Change language is not supported")
+        }
         if(getAuthProviders()){
             signInText.setText(R.string.sign_out_text)
             SignInundertext.setText(R.string.sign_out_undertext)
