@@ -4,8 +4,6 @@ import android.Manifest
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.media.AudioFormat
-import android.media.AudioRecord
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.widget.Button
@@ -13,30 +11,29 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
-import org.jetbrains.anko.toast
-import java.lang.Exception
+
+
 
 
 class HearingTest : AppCompatActivity() {
+
+    var audio: MediaRecorder? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_hearing_test)
 
         val button = findViewById<Button>(R.id.startButton3)
-        val fragment = HearingTest_running_frag()
+
+        checkPermission()
+
 
         button.setOnClickListener {
-            val transaction = getSupportFragmentManager().beginTransaction()
-            transaction.add(R.id.fragmentindhold, fragment)
-            transaction.commit()
+            stop()
+            getSound()
         }
-        //checkPermission()
-
     }
-
 
    fun checkPermission() {
        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
@@ -48,40 +45,77 @@ class HearingTest : AppCompatActivity() {
                12345
            )
            checkEnvironmentNoise()
-       }
-       else {
-        //checkEnvironmentNoise()
+
+       } else {
+        checkEnvironmentNoise()
        }
    }
 
-   fun checkEnvironmentNoise(){
-        var audio: AudioRecord? = null
-        val sampleSize = 8000
-        try {
-            var size = AudioRecord.getMinBufferSize(
-                sampleSize,
-                AudioFormat.CHANNEL_IN_MONO,
-                AudioFormat.ENCODING_PCM_16BIT
-            )
-            audio = AudioRecord(MediaRecorder.AudioSource.MIC, sampleSize, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT, size)
+   fun checkEnvironmentNoise() {
+       if (audio == null) {
+           audio?.setAudioSource(MediaRecorder.AudioSource.MIC)
+           audio?.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+           audio?.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+           audio?.setOutputFile("/dev/null")
+           audio?.prepare()
+           audio?.start()
 
-        } catch (e: Exception){
-            println("ingen lyd")
-        }
+            println("checking sound level")
+       } else println("no audio input")
+/*
+      else if (audio != null) {
 
-        audio?.startRecording()
+       } else {
+           println("NO AUDIO INPUT")
+       }
 
-        if (audio == null){
-            Toast.makeText(this, "du kan godt tage en test nu", Toast.LENGTH_LONG).show()
+ */
 
-        } else if (audio != null){
-            Toast.makeText(this, "du kan IKKE tage en test nu", Toast.LENGTH_LONG).show()
+       //audio?.startRecording()
 
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            audio.stop()
-        }
+/*
+       if (audio == null) {
+           Toast.makeText(this, "DER ER INGEN LYD, du kan godt tage en test nu", Toast.LENGTH_LONG)
+               .show()
+           audio?.stop()
+           println("HER ER RESULTATET" + audio?.release())
+
+       } else if (audio != null) {
+           Toast.makeText(this, "du kan IKKE tage en test nu", Toast.LENGTH_LONG).show()
+
+           println("RES FRA MEDIArecorder" + audio?.maxAmplitude)
+
+           // val intent = Intent(this, MainActivity::class.java)
+           //startActivity(intent)
+
+           audio?.stop()
+           // println( "HER ER DET 2. RESULTAT " + audio?.release())
+       }
+
+ */
+   }
+
+    fun stop(){
+
+            audio?.stop()
+            audio?.release()
+            audio = null
+            println("stopping recorder")
+
     }
 
+    fun getSound(){
+
+            audio?.maxAmplitude
+            println("max AMPLITUDE for AUDIO: " + audio?.maxAmplitude)
+
+    }
+
+    fun startHearingTest(){
+        val fragment = HearingTest_complete_frag()
+        val transaction = getSupportFragmentManager().beginTransaction()
+        transaction.add(R.id.fragmentindhold, fragment)
+        transaction.commit()
+    }
  
 }
