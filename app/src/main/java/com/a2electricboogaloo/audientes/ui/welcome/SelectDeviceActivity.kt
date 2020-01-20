@@ -109,8 +109,6 @@ class SelectDeviceActivity : AppCompatActivity() {
                 btdevicelist.add(device)
                 Log.i("device", "" + device)
             }
-        } else {
-            toast("No paired bluetooth devices found")
         }
     }
 
