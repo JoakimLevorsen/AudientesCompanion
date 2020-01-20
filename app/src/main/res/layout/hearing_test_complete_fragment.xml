@@ -19,43 +19,41 @@
             android:id="@+id/textView9"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
             android:layout_weight="1"
             android:text="@string/hearing_test_completed"
             android:textAlignment="center"
             android:textColor="@color/gray6"
-            android:textSize="24sp"
+            android:textSize="50sp"
+            app:layout_constraintBottom_toTopOf="@+id/seeResultsButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/seeResultsButton"
-            android:layout_width="0dp"
+            android:layout_width="225dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_weight="1"
             android:background="@color/primary"
             android:text="@string/see_my_results"
             android:textColor="@color/gray1"
-            android:textSize="18sp"
+            android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/homeButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/homeButton"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="50dp"
             android:layout_weight="1"
-            android:background="@color/primary"
-            android:text="@string/amazing_home_button"
+            android:background="@drawable/ic_home_btn_golden_bg"
             android:textColor="@color/gray1"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
