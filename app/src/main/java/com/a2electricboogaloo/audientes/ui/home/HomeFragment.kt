@@ -17,6 +17,9 @@ import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 import com.google.android.material.snackbar.Snackbar
 import android.content.Context.AUDIO_SERVICE
+import android.media.AudioAttributes
+import android.media.MediaPlayer
+import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
 
@@ -24,6 +27,9 @@ class HomeFragment : Fragment(), VolumeListener {
 
     private var seekBarOverall: SeekBar? = null
     private var audio: AudioManager? = null
+    private var mediaPlayer: MediaPlayer? = null
+    private var testAudioPlaying = false
+    private var mediaPlayerPrepared = false
 
     private lateinit var homeViewModel: HomeViewModel
 
@@ -42,14 +48,44 @@ class HomeFragment : Fragment(), VolumeListener {
 
         VolumeObservable.getShared().addAsListener(this)
 
-        val button = root.findViewById<Button>(R.id.goButton)
-        val intent = Intent(this.context, HearingTest::class.java)
-        button?.setOnClickListener { startActivity(intent) }
+        val goButton = root.findViewById<Button>(R.id.goButton)
+        goButton.setOnClickListener {
+            startActivity(Intent(this.context, HearingTest::class.java))
+        }
 
+        mediaPlayer = MediaPlayer().apply {
+            setAudioAttributes(AudioAttributes.Builder()
+                .setUsage(AudioAttributes.USAGE_MEDIA)
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                .build())
+            setDataSource(resources.openRawResourceFd(R.raw.in_the_hall_of_the_mountain_king))
+            isLooping = true
+            prepare()
+        }
+        mediaPlayerPrepared = true
+        ProgramController.applySelectedProgram(mediaPlayer!!.audioSessionId)
+
+        val playButton = root.findViewById<Button>(R.id.playPauseTestAudioButton)
+        playButton.setOnClickListener {
+            if (playButton.text == getString(R.string.play)) {
+                if (!mediaPlayerPrepared) {
+                    mediaPlayer?.prepare()
+                    mediaPlayerPrepared = true
+                }
+                mediaPlayer?.start()
+                testAudioPlaying = true
+                playButton.text = getString(R.string.stop)
+            } else if (playButton.text == getString(R.string.stop)) {
+                mediaPlayer?.stop()
+                testAudioPlaying = false
+                mediaPlayerPrepared = false
+                playButton.text = getString(R.string.play)
+            }
+        }
 
         audio = context!!.getSystemService(AUDIO_SERVICE) as AudioManager
 
-        seekBarOverall = root.findViewById<SeekBar>(R.id.sliderOverall)!!
+        seekBarOverall = root.findViewById(R.id.sliderOverall)!!
         seekBarOverall!!.max = audio!!.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
         seekBarOverall!!.progress = audio!!.getStreamVolume(AudioManager.STREAM_MUSIC)
 
@@ -64,16 +100,16 @@ class HomeFragment : Fragment(), VolumeListener {
             }
 
             override fun onStopTrackingTouch(seekBarOverall: SeekBar) {
-                var currentVolume = seekBarOverall.progress
-                val snackyText = Snackbar.make(view!!, "Volume is: ${currentVolume}", Snackbar.LENGTH_SHORT)
+                val currentVolume = seekBarOverall.progress
+                val snackyText = Snackbar.make(view!!, "Volume is: $currentVolume", Snackbar.LENGTH_SHORT)
                 snackyText.show()
             }
         })
 
-        var seekBarLeft = root.findViewById<SeekBar>(R.id.sliderLeft)!!
-        var seekbarRight = root.findViewById<SeekBar>(R.id.sliderRight)!!
+        val seekBarLeft = root.findViewById<SeekBar>(R.id.sliderLeft)!!
+        val seekBarRight = root.findViewById<SeekBar>(R.id.sliderRight)!!
         seekBarLeft.isEnabled = false //Disabled, Left and Right ear volume is not implemented
-        seekbarRight.isEnabled = false //Disabled, Left and Right ear volume is not implemented
+        seekBarRight.isEnabled = false //Disabled, Left and Right ear volume is not implemented
 
         return root
     }
@@ -87,5 +123,7 @@ class HomeFragment : Fragment(), VolumeListener {
     override fun onDestroy() {
         super.onDestroy()
         VolumeObservable.getShared().removeAsListener(this)
+        mediaPlayer?.release()
+        mediaPlayer = null
     }
 }
