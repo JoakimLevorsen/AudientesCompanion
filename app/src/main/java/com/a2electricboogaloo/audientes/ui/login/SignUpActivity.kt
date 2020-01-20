@@ -30,7 +30,7 @@ class SignUpActivity : AppCompatActivity() {
             email = emailSignUp.text.toString()
             password = passwordSignUp.text.toString()
             if(password.isEmpty()||email.isEmpty()){
-                toast("email or password was blank "+password +" "+email)
+                toast("email or password was blank")
             }
             else{
                 signUp(
