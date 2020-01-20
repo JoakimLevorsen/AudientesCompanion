@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<!--    TODO: Implement use of colors/styles throughout project-->
     <color name="primary">#FFC44A</color>
     <color name="primaryDark">#C89410</color>
     <color name="primaryLight">#FFF77B</color>

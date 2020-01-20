@@ -17,7 +17,6 @@
     <string name="new_hearing_test">Take new hearing test</string>
     <string name="last_hearing_test">Your last hearing test was taken on the %1$s</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ble_not_supported">Bluetooth Low Energy is not supported</string>
     <string name="refresh">refresh</string>
