@@ -42,6 +42,8 @@
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
         <activity android:name=".ui.settings.aboutUs.AboutUs" />
+        <activity android:name=".ui.programs.ProgramsActivity"/>
+        <activity android:name=".ui.programs.EditProgramActivity"/>
 
         <service android:name=".services.VolumeService" />
     </application>

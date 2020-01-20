@@ -123,6 +123,8 @@ class Program {
 
     fun getLeftEar() = leftEar
     fun getRightEar() = rightEar
+    fun setRightEar(data: HearingChannelData) {rightEar = data}
+    fun setLeftEar(data: HearingChannelData) {leftEar = data}
     fun getCreationDate() = creationDate
     fun getModificationDate() = modificationDate
     fun getName() = name

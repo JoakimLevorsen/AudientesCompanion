@@ -72,6 +72,9 @@ class ProgramController {
 
     private var activeProgram: Program? = null
 
-    public fun getActiveProgram() = activeProgram
+    private var programToEdit: Program? = null
+
+    fun getActiveProgram() = activeProgram
+    fun getProgramToEdit() = programToEdit
 }
 
