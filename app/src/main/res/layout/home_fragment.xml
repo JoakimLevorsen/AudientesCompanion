@@ -360,7 +360,9 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/programList"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/activity_horizontal_margin"
+                        android:layout_marginEnd="@dimen/activity_horizontal_margin" />
 
                     <Space
                         android:layout_width="match_parent"
