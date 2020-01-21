@@ -61,4 +61,7 @@
     <string name="appensskabere">Denne app er lavet af gruppe A2. Gruppen består af 6 medlemmer. Sersan Aslan, Theodor Guttesen, Joakim Levorsen, Tim Jensen, Ida Christensen og Cecilie Drejer</string>
     <string name="sign_out_text">Sign Out</string>
     <string name="sign_out_undertext">Sign out of audientes companion</string>
+    <string name="play_test_audio">Play or stop test audio</string>
+    <string name="play">Play</string>
+    <string name="stop">Stop</string>
 </resources>

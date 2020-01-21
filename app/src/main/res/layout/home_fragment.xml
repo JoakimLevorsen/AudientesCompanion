@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray1">
@@ -19,14 +20,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/activity_outer_horizontal_margin"
         android:layout_marginTop="@dimen/activity_outer_vertical_margin"
         android:layout_marginEnd="@dimen/activity_outer_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_outer_vertical_margin"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -57,7 +57,7 @@
 
                     <TextView
                         android:id="@+id/volumeOverallTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/volume_overall"
@@ -76,7 +76,7 @@
                     android:orientation="horizontal">
 
                     <Space
-                        android:layout_width="@dimen/activity_horizontal_margin"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0" />
 
@@ -84,8 +84,7 @@
                         android:id="@+id/sliderOverall"
                         style="@android:style/Widget.Material.SeekBar"
                         android:layout_width="match_parent"
-                        android:layout_height="24dp"
-                        />
+                        android:layout_height="24dp" />
 
                 </LinearLayout>
 
@@ -111,7 +110,7 @@
 
                     <TextView
                         android:id="@+id/volumeLeftTitle"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/volume_left"
@@ -291,7 +290,8 @@
                     android:layout_width="105dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="ToggleButton" />
+                    android:text="ToggleButton"
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="@dimen/activity_horizontal_margin"
@@ -303,7 +303,8 @@
                     android:layout_width="105dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="ToggleButton" />
+                    android:text="ToggleButton"
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="@dimen/activity_horizontal_margin"
@@ -315,7 +316,8 @@
                     android:layout_width="105dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="0"
-                    android:text="ToggleButton" />
+                    android:text="ToggleButton"
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="@dimen/activity_horizontal_margin"
@@ -331,8 +333,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_weight="0" />
+            android:layout_height="20dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -372,7 +373,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/go" />
+                    android:text="@string/go"
+                    android:textSize="18sp" />
 
                 <Space
                     android:layout_width="@dimen/activity_horizontal_margin"
@@ -383,7 +385,7 @@
 
             <Space
                 android:layout_width="wrap_content"
-                android:layout_height="@dimen/activity_vertical_margin"
+                android:layout_height="0dp"
                 android:layout_weight="0" />
 
             <TextView
@@ -400,5 +402,63 @@
                 android:layout_height="@dimen/activity_vertical_margin" />
         </LinearLayout>
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="20dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/gray2"
+            android:orientation="vertical">
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_vertical_margin" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <Space
+                    android:layout_width="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+
+                <TextView
+                    android:id="@+id/playTestAudioText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/play_test_audio"
+                    android:textColor="@color/gray6"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1" />
+
+                <Button
+                    android:id="@+id/playPauseTestAudioButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/play"
+                    android:textSize="18sp" />
+
+                <Space
+                    android:layout_width="@dimen/activity_horizontal_margin"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0" />
+            </LinearLayout>
+
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/activity_vertical_margin" />
+        </LinearLayout>
+
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
