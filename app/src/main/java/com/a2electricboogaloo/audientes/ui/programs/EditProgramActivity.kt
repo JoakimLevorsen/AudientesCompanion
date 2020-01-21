@@ -25,6 +25,8 @@ class EditProgramActivity: AppCompatActivity() {
 
         sliders = listOf(vol1, vol2, vol3, vol4, vol5)
 
+        saveButton.isEnabled = false
+
         for ((index, slider) in sliders.withIndex()) {
             slider.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
                 override fun onStartTrackingTouch(seekBar: SeekBar?) {
@@ -64,6 +66,11 @@ class EditProgramActivity: AppCompatActivity() {
             updateSliders()
         }
 
+        saveButton.setOnClickListener {
+            program.save()
+            saveButton.isEnabled = false
+        }
+
         updateSliders()
     }
 
@@ -71,6 +78,7 @@ class EditProgramActivity: AppCompatActivity() {
 
     private fun updateSliders() {
         val channelData = getActiveChannel()
+        saveButton.isEnabled = true
         for (i in 0..5) {
             sliders[i].progress = channelData[i]
         }
