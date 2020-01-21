@@ -1,14 +1,15 @@
 package com.a2electricboogaloo.audientes.ui.hearing
 
 import android.Manifest
+import android.content.DialogInterface
 import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.widget.Button
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import com.a2electricboogaloo.audientes.R
-
 
 
 class HearingTest : AppCompatActivity() {
@@ -44,26 +45,43 @@ class HearingTest : AppCompatActivity() {
    }
 
    fun checkEnvironmentNoise() {
-           audio = MediaRecorder()
-           audio?.setAudioSource(MediaRecorder.AudioSource.MIC)
-           audio?.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-           audio?.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-           audio?.setOutputFile("/dev/null")
-           audio?.prepare()
-           audio?.start()
+       audio = MediaRecorder()
+       audio?.setAudioSource(MediaRecorder.AudioSource.MIC)
+       audio?.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+       audio?.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+       audio?.setOutputFile("/dev/null")
+       audio?.prepare()
+       audio?.start()
    }
 
     fun getSound(){
         audio?.maxAmplitude
+        val noiseLevel: Int? = audio?.maxAmplitude
 
-        var maxAmplitude = audio?.maxAmplitude
-        if (maxAmplitude != null && maxAmplitude > 100){
+
+        if (noiseLevel != null && noiseLevel < 100){
             startHearingTest()
+            println("new loud is:  $noiseLevel and: " + audio?.maxAmplitude)
 
-        } else {
-            
-            println("too loud" + " sound is:  " + audio?.maxAmplitude)
+            } else {
+                val builder = AlertDialog.Builder(this)
+                builder.setTitle("Too much background noise!")
+                builder.setMessage("Find a more quite place to take the hearing test")
+                builder.setPositiveButton("Okay"){
+                    dialog: DialogInterface?, which: Int ->
+                }
+
+                val alertDialog: AlertDialog = builder.create()
+                alertDialog.setCancelable(false)
+                alertDialog.show()
+
+                println("too loud $noiseLevel" + " sound is:  " + audio?.maxAmplitude)
+            }
+
+       while(audio?.maxAmplitude != null){
+            println("input sound: $noiseLevel  and the other: " + audio?.maxAmplitude)
         }
+
 
 
     }
@@ -73,7 +91,7 @@ class HearingTest : AppCompatActivity() {
         val transaction = getSupportFragmentManager().beginTransaction()
         transaction.add(R.id.fragmentindhold, fragment)
         transaction.commit()
-        audio?.stop()
-        audio?.release()
     }
+
+
 }
