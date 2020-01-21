@@ -8,77 +8,85 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="115sp"
+        android:layout_height="wrap_content"
         android:background="@color/gray5"
         android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:gravity="center"
             android:orientation="horizontal">
 
             <Space
                 android:id="@+id/rightSpace"
-                android:layout_width="15dp"
+                android:layout_width="@dimen/activity_outer_horizontal_margin"
                 android:layout_height="wrap_content" />
 
-            <LinearLayout
+            <TextView
+                android:id="@+id/programName"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:text="@string/programName"
+                android:textColor="#000000"
+                android:textSize="24sp" />
 
-                <TextView
-                    android:id="@+id/programName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/programName"
-                    android:textColor="#000000"
-                    android:textSize="24sp" />
-
-                <TextView
-                    android:id="@+id/basedOnAudiogram"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/basedOnAudiogram"
-                    android:textColor="#8C000000" />
-            </LinearLayout>
+            <Space
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
 
             <CheckBox
                 android:id="@+id/checkBox"
                 android:layout_width="wrap_content"
-                android:layout_height="30dp" />
+                android:layout_height="wrap_content"
+                android:buttonTint="@color/primaryDark"
+                android:checked="true"
+                android:scaleX="1.5"
+                android:scaleY="1.5" />
 
             <Space
                 android:id="@+id/leftSpace"
-                android:layout_width="15dp"
+                android:layout_width="@dimen/activity_horizontal_margin"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
 
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray4" />
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40sp"
+            android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <Button
                 android:id="@+id/editButton"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="0sp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/edit"
                 android:textColor="@color/primaryDark"
                 android:textSize="18sp" />
 
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="2dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0"
+                android:background="@color/gray4" />
+
             <Button
                 android:id="@+id/removeButton"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="0sp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/delete"
                 android:textColor="@color/primaryDark"

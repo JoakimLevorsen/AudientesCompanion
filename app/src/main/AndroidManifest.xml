@@ -22,7 +22,10 @@
         android:roundIcon="@drawable/ic_audientes_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.login.SignUpActivity"></activity>
+        <activity
+            android:name=".ui.login.SignUpActivity">
+            android:screenOrientation="portrait"
+        </activity>
         <activity
             android:name=".ui.welcome.WelcomeActivity"
             android:screenOrientation="portrait"
@@ -33,9 +36,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.settings.language.Language"/>
-        <activity android:name=".ui.hearing.HearingTest" />
-        <activity android:name=".ui.login.SignInActivity" />
+        <activity
+            android:name=".ui.settings.language.Language"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.hearing.HearingTest"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.login.SignInActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".ui.welcome.SelectDeviceActivity"
             android:screenOrientation="portrait" />
@@ -43,10 +52,15 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:screenOrientation="portrait" />
-        <activity android:name=".ui.settings.aboutUs.AboutUs" />
-        <activity android:name=".ui.programs.ProgramsActivity"/>
-        <activity android:name=".ui.programs.EditProgramActivity"/>
-
+        <activity
+            android:name=".ui.settings.aboutUs.AboutUs"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.programs.ProgramsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.programs.EditProgramActivity"
+            android:screenOrientation="portrait" />
         <service android:name=".services.VolumeService" />
     </application>
 
