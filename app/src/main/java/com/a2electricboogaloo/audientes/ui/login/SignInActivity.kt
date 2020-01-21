@@ -11,7 +11,7 @@ import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.settings.SettingsFragment
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_signin.*
+import kotlinx.android.synthetic.main.signin_activity.*
 
 
 class SignInActivity : AppCompatActivity() {
@@ -27,7 +27,7 @@ class SignInActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signin)
+        setContentView(R.layout.signin_activity)
         auth = FirebaseAuth.getInstance()
         settingsfragment = SettingsFragment.instance!!
         emailSignIn = findViewById(R.id.edittext_email) as EditText
