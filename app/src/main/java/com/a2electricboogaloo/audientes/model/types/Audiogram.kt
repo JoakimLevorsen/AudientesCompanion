@@ -13,8 +13,7 @@ typealias HearingChannelData = Array<Int>
 
 class Audiogram {
     companion object {
-        private val userAudiograms: MutableLiveData<List<Audiogram>>
-                = MutableLiveData()
+        private val userAudiograms: MutableLiveData<List<Audiogram>> = MutableLiveData()
         private var hasAddedListener = false
 
         fun getUserAudiograms(): MutableLiveData<List<Audiogram>> {
@@ -24,8 +23,7 @@ class Audiogram {
                     .collection(ObjectKeys.AUDIOGRAMS.name)
                     .whereEqualTo(ObjectKeys.OWNER.name, Auth.getUID())
                     .orderBy(ObjectKeys.CREATION_DATE.name, Query.Direction.DESCENDING)
-                    .addSnapshotListener {
-                            snapshot, exception ->
+                    .addSnapshotListener { snapshot, exception ->
                         if (exception != null) {
                             throw exception
                         }
@@ -76,8 +74,8 @@ class Audiogram {
     }
 
     constructor(fireDoc: DocumentSnapshot) {
-        val leftEar = fireDoc.get(ObjectKeys.LEFT_EAR.name) as? HearingChannelData
-        val rightEar = fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? HearingChannelData
+        val leftEar = (fireDoc.get(ObjectKeys.LEFT_EAR.name) as? List<Int>)?.toTypedArray()
+        val rightEar = (fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? List<Int>)?.toTypedArray()
         val recordDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
         val owner = fireDoc.getString(ObjectKeys.OWNER.name)
         if (
@@ -124,8 +122,8 @@ class Audiogram {
     }
 
     private fun toFirebase(): Map<String, Any> = mutableMapOf(
-        ObjectKeys.LEFT_EAR.name to leftEar,
-        ObjectKeys.RIGHT_EAR.name to rightEar,
+        ObjectKeys.LEFT_EAR.name to leftEar.toList(),
+        ObjectKeys.RIGHT_EAR.name to rightEar.toList(),
         ObjectKeys.CREATION_DATE.name to creationDate,
         ObjectKeys.OWNER.name to owner
     )

@@ -15,7 +15,7 @@ import java.util.*
 
 @InternalCoroutinesApi
 class HearingTestRunningFragment : Fragment() {
-    private val scope = CoroutineScope(Dispatchers.Default)
+    private lateinit var job: Job
     private val player = OneTimeBuzzer()
     private val toneDuration = 2
     private val delayDuration = 500L
@@ -63,9 +63,10 @@ class HearingTestRunningFragment : Fragment() {
     }
 
     private fun playTone(freqIndex: Int) {
-        scope.launch {
+        job = GlobalScope.launch {
             player.duration = toneDuration.toDouble()
             player.toneFreqInHz = frequencies[freqIndex].toDouble()
+            heardVolume = 0
 
             loop@ for (volume in volumes) {
                 player.volume = volume
@@ -74,10 +75,10 @@ class HearingTestRunningFragment : Fragment() {
 
                 heardVolume = volume
                 delay((toneDuration * 1000) + (delayDuration))
-                if (!scope.isActive) break@loop
+                if (!isActive) break@loop
             }
 
-            if (volumeFrequencyHeardAt[freqIndex] == 0) {
+            if (volumeFrequencyHeardAt[freqIndex] == 100) {
                 println("Frequency ${frequencies[freqIndex]} not heard")
                 increaseFrequency()
             }
@@ -85,8 +86,8 @@ class HearingTestRunningFragment : Fragment() {
     }
 
     private fun stopTone() {
-        player.stop()
-        scope.cancel()
+        //player.stop()
+        job.cancel()
     }
 
     private fun increaseFrequency() {
@@ -97,12 +98,11 @@ class HearingTestRunningFragment : Fragment() {
             playTone(freqIndex)
         } else {
             //TODO: java.lang.Error: You must be signed in to save data.
-            //Audiogram(volumeFrequencyHeardAt, volumeFrequencyHeardAt, Date())
+            Audiogram(volumeFrequencyHeardAt, volumeFrequencyHeardAt, Date())
             activity!!
                 .supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragmentindhold, HearingTestCompleteFragment())
-                //.remove(this)
+                .replace(R.id.hearing_test_activity_frame, HearingTestCompleteFragment())
                 .commit()
         }
     }

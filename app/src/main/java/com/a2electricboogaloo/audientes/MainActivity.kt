@@ -3,15 +3,16 @@ package com.a2electricboogaloo.audientes
 import android.content.Intent
 import android.media.AudioManager
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.a2electricboogaloo.audientes.controller.BluetoothController
-import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
+import com.a2electricboogaloo.audientes.model.firebase.Auth
 import com.a2electricboogaloo.audientes.services.VolumeService
+import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
         private var bluetoothController: BluetoothController? = null
         var address: String? = null
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.main_activity)
@@ -33,6 +35,8 @@ class MainActivity : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        Auth.signInAnonymously()
 
         address = intent.getStringExtra(SelectDeviceActivity.EXTRA_ADDRESS)
 
