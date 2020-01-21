@@ -19,7 +19,7 @@ class ProgramsActivity : AppCompatActivity() {
         setContentView(R.layout.programs_activity)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = ProgramsAdapter()
+        viewAdapter = ProgramsAdapter(this)
 
         Program.getUserPrograms().observe(this, Observer { programs ->
             viewAdapter.setProgramsAndUpdate(programs)

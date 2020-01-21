@@ -1,14 +1,19 @@
 package com.a2electricboogaloo.audientes.ui.programs
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.types.Program
 
-class ProgramsAdapter :
+class ProgramsAdapter(val container: AppCompatActivity) :
     RecyclerView.Adapter<ProgramsAdapter.ProgramsViewHolder>() {
 
     // Provide a reference to the views for each data item
@@ -27,7 +32,7 @@ class ProgramsAdapter :
     ): ProgramsAdapter.ProgramsViewHolder {
         // create a new view
         val cardView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.programs_cardview, parent, false) as LinearLayout
+            .inflate(R.layout.programs_listview, parent, false) as LinearLayout
         // TODO: set the view's size, margins, paddings and layout parameters
         return ProgramsViewHolder(cardView)
     }
@@ -39,6 +44,24 @@ class ProgramsAdapter :
         val name = holder.itemView.findViewById<TextView>(R.id.programName)
         val program = data[position]
         name.text = program.getName()
+        val checkBox = holder.itemView.findViewById<CheckBox>(R.id.checkBox)
+        checkBox.isChecked = ProgramController.sharedInstance.getActiveProgram()?.equals(program) ?: false
+        checkBox.setOnClickListener {
+            if (checkBox.isChecked) {
+                ProgramController.queueProgram(program)
+            } else {
+                ProgramController.queueProgram(null)
+            }
+        }
+        val editButton = holder.itemView.findViewById<Button>(R.id.editButton)
+        editButton.setOnClickListener {
+            ProgramController.sharedInstance.setProgramToEdit(program)
+            this.container.startActivity(Intent(this.container, EditProgramActivity::class.java))
+        }
+        val deleteButton = holder.itemView.findViewById<Button>(R.id.removeButton)
+        deleteButton.setOnClickListener {
+            program.delete()
+        }
     }
 
     fun setProgramsAndUpdate(programs: List<Program>) {

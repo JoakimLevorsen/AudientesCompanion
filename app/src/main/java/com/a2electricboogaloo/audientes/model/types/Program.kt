@@ -112,6 +112,8 @@ class Program {
         }
     }
 
+    fun equals(other:Program) = this.documentReference.id == other.documentReference.id
+
     private fun save() = this.documentReference.set(this.toFirebase())
 
     private fun toFirebase() = mutableMapOf(

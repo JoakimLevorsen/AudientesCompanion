@@ -13,14 +13,13 @@ class ProgramController {
         fun useProgram(program: Program, toAudioSessionID: Int) {
             val eq = Equalizer(1, toAudioSessionID)
             // Now we get the number of bands we need to generate
-            eq.enabled = true
             sharedInstance.activeProgram = program
             val left = splitProgramsToLevel(program.getLeftEar(), eq.numberOfBands.toInt())
             val right = splitProgramsToLevel(program.getRightEar(), eq.numberOfBands.toInt())
             left.forEachIndexed { index, i ->
                 eq.setBandLevel(index.toShort(), i.toShort())
             }
-            val ranges = eq.getBandFreqRange(0)
+            eq.enabled = true
         }
 
         fun applySelectedProgram(audioSessionID: Int) {
@@ -28,6 +27,10 @@ class ProgramController {
             if (program != null) {
                 useProgram(program, audioSessionID)
             }
+        }
+
+        fun queueProgram(program: Program?) {
+            sharedInstance.activeProgram = program
         }
 
         fun generatePrograms(audiogram: Audiogram) {
@@ -107,5 +110,8 @@ class ProgramController {
 
     fun getActiveProgram() = activeProgram
     fun getProgramToEdit() = programToEdit
+    fun setProgramToEdit(program: Program?) {
+        programToEdit = program
+    }
 }
 
