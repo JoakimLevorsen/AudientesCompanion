@@ -4,10 +4,9 @@ import androidx.lifecycle.MutableLiveData
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.firebase.Auth
 import com.a2electricboogaloo.audientes.model.firebase.ObjectKeys
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 typealias HearingChannelData = Array<Int>
@@ -49,7 +48,7 @@ class Audiogram {
     val left get() = leftEar
     val right get() = rightEar
     val date get() = creationDate
-    val id get() = documentReference?.id
+    val id get() = documentReference.id
 
     constructor(
         leftEar: HearingChannelData,
@@ -98,6 +97,31 @@ class Audiogram {
     }
 
     private fun save() = this.documentReference.set(this.toFirebase())
+
+    fun delete(didFinish: (state: Boolean) -> Unit) {
+        val id = this.id
+        val db = FirebaseFirestore.getInstance()
+        val thisRef = this.documentReference
+        GlobalScope.launch {
+            val request = db.collection("programs")
+                .whereEqualTo("audiogramID", id)
+                .get()
+            request.onSuccessTask {
+                val batch = db.batch()
+                batch.delete(thisRef)
+                for (program in it?.documents ?: listOf()) {
+                    batch.delete(program.reference)
+                }
+                val commit = batch.commit()
+                commit.addOnFailureListener { didFinish(false) }
+                commit.addOnSuccessListener { didFinish(true) }
+            }
+            request.addOnFailureListener{
+                didFinish(false)
+            }
+
+        }
+    }
 
     private fun toFirebase(): Map<String, Any> = mutableMapOf(
         ObjectKeys.LEFT_EAR.name to leftEar,

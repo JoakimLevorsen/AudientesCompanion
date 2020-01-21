@@ -121,6 +121,8 @@ class Program {
         ObjectKeys.OWNER.name to owner
     )
 
+    fun delete() = this.documentReference.delete()
+
     fun getLeftEar() = leftEar
     fun getRightEar() = rightEar
     fun getCreationDate() = creationDate
