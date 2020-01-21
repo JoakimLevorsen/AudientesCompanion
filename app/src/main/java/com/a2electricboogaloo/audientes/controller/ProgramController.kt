@@ -10,8 +10,10 @@ class ProgramController {
 
         val sharedInstance = ProgramController()
 
+        private var equalizer: Equalizer? = null
+
         fun useProgram(program: Program, toAudioSessionID: Int) {
-            val eq = Equalizer(1, toAudioSessionID)
+            val eq = equalizer ?:  Equalizer(1, toAudioSessionID)
             // Now we get the number of bands we need to generate
             sharedInstance.activeProgram = program
             val left = splitProgramsToLevel(program.getLeftEar(), eq.numberOfBands.toInt())
@@ -20,6 +22,14 @@ class ProgramController {
                 eq.setBandLevel(index.toShort(), i.toShort())
             }
             eq.enabled = true
+        }
+
+        fun disableProgram() {
+            equalizer?.enabled = false
+        }
+
+        fun removeEqualizer() {
+            equalizer = null
         }
 
         fun applySelectedProgram(audioSessionID: Int) {

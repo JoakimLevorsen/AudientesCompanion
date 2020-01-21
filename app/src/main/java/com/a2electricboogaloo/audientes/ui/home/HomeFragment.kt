@@ -16,10 +16,13 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
+import com.a2electricboogaloo.audientes.model.types.Program
+import com.a2electricboogaloo.audientes.ui.programs.EditProgramActivity
 import com.a2electricboogaloo.audientes.model.types.Audiogram
 import com.a2electricboogaloo.audientes.ui.programs.ProgramsActivity
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
@@ -132,6 +135,21 @@ class HomeFragment : Fragment(), VolumeListener {
             startActivity(Intent(this.activity, ProgramsActivity::class.java))
         }
 
+        val viewManager = GridLayoutManager(this.context, 3)
+        val programAdapter = ProgramAdapter{
+            mediaPlayer?.audioSessionId ?: 0
+        }
+
+        Program.getUserPrograms().observe(this, Observer { programs ->
+            programAdapter.setProgramsAndUpdate(programs)
+        })
+
+        programList.apply {
+            setHasFixedSize(true)
+            layoutManager = viewManager
+            adapter = programAdapter
+        }
+
         return root
     }
 
@@ -165,5 +183,10 @@ class HomeFragment : Fragment(), VolumeListener {
     override fun onDestroy() {
         super.onDestroy()
         VolumeObservable.getShared().removeAsListener(this)
+        mediaPlayer?.release()
+        mediaPlayer = null
+        mediaPlayerPrepared = false
+        testAudioPlaying = false
+        ProgramController.removeEqualizer()
     }
 }

@@ -44,6 +44,7 @@ class EditProgramActivity: AppCompatActivity() {
                 ) {
                     val newProgress = getActiveChannel().toMutableList()
                     newProgress[index] = progress - 1000
+                    saveButton.isEnabled = true
                     if (leftChannelSelected)
                         program.setLeftEar(newProgress.toTypedArray())
                     else
@@ -80,6 +81,8 @@ class EditProgramActivity: AppCompatActivity() {
             saveButton.isEnabled = false
         }
 
+        programName.setText(program.getName())
+
         updateSliders()
     }
 
@@ -87,7 +90,6 @@ class EditProgramActivity: AppCompatActivity() {
 
     private fun updateSliders() {
         val channelData = getActiveChannel()
-        saveButton.isEnabled = true
         for (i in 0..4) {
             // When the progress is added we need to add the possible negative numbers
             sliders[i].progress = channelData[i] + 1000

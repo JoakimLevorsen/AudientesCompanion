@@ -19,7 +19,7 @@
         <LinearLayout
             android:id="@+id/language"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -63,7 +63,7 @@
         <LinearLayout
             android:id="@+id/delete"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -107,7 +107,7 @@
         <LinearLayout
             android:id="@+id/SignIn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -151,7 +151,7 @@
         <LinearLayout
             android:id="@+id/aboutUs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:orientation="horizontal">
 
             <ImageView
