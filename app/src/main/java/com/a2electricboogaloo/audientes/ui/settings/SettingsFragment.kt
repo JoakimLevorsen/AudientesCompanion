@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.login.SignInActivity
 import com.a2electricboogaloo.audientes.ui.settings.aboutUs.AboutUs
+import com.a2electricboogaloo.audientes.ui.settings.language.Language
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -55,7 +56,8 @@ class SettingsFragment : Fragment() {
             toast("Delete data is not supported")
         }
         changeLanguage.setOnClickListener {
-            toast("Change language is not supported")
+            val intent = Intent(context, Language::class.java)
+            startActivity(intent)
         }
         if (getAuthProviders()) {
             signInText.setText(R.string.sign_out_text)

@@ -65,4 +65,8 @@
     <string name="play">Play</string>
     <string name="stop">Stop</string>
     <string name="deleting_audiograms">Deleting audiogram and accompanying programs...</string>
+    <string name="languagelabel">Language</string>
+    <string name="uk_english">UK English</string>
+    <string name="use_uk_english_for_the_audientes_app">Use UK English for the Audientes App</string>
+    <string name="uk_flag_image">UKFlagImage</string>
 </resources>
