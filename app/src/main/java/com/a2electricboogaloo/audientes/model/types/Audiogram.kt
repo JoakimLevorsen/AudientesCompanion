@@ -111,11 +111,12 @@ class Audiogram {
                     batch.delete(program.reference)
                 }
                 val commit = batch.commit()
-                commit.addOnFailureListener { didFinish(false) }
+                commit.addOnFailureListener { didFinish(false); println("Delete failed with $it") }
                 commit.addOnSuccessListener { didFinish(true) }
             }
             request.addOnFailureListener{
                 didFinish(false)
+                println("Delete failed with $it")
             }
 
         }
