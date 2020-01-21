@@ -68,10 +68,11 @@
                 android:id="@+id/editButton"
                 style="@style/Widget.AppCompat.Button.ButtonBar.AlertDialog"
                 android:layout_width="0sp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Edit"
-                android:textColor="@color/primaryDark" />
+                android:text="@string/edit"
+                android:textColor="@color/primaryDark"
+                android:textSize="18sp" />
 
             <Button
                 android:id="@+id/removeButton"
@@ -79,8 +80,9 @@
                 android:layout_width="0sp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Remove"
-                android:textColor="@color/primaryDark" />
+                android:text="@string/delete"
+                android:textColor="@color/primaryDark"
+                android:textSize="18sp" />
 
         </LinearLayout>
     </LinearLayout>
