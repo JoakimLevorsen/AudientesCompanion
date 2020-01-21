@@ -22,6 +22,9 @@ import android.media.MediaPlayer
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
+import com.a2electricboogaloo.audientes.ui.programs.EditProgramActivity
+import com.a2electricboogaloo.audientes.ui.programs.ProgramsActivity
+import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment(), VolumeListener {
 
@@ -110,6 +113,9 @@ class HomeFragment : Fragment(), VolumeListener {
         val seekBarRight = root.findViewById<SeekBar>(R.id.sliderRight)!!
         seekBarLeft.isEnabled = false //Disabled, Left and Right ear volume is not implemented
         seekBarRight.isEnabled = false //Disabled, Left and Right ear volume is not implemented
+
+        val programIntent = Intent(this.activity, ProgramsActivity::class.java)
+        root.findViewById<Button>(R.id.moreButton)?.setOnClickListener { startActivity(programIntent) }
 
         return root
     }
