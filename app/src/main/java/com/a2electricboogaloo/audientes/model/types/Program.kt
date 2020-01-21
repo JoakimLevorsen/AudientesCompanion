@@ -81,8 +81,8 @@ class Program {
     }
 
     constructor(fireDoc: DocumentSnapshot) {
-        val leftEar = (fireDoc.get(ObjectKeys.LEFT_EAR.name) as? List<Int>)?.toTypedArray()
-        val rightEar = (fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? List<Int>)?.toTypedArray()
+        val leftEar = (fireDoc.get(ObjectKeys.LEFT_EAR.name) as? List<Long>)?.map { it.toInt() }?.toTypedArray()
+        val rightEar = (fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? List<Long>)?.map { it.toInt() }?.toTypedArray()
         val creationDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
         val modificationDate = fireDoc.getDate(ObjectKeys.MODIFICATION_DATE.name)
         val name = fireDoc.getString(ObjectKeys.NAME.name)

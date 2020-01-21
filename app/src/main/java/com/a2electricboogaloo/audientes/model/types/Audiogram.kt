@@ -78,8 +78,8 @@ class Audiogram {
     }
 
     constructor(fireDoc: DocumentSnapshot) {
-        val leftEar = (fireDoc.get(ObjectKeys.LEFT_EAR.name) as? List<Int>)?.toTypedArray()
-        val rightEar = (fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? List<Int>)?.toTypedArray()
+        val leftEar = (fireDoc.get(ObjectKeys.LEFT_EAR.name) as? List<Long>)?.map { it.toInt() }?.toTypedArray()
+        val rightEar = (fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? List<Long>)?.map { it.toInt() }?.toTypedArray()
         val recordDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
         val owner = fireDoc.getString(ObjectKeys.OWNER.name)
         if (
