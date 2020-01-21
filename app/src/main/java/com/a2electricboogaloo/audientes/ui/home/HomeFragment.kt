@@ -1,7 +1,10 @@
 package com.a2electricboogaloo.audientes.ui.home
 
+import android.content.Context.AUDIO_SERVICE
 import android.content.Intent
+import android.media.AudioAttributes
 import android.media.AudioManager
+import android.media.MediaPlayer
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,17 +17,14 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
-import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
-import com.google.android.material.snackbar.Snackbar
-import android.content.Context.AUDIO_SERVICE
-import android.media.AudioAttributes
-import android.media.MediaPlayer
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
 import com.a2electricboogaloo.audientes.ui.programs.EditProgramActivity
 import com.a2electricboogaloo.audientes.ui.programs.ProgramsActivity
 import kotlinx.android.synthetic.main.home_fragment.*
+import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
+import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment(), VolumeListener {
 
@@ -57,10 +57,12 @@ class HomeFragment : Fragment(), VolumeListener {
         }
 
         mediaPlayer = MediaPlayer().apply {
-            setAudioAttributes(AudioAttributes.Builder()
-                .setUsage(AudioAttributes.USAGE_MEDIA)
-                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                .build())
+            setAudioAttributes(
+                AudioAttributes.Builder()
+                    .setUsage(AudioAttributes.USAGE_MEDIA)
+                    .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                    .build()
+            )
             setDataSource(resources.openRawResourceFd(R.raw.in_the_hall_of_the_mountain_king))
             isLooping = true
             prepare()
@@ -94,8 +96,10 @@ class HomeFragment : Fragment(), VolumeListener {
 
         seekBarOverall!!.setOnSeekBarChangeListener(object :
             OnSeekBarChangeListener {
-            override fun onProgressChanged(seekBarOverall: SeekBar,
-                                           progress: Int, fromUser: Boolean) {
+            override fun onProgressChanged(
+                seekBarOverall: SeekBar,
+                progress: Int, fromUser: Boolean
+            ) {
                 audio!!.setStreamVolume(AudioManager.STREAM_MUSIC, progress, 0)
             }
 
@@ -104,7 +108,8 @@ class HomeFragment : Fragment(), VolumeListener {
 
             override fun onStopTrackingTouch(seekBarOverall: SeekBar) {
                 val currentVolume = seekBarOverall.progress
-                val snackyText = Snackbar.make(view!!, "Volume is: $currentVolume", Snackbar.LENGTH_SHORT)
+                val snackyText =
+                    Snackbar.make(view!!, "Volume is: $currentVolume", Snackbar.LENGTH_SHORT)
                 snackyText.show()
             }
         })
@@ -121,7 +126,7 @@ class HomeFragment : Fragment(), VolumeListener {
     }
 
     override fun didChange() {
-        if (audio != null ) {
+        if (audio != null) {
             seekBarOverall?.progress = audio!!.getStreamVolume(AudioManager.STREAM_MUSIC)
         }
     }

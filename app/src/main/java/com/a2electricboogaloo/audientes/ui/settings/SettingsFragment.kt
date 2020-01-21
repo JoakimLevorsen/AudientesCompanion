@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.login.SignInActivity
 import com.a2electricboogaloo.audientes.ui.settings.aboutUs.AboutUs
-import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -27,12 +26,14 @@ class SettingsFragment : Fragment() {
     private lateinit var SignInundertext: TextView
     private lateinit var deleteData: LinearLayout
     private lateinit var changeLanguage: LinearLayout
+
     companion object {
         var instance: SettingsFragment? = null
         fun setGlobalInstance(fragment: SettingsFragment) {
             instance = fragment
         }
     }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -48,15 +49,15 @@ class SettingsFragment : Fragment() {
         signIn = root.findViewById(R.id.SignIn)
         signInText = root.findViewById(R.id.signInText)
         SignInundertext = root.findViewById(R.id.SignInundertext)
-        deleteData =  root.findViewById(R.id.delete)
-        changeLanguage =  root.findViewById(R.id.language)
-        deleteData.setOnClickListener{
+        deleteData = root.findViewById(R.id.delete)
+        changeLanguage = root.findViewById(R.id.language)
+        deleteData.setOnClickListener {
             toast("Delete data is not supported")
         }
-        changeLanguage.setOnClickListener{
+        changeLanguage.setOnClickListener {
             toast("Change language is not supported")
         }
-        if(getAuthProviders()){
+        if (getAuthProviders()) {
             signInText.setText(R.string.sign_out_text)
             SignInundertext.setText(R.string.sign_out_undertext)
             signIn.setOnClickListener {
@@ -67,9 +68,8 @@ class SettingsFragment : Fragment() {
                     val intent = Intent(context, SignInActivity::class.java)
                     startActivity(intent)
                 }
-                }
             }
-        else{
+        } else {
             signIn.setOnClickListener {
                 val intent = Intent(context, SignInActivity::class.java)
                 startActivity(intent)
@@ -84,30 +84,33 @@ class SettingsFragment : Fragment() {
 
         return root
     }
+
     fun changesignInText(text: String?) {
         signInText.setText(text)
     }
+
     fun changeSignInundertext(text: String?) {
         SignInundertext.setText(text)
     }
-    fun getAuthProviders() :  Boolean{
-        var returnBoolean : Boolean = false
+
+    fun getAuthProviders(): Boolean {
+        var returnBoolean: Boolean = false
         val list = auth.currentUser?.providerData
         if (list != null) {
-            for(i in list){
+            for (i in list) {
                 println(i.email)
-                if(i.email!=null){
-                     return true
+                if (i.email != null) {
+                    return true
                 }
             }
-        }
-        else{
+        } else {
             returnBoolean = false
         }
         toast(returnBoolean.toString())
         return returnBoolean
     }
-    fun toast(message : String){
-        Toast.makeText(this.context,message, Toast.LENGTH_LONG).show()
+
+    fun toast(message: String) {
+        Toast.makeText(this.context, message, Toast.LENGTH_LONG).show()
     }
 }

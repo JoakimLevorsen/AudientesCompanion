@@ -18,11 +18,11 @@ class AudiogramSerializer {
                 leftEar = audiogram.copyOfRange(2, 6)
                 rightEar = audiogram.copyOfRange(7, 11)
                 return Audiogram(leftEar, rightEar, recordDate)
-            } else throw Error ("Invalid first byte")
+            } else throw Error("Invalid first byte")
         }
 
         fun programToByteStream(audiogram: Audiogram): Array<Int> {
-            val audiogramBase = Array(2) {0/*.toByte()*/}
+            val audiogramBase = Array(2) { 0/*.toByte()*/ }
             audiogramBase[0] = AppCommands.SET_ACTIVE_AUDIOGRAM.hex.toInt()
             audiogramBase[1] = 0x01/*.toByte()*/
             return audiogramBase + audiogram.left + audiogram.right

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/hearing_test_activity_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray1"
@@ -9,12 +10,18 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragmentindhold"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/activity_outer_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_outer_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_outer_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_outer_vertical_margin">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/hearingTestTitle"
@@ -73,7 +80,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:background="@color/primary"
-            android:text="Start"
+            android:text="@string/start"
             android:textColor="@color/gray1"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/cancelButton2"
@@ -84,10 +91,7 @@
             android:id="@+id/cancelButton2"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
             android:layout_marginBottom="70dp"
-            android:layout_weight="1"
             android:background="@color/primaryDark"
             android:text="@android:string/cancel"
             android:textColor="@color/gray1"
@@ -98,4 +102,4 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

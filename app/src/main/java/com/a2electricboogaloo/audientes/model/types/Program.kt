@@ -24,8 +24,7 @@ class Program {
                     .collection(ObjectKeys.PROGRAMS.name)
                     .whereEqualTo(ObjectKeys.OWNER.name, uid)
                     .orderBy(ObjectKeys.NAME.name)
-                    .addSnapshotListener {
-                        snapshot, exception ->
+                    .addSnapshotListener { snapshot, exception ->
                         if (exception != null) {
                             throw exception
                         }
@@ -38,6 +37,7 @@ class Program {
             return userPrograms
         }
     }
+
     private var leftEar: HearingChannelData
     private var rightEar: HearingChannelData
     private var creationDate: Date
@@ -76,8 +76,8 @@ class Program {
     }
 
     constructor(fireDoc: DocumentSnapshot) {
-        val leftEar = fireDoc.get(ObjectKeys.LEFT_EAR.name) as? HearingChannelData
-        val rightEar = fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? HearingChannelData
+        val leftEar = (fireDoc.get(ObjectKeys.LEFT_EAR.name) as? List<Int>)?.toTypedArray()
+        val rightEar = (fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? List<Int>)?.toTypedArray()
         val creationDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
         val modificationDate = fireDoc.getDate(ObjectKeys.MODIFICATION_DATE.name)
         val name = fireDoc.getString(ObjectKeys.NAME.name)
@@ -111,15 +111,17 @@ class Program {
     private fun save() = this.documentReference.set(this.toFirebase())
 
     private fun toFirebase() = mutableMapOf(
-        ObjectKeys.LEFT_EAR.name to leftEar,
-        ObjectKeys.RIGHT_EAR.name to rightEar,
+        ObjectKeys.LEFT_EAR.name to leftEar.toList(),
+        ObjectKeys.RIGHT_EAR.name to rightEar.toList(),
         ObjectKeys.CREATION_DATE.name to creationDate,
         ObjectKeys.MODIFICATION_DATE.name to modificationDate,
         ObjectKeys.NAME.name to name,
-        ObjectKeys.DEVICE_INDEX to deviceIndex,
-        ObjectKeys.AUDIOGRAM_ID to audiogramID,
+        ObjectKeys.DEVICE_INDEX.name to deviceIndex,
+        ObjectKeys.AUDIOGRAM_ID.name to audiogramID,
         ObjectKeys.OWNER.name to owner
     )
+
+    fun delete() = this.documentReference.delete()
 
     fun getLeftEar() = leftEar
     fun getRightEar() = rightEar

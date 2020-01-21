@@ -23,8 +23,7 @@ class ConnectedDevice {
                     .collection(ObjectKeys.DEVICES.name)
                     .whereEqualTo(ObjectKeys.OWNER.name, uid)
                     .orderBy(ObjectKeys.NAME.name)
-                    .addSnapshotListener {
-                            snapshot, exception ->
+                    .addSnapshotListener { snapshot, exception ->
                         if (exception != null) {
                             throw exception
                         }

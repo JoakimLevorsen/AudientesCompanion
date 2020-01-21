@@ -4,18 +4,16 @@ import androidx.lifecycle.MutableLiveData
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.firebase.Auth
 import com.a2electricboogaloo.audientes.model.firebase.ObjectKeys
-import com.google.firebase.firestore.DocumentReference
-import com.google.firebase.firestore.DocumentSnapshot
-import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.*
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
 import java.util.*
 
 typealias HearingChannelData = Array<Int>
 
 class Audiogram {
     companion object {
-        private val userAudiograms: MutableLiveData<List<Audiogram>>
-                = MutableLiveData()
+        private val userAudiograms: MutableLiveData<List<Audiogram>> = MutableLiveData()
         private var hasAddedListener = false
 
         fun getUserAudiograms(): MutableLiveData<List<Audiogram>> {
@@ -25,8 +23,7 @@ class Audiogram {
                     .collection(ObjectKeys.AUDIOGRAMS.name)
                     .whereEqualTo(ObjectKeys.OWNER.name, Auth.getUID())
                     .orderBy(ObjectKeys.CREATION_DATE.name, Query.Direction.DESCENDING)
-                    .addSnapshotListener {
-                            snapshot, exception ->
+                    .addSnapshotListener { snapshot, exception ->
                         if (exception != null) {
                             throw exception
                         }
@@ -49,7 +46,7 @@ class Audiogram {
     val left get() = leftEar
     val right get() = rightEar
     val date get() = creationDate
-    val id get() = documentReference?.id
+    val id get() = documentReference.id
 
     constructor(
         leftEar: HearingChannelData,
@@ -77,8 +74,8 @@ class Audiogram {
     }
 
     constructor(fireDoc: DocumentSnapshot) {
-        val leftEar = fireDoc.get(ObjectKeys.LEFT_EAR.name) as? HearingChannelData
-        val rightEar = fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? HearingChannelData
+        val leftEar = (fireDoc.get(ObjectKeys.LEFT_EAR.name) as? List<Int>)?.toTypedArray()
+        val rightEar = (fireDoc.get(ObjectKeys.RIGHT_EAR.name) as? List<Int>)?.toTypedArray()
         val recordDate = fireDoc.getDate(ObjectKeys.CREATION_DATE.name)
         val owner = fireDoc.getString(ObjectKeys.OWNER.name)
         if (
@@ -99,9 +96,35 @@ class Audiogram {
 
     private fun save() = this.documentReference.set(this.toFirebase())
 
+    fun delete(didFinish: (state: Boolean) -> Unit) {
+        val id = this.id
+        val db = FirebaseFirestore.getInstance()
+        val thisRef = this.documentReference
+        GlobalScope.launch {
+            val request = db.collection("programs")
+                .whereEqualTo("audiogramID", id)
+                .get()
+            request.onSuccessTask {
+                val batch = db.batch()
+                batch.delete(thisRef)
+                for (program in it?.documents ?: listOf()) {
+                    batch.delete(program.reference)
+                }
+                val commit = batch.commit()
+                commit.addOnFailureListener { didFinish(false); println("Delete failed with $it") }
+                commit.addOnSuccessListener { didFinish(true) }
+            }
+            request.addOnFailureListener{
+                didFinish(false)
+                println("Delete failed with $it")
+            }
+
+        }
+    }
+
     private fun toFirebase(): Map<String, Any> = mutableMapOf(
-        ObjectKeys.LEFT_EAR.name to leftEar,
-        ObjectKeys.RIGHT_EAR.name to rightEar,
+        ObjectKeys.LEFT_EAR.name to leftEar.toList(),
+        ObjectKeys.RIGHT_EAR.name to rightEar.toList(),
         ObjectKeys.CREATION_DATE.name to creationDate,
         ObjectKeys.OWNER.name to owner
     )

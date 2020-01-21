@@ -26,8 +26,7 @@ class HearingTestCompleteFragment : Fragment() {
             activity!!
                 .supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragmentindhold, AudiogramListFragment()) //TODO: Should redirect to specific audiogram - awaiting proper implementation
-                .remove(this)
+                .replace(R.id.hearing_test_activity_frame, AudiogramListFragment()) //TODO: Should redirect to specific audiogram - awaiting proper implementation
                 .commit()
         }
 
