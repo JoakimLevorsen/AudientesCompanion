@@ -5,6 +5,15 @@
     android:background="@color/gray1"
     android:orientation="vertical">
 
+    <EditText
+        android:id="@+id/programName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        android:textColor="@color/gray6" />
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

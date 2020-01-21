@@ -56,10 +56,10 @@ class Program {
     val modified get() = creationDate.time != modificationDate.time
 
     constructor(
-        leftEar: HearingChannelData,
-        rightEar: HearingChannelData,
+        leftEar: HearingChannelData = arrayOf(0,0,0,0,0),
+        rightEar: HearingChannelData = arrayOf(0,0,0,0,0),
         name: String,
-        audiogramID: String,
+        audiogramID: String = "",
         deviceIndex: Int?
     ) {
         if (leftEar.size != 5 && rightEar.size != 5) throw Error("Only exactly 5 values are allowed for each ear")
@@ -68,6 +68,7 @@ class Program {
         this.creationDate = Date()
         this.modificationDate = creationDate
         this.name = name
+        // Note this is to remove Audiogram - Program tie
         this.audiogramID = audiogramID
         this.deviceIndex = deviceIndex
         this.owner = Auth.getUID()
@@ -136,6 +137,9 @@ class Program {
     fun getCreationDate() = creationDate
     fun getModificationDate() = modificationDate
     fun getName() = name
+    fun setName(to: String) {
+        this.name = to
+    }
     fun getDeviceIndex() = deviceIndex
     fun getAudiogramID() = audiogramID
 }
