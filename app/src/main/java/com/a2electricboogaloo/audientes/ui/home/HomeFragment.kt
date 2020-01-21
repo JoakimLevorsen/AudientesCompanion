@@ -17,6 +17,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.VolumeListener
@@ -26,7 +27,9 @@ import com.a2electricboogaloo.audientes.ui.programs.EditProgramActivity
 import com.a2electricboogaloo.audientes.model.types.Audiogram
 import com.a2electricboogaloo.audientes.ui.programs.ProgramsActivity
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
+import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment(), VolumeListener {
 
@@ -127,7 +130,6 @@ class HomeFragment : Fragment(), VolumeListener {
 
         root.findViewById<Button>(R.id.moreButton)?.setOnClickListener {
             startActivity(Intent(this.activity, ProgramsActivity::class.java))
-            activity!!.finish()
         }
 
         val viewManager = GridLayoutManager(this.context, 3)
@@ -135,10 +137,14 @@ class HomeFragment : Fragment(), VolumeListener {
             mediaPlayer?.audioSessionId ?: 0
         }
 
+        val lottie = root.findViewById<LottieAnimationView>(R.id.loading)
+
         Program.getUserPrograms().observe(this, Observer { programs ->
             programAdapter.setProgramsAndUpdate(programs)
+            lottie.visibility = View.GONE
         })
 
+        val programList = root.findViewById<RecyclerView>(R.id.programList)
         programList.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
