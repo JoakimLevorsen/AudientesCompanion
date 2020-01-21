@@ -15,6 +15,9 @@ class Audiogram {
     companion object {
         private val userAudiograms: MutableLiveData<List<Audiogram>> = MutableLiveData()
         private var hasAddedListener = false
+        private var loaded = false
+
+        fun hasLoaded() = loaded
 
         fun getUserAudiograms(): MutableLiveData<List<Audiogram>> {
             if (!hasAddedListener) {
@@ -28,6 +31,7 @@ class Audiogram {
                             throw exception
                         }
                         if (snapshot != null) {
+                            loaded = true
                             userAudiograms.value =
                                 snapshot.documents.map { Audiogram(it) }
                         }

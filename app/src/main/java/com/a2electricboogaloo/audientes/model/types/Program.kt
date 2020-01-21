@@ -12,6 +12,9 @@ class Program {
     companion object {
         private val userPrograms: MutableLiveData<List<Program>> = MutableLiveData()
         private var hasAddedListener = false
+        private var loaded = false
+
+        fun hasLoaded() = loaded
 
         fun getUserPrograms(): MutableLiveData<List<Program>> {
             if (!hasAddedListener) {
@@ -29,6 +32,7 @@ class Program {
                             throw exception
                         }
                         if (snapshot != null) {
+                            loaded = true
                             userPrograms.value =
                                 snapshot.documents.map { Program(it) }
                         }
