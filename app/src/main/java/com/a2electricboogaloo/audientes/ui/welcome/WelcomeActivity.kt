@@ -21,7 +21,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         nextButton = findViewById(R.id.button11)
         titleText = findViewById(R.id.titleView)
-        contentText = findViewById(R.id.contentView)
+        contentText = findViewById(R.id.welcomeText)
         nextButton?.setOnClickListener {
             titleText?.text = "Loading..."
             contentText?.text = "Connecting to device."
