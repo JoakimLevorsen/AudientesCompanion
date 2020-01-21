@@ -1,9 +1,11 @@
 package com.a2electricboogaloo.audientes.ui.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
 import androidx.annotation.UiThread
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.controller.ProgramController
@@ -12,7 +14,11 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class HomeProgramAdapter(private val getAudioSessionID: () -> Int?) :
+class HomeProgramAdapter(
+    private val context: Context,
+    private val getAudioSessionID: () -> Int?,
+    private val forceReload: (adapter: HomeProgramAdapter) -> Unit
+) :
     RecyclerView.Adapter<HomeProgramAdapter.ProgramsViewHolder>() {
 
     // Provide a reference to the views for each data item
@@ -36,41 +42,39 @@ class HomeProgramAdapter(private val getAudioSessionID: () -> Int?) :
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ProgramsViewHolder, position: Int) {
+        // Get some colors
+        val selectedColor = ContextCompat.getColor(context, R.color.primary)
+        val nonSelectedColor = ContextCompat.getColor(context, R.color.gray4)
+
         val program = data[position]
-        val toggleButton = holder.itemView.findViewById<ToggleButton>(R.id.toggleButton)
-        /*toggleButton.isSelected = ProgramController
+        val wasChecked = ProgramController
             .sharedInstance
             .getActiveProgram()
-            ?.equals(program) ?: false*/
-        toggleButton.setSelected(false)
-        toggleButton.setChecked(false)
-        toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
+            ?.equals(program) == true
+        val toggleButton = holder.itemView.findViewById<Button>(R.id.toggleButton)
+        toggleButton.setBackgroundColor(
+            if (wasChecked) {
+                selectedColor
+            } else nonSelectedColor
+        )
+        toggleButton.text = program.getName()
+        toggleButton.setOnClickListener {
+            println("Did press")
             val id = getAudioSessionID()
             if (id == null) {
-                if (isChecked) {
+                if (!wasChecked) {
                     ProgramController.queueProgram(program)
                 } else {
                     ProgramController.queueProgram(null)
                 }
             } else {
-                if (isChecked) {
+                if (!wasChecked) {
                     ProgramController.useProgram(program, id)
                 } else {
                     ProgramController.removeEqualizer()
                 }
             }
-            // Kig væk Jakob ;)
-            GlobalScope.launch {
-                var hasUpdated = false
-                while (!hasUpdated) {
-                    try {
-                        notifyDataSetChanged()
-                        hasUpdated = true
-                    } catch (e: Exception) {
-                        println(e)
-                    }
-                }
-            }
+            forceReload(this)
         }
     }
 

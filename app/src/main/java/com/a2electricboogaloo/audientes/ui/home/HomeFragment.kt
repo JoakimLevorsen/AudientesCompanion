@@ -136,10 +136,17 @@ class HomeFragment : Fragment(), VolumeListener {
             startActivity(Intent(this.activity, ProgramsActivity::class.java))
         }
 
+        val programList = root.findViewById<RecyclerView>(R.id.programList)
         val viewManager = GridLayoutManager(this.context, 3)
-        val programAdapter = HomeProgramAdapter{
+        val programAdapter = HomeProgramAdapter(this.context!!,{
             mediaPlayer?.audioSessionId ?: 0
-        }
+        }, {
+            programList.setAdapter(null);
+            programList.setLayoutManager(null);
+            programList.setAdapter(it);
+            programList.setLayoutManager(viewManager);
+            it.notifyDataSetChanged();
+        })
 
         val lottie = root.findViewById<LottieAnimationView>(R.id.loading)
 
@@ -148,7 +155,6 @@ class HomeFragment : Fragment(), VolumeListener {
             lottie.visibility = View.GONE
         })
 
-        val programList = root.findViewById<RecyclerView>(R.id.programList)
         programList.apply {
             setHasFixedSize(true)
             layoutManager = viewManager
