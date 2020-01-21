@@ -100,8 +100,25 @@ class Audiogram {
 
     private fun save() = this.documentReference.set(this.toFirebase())
 
+    fun newestAudiogram(): Audiogram? {
+        if (!Audiogram.loaded) return null
+        val list = Audiogram.userAudiograms.value?.sortedByDescending { it.creationDate }
+        if (list == null || list.size == 0) return null
+        return list[0]
+    }
+
+    fun amountOfAudiograms(): Int? {
+        if (!Audiogram.loaded || Audiogram.userAudiograms.value == null) return null
+        return Audiogram.userAudiograms.value!!.size
+    }
+
+
     fun delete(didFinish: (state: Boolean) -> Unit) {
-        val id = this.id
+        val task = this.documentReference.delete()
+        task.addOnSuccessListener { didFinish(true) }
+        task.addOnFailureListener { didFinish(false) }
+        // This code was used when programs were tied to audiograms, this is no longer the case
+        /*val id = this.id
         val db = FirebaseFirestore.getInstance()
         val thisRef = this.documentReference
         GlobalScope.launch {
@@ -123,7 +140,7 @@ class Audiogram {
                 println("Delete failed with $it")
             }
 
-        }
+        }*/
     }
 
     private fun toFirebase(): Map<String, Any> = mutableMapOf(
