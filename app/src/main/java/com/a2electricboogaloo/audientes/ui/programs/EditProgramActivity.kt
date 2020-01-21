@@ -1,6 +1,7 @@
 package com.a2electricboogaloo.audientes.ui.programs
 
 import android.os.Bundle
+import android.widget.EditText
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.R
@@ -50,6 +51,11 @@ class EditProgramActivity: AppCompatActivity() {
 
                 }
             })
+        }
+
+        programName.setOnKeyListener { v, keyCode, event ->
+            program.setName(programName.text.toString())
+            true
         }
 
         leftButton.setOnClickListener {
