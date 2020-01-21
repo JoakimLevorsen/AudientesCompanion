@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.model.types.Audiogram
 import com.a2electricboogaloo.audientes.model.types.HearingChannelData
 import kotlinx.coroutines.*
 import net.mabboud.android_tone_player.OneTimeBuzzer
+import java.util.*
 
 @InternalCoroutinesApi
 class HearingTestRunningFragment : Fragment() {
@@ -100,8 +102,7 @@ class HearingTestRunningFragment : Fragment() {
             activity!!
                 .supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragmentindhold, HearingTestCompleteFragment())
-                .remove(this)
+                .replace(R.id.hearing_test_activity_frame, HearingTestCompleteFragment())
                 .commit()
         }
     }

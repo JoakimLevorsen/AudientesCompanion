@@ -18,7 +18,7 @@ class HearingTest : AppCompatActivity() {
         startButton.setOnClickListener {
             supportFragmentManager
                 .beginTransaction()
-                .add(R.id.fragmentindhold, HearingTestRunningFragment())
+                .replace(R.id.hearing_test_activity_frame, HearingTestRunningFragment())
                 .commit()
         }
 
