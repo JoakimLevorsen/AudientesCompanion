@@ -9,9 +9,11 @@ class Auth  {
             FirebaseAuth
                 .getInstance()
                 .addAuthStateListener { signedIn.value = it }
-            FirebaseAuth
-                .getInstance()
-                .signInAnonymously()
+            if (FirebaseAuth.getInstance().currentUser == null) {
+                FirebaseAuth
+                    .getInstance()
+                    .signInAnonymously()
+            }
         }
         fun getUID(): String {
             val uid = signedIn.value?.uid
