@@ -39,7 +39,7 @@ class EditProgramActivity: AppCompatActivity() {
                     fromUser: Boolean
                 ) {
                     val newProgress = getActiveChannel().toMutableList()
-                    newProgress[index] = progress
+                    newProgress[index] = progress - 1000
                     if (leftChannelSelected)
                         program.setLeftEar(newProgress.toTypedArray())
                     else
@@ -80,7 +80,8 @@ class EditProgramActivity: AppCompatActivity() {
         val channelData = getActiveChannel()
         saveButton.isEnabled = true
         for (i in 0..5) {
-            sliders[i].progress = channelData[i]
+            // When the progress is added we need to add the possible negative numbers
+            sliders[i].progress = channelData[i] + 1000
         }
     }
 }
