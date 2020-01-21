@@ -39,6 +39,18 @@ class Audiogram {
             }
             return userAudiograms
         }
+
+        fun newestAudiogram(): Audiogram? {
+            if (!Audiogram.loaded) return null
+            val list = Audiogram.userAudiograms.value?.sortedByDescending { it.creationDate }
+            if (list == null || list.size == 0) return null
+            return list[0]
+        }
+
+        fun amountOfAudiograms(): Int? {
+            if (!Audiogram.loaded || Audiogram.userAudiograms.value == null) return null
+            return Audiogram.userAudiograms.value!!.size
+        }
     }
 
     private val leftEar: HearingChannelData
@@ -99,19 +111,6 @@ class Audiogram {
     }
 
     private fun save() = this.documentReference.set(this.toFirebase())
-
-    fun newestAudiogram(): Audiogram? {
-        if (!Audiogram.loaded) return null
-        val list = Audiogram.userAudiograms.value?.sortedByDescending { it.creationDate }
-        if (list == null || list.size == 0) return null
-        return list[0]
-    }
-
-    fun amountOfAudiograms(): Int? {
-        if (!Audiogram.loaded || Audiogram.userAudiograms.value == null) return null
-        return Audiogram.userAudiograms.value!!.size
-    }
-
 
     fun delete(didFinish: (state: Boolean) -> Unit) {
         val task = this.documentReference.delete()
