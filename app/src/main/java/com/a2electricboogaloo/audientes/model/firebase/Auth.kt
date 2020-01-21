@@ -13,6 +13,7 @@ class Auth  {
                 .getInstance()
                 .signInAnonymously()
         }
+
         fun getUID(): String {
             val uid = signedIn.value?.uid
             if (uid == null) {
