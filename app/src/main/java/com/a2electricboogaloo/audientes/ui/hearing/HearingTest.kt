@@ -51,14 +51,21 @@ class HearingTest : AppCompatActivity() {
            audio?.setOutputFile("/dev/null")
            audio?.prepare()
            audio?.start()
-
-           println("sound level is:  " + audio?.maxAmplitude)
    }
 
     fun getSound(){
-            audio?.maxAmplitude
-            println("max AMPLITUDE for AUDIO: " + audio?.maxAmplitude)
-           // startHearingTest()
+        audio?.maxAmplitude
+
+        var maxAmplitude = audio?.maxAmplitude
+        if (maxAmplitude != null && maxAmplitude > 100){
+            startHearingTest()
+
+        } else {
+            
+            println("too loud" + " sound is:  " + audio?.maxAmplitude)
+        }
+
+
     }
 
     fun startHearingTest(){
@@ -66,5 +73,7 @@ class HearingTest : AppCompatActivity() {
         val transaction = getSupportFragmentManager().beginTransaction()
         transaction.add(R.id.fragmentindhold, fragment)
         transaction.commit()
+        audio?.stop()
+        audio?.release()
     }
 }
