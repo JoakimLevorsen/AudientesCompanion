@@ -77,15 +77,19 @@
                         android:orientation="horizontal">
 
                         <Space
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0" />
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content" />
 
                         <SeekBar
                             android:id="@+id/sliderOverall"
                             style="@android:style/Widget.Material.SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="24dp" />
+                            android:layout_width="0dp"
+                            android:layout_height="24dp"
+                            android:layout_weight="1" />
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content" />
 
                     </LinearLayout>
 
@@ -302,12 +306,14 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:minHeight="135dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/gray2"
+                    android:minHeight="135dp"
                     android:orientation="vertical">
 
                     <Space
@@ -368,9 +374,9 @@
                     android:layout_height="135dp"
                     android:layout_gravity="top"
                     app:lottie_autoPlay="true"
+                    app:lottie_colorFilter="@color/primaryDark"
                     app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/loading"
-                    app:lottie_colorFilter="@color/primaryDark"/>
+                    app:lottie_rawRes="@raw/loading" />
             </FrameLayout>
 
             <Space

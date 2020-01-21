@@ -36,8 +36,6 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-        Auth.signInAnonymously()
-
         address = intent.getStringExtra(SelectDeviceActivity.EXTRA_ADDRESS)
 
         bluetoothController = BluetoothController()

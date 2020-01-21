@@ -14,14 +14,14 @@ import kotlinx.android.synthetic.main.programs_activity.*
 class ProgramsActivity : AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewManager: RecyclerView.LayoutManager
-    private lateinit var viewAdapter: ProgramsAdapter
+    private lateinit var viewAdapter: EditProgramsAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.programs_activity)
 
         viewManager = LinearLayoutManager(this)
-        viewAdapter = ProgramsAdapter(this)
+        viewAdapter = EditProgramsAdapter(this)
 
         Program.getUserPrograms().observe(this, Observer { programs ->
             viewAdapter.setProgramsAndUpdate(programs)

@@ -23,13 +23,11 @@ import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
 import com.a2electricboogaloo.audientes.model.types.Program
-import com.a2electricboogaloo.audientes.ui.programs.EditProgramActivity
 import com.a2electricboogaloo.audientes.model.types.Audiogram
 import com.a2electricboogaloo.audientes.ui.programs.ProgramsActivity
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 import com.airbnb.lottie.LottieAnimationView
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.home_fragment.*
 
 class HomeFragment : Fragment(), VolumeListener {
 
@@ -139,7 +137,7 @@ class HomeFragment : Fragment(), VolumeListener {
         }
 
         val viewManager = GridLayoutManager(this.context, 3)
-        val programAdapter = ProgramAdapter{
+        val programAdapter = HomeProgramAdapter{
             mediaPlayer?.audioSessionId ?: 0
         }
 

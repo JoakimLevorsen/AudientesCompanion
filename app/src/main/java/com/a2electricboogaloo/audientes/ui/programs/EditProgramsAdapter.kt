@@ -13,8 +13,8 @@ import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.types.Program
 
-class ProgramsAdapter(val container: AppCompatActivity) :
-    RecyclerView.Adapter<ProgramsAdapter.ProgramsViewHolder>() {
+class EditProgramsAdapter(val container: AppCompatActivity) :
+    RecyclerView.Adapter<EditProgramsAdapter.ProgramsViewHolder>() {
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -29,7 +29,7 @@ class ProgramsAdapter(val container: AppCompatActivity) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ProgramsAdapter.ProgramsViewHolder {
+    ): EditProgramsAdapter.ProgramsViewHolder {
         // create a new view
         val cardView = LayoutInflater.from(parent.context)
             .inflate(R.layout.programs_listview, parent, false) as LinearLayout
@@ -49,6 +49,8 @@ class ProgramsAdapter(val container: AppCompatActivity) :
             } else {
                 ProgramController.queueProgram(null)
             }
+            // We also need to update the list
+            notifyDataSetChanged()
         }
         val editButton = holder.itemView.findViewById<Button>(R.id.editButton)
         editButton.setOnClickListener {

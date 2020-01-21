@@ -7,6 +7,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.model.firebase.Auth
 
 class WelcomeActivity : AppCompatActivity() {
     private var didStartActivation = false
@@ -18,6 +19,8 @@ class WelcomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setTheme(R.style.AppTheme)
         setContentView(R.layout.welcome_activity)
+
+        Auth.signInAnonymously()
 
         nextButton = findViewById(R.id.button11)
         titleText = findViewById(R.id.titleView)

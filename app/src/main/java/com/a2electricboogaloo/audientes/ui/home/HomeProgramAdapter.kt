@@ -1,16 +1,19 @@
 package com.a2electricboogaloo.audientes.ui.home
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.*
+import androidx.annotation.UiThread
 import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.types.Program
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.lang.Exception
 
-class ProgramAdapter(private val getAudioSessionID: () -> Int?) :
-    RecyclerView.Adapter<ProgramAdapter.ProgramsViewHolder>() {
+class HomeProgramAdapter(private val getAudioSessionID: () -> Int?) :
+    RecyclerView.Adapter<HomeProgramAdapter.ProgramsViewHolder>() {
 
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
@@ -24,7 +27,7 @@ class ProgramAdapter(private val getAudioSessionID: () -> Int?) :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ProgramAdapter.ProgramsViewHolder {
+    ): HomeProgramAdapter.ProgramsViewHolder {
         // create a new view
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.home_program_list, parent, false) as LinearLayout
@@ -35,10 +38,12 @@ class ProgramAdapter(private val getAudioSessionID: () -> Int?) :
     override fun onBindViewHolder(holder: ProgramsViewHolder, position: Int) {
         val program = data[position]
         val toggleButton = holder.itemView.findViewById<ToggleButton>(R.id.toggleButton)
-        toggleButton.isChecked = ProgramController
+        /*toggleButton.isSelected = ProgramController
             .sharedInstance
             .getActiveProgram()
-            ?.equals(program) ?: false
+            ?.equals(program) ?: false*/
+        toggleButton.setSelected(false)
+        toggleButton.setChecked(false)
         toggleButton.setOnCheckedChangeListener { buttonView, isChecked ->
             val id = getAudioSessionID()
             if (id == null) {
@@ -52,6 +57,18 @@ class ProgramAdapter(private val getAudioSessionID: () -> Int?) :
                     ProgramController.useProgram(program, id)
                 } else {
                     ProgramController.removeEqualizer()
+                }
+            }
+            // Kig væk Jakob ;)
+            GlobalScope.launch {
+                var hasUpdated = false
+                while (!hasUpdated) {
+                    try {
+                        notifyDataSetChanged()
+                        hasUpdated = true
+                    } catch (e: Exception) {
+                        println(e)
+                    }
                 }
             }
         }
