@@ -11,19 +11,19 @@ import com.a2electricboogaloo.audientes.model.types.FoundDevice
 import java.util.*
 
 
-
-
 class DeviceListAdapter(private val foundDeviceList: ArrayList<FoundDevice>, var context: Context) :
     RecyclerView.Adapter<DeviceListAdapter.ListeViewHolder>() {
-    class ListeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener {
+    class ListeViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        View.OnClickListener {
         var name: TextView
-        var listItemClickListener : ListItemClickListener? = null
+        var listItemClickListener: ListItemClickListener? = null
 
         init {
             name = itemView.findViewById(R.id.textView_deviceList)
             itemView.setOnClickListener(this)
         }
-        fun setOnListItemClickListener(itemClickListener:ListItemClickListener){
+
+        fun setOnListItemClickListener(itemClickListener: ListItemClickListener) {
             this.listItemClickListener = itemClickListener
         }
 
@@ -44,7 +44,7 @@ class DeviceListAdapter(private val foundDeviceList: ArrayList<FoundDevice>, var
 
         holder.name.text = "Device: " + name
 
-        holder.setOnListItemClickListener(object :ListItemClickListener{
+        holder.setOnListItemClickListener(object : ListItemClickListener {
             override fun onListItemClickListener(view: View, pos: Int) {
                 SelectDeviceActivity.instance!!.connect(pos)
             }

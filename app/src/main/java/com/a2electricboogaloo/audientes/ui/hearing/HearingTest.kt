@@ -21,7 +21,7 @@ class HearingTest : AppCompatActivity() {
                 .add(R.id.fragmentindhold, HearingTestRunningFragment())
                 .commit()
         }
-        
+
     }
- 
+
 }

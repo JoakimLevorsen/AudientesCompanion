@@ -24,8 +24,7 @@ class Program {
                     .collection(ObjectKeys.PROGRAMS.name)
                     .whereEqualTo(ObjectKeys.OWNER.name, uid)
                     .orderBy(ObjectKeys.NAME.name)
-                    .addSnapshotListener {
-                        snapshot, exception ->
+                    .addSnapshotListener { snapshot, exception ->
                         if (exception != null) {
                             throw exception
                         }
@@ -38,6 +37,7 @@ class Program {
             return userPrograms
         }
     }
+
     private var leftEar: HearingChannelData
     private var rightEar: HearingChannelData
     private var creationDate: Date

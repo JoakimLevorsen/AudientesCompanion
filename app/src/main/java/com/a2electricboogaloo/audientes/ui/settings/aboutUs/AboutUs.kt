@@ -11,12 +11,6 @@ class AboutUs : Activity() {
         setContentView(R.layout.about_us_activity)
 
 
-
-
-
-
-
-
     }
 
 }

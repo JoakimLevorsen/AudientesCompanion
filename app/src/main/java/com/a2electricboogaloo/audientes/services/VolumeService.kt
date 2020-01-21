@@ -11,16 +11,19 @@ import androidx.media.VolumeProviderCompat
 import com.a2electricboogaloo.audientes.model.VolumeObservable
 
 class VolumeService : Service() {
-    lateinit var mediaSession : MediaSessionCompat
+    lateinit var mediaSession: MediaSessionCompat
 
 
     override fun onCreate() {
         super.onCreate()
         mediaSession = MediaSessionCompat(this, "VolumeService")
         mediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS or MediaSessionCompat.FLAG_HANDLES_TRANSPORT_CONTROLS)
-        mediaSession.setPlaybackState(PlaybackStateCompat.Builder().setState(PlaybackStateCompat.STATE_PLAYING, 0,
-            0F
-        ).build())
+        mediaSession.setPlaybackState(
+            PlaybackStateCompat.Builder().setState(
+                PlaybackStateCompat.STATE_PLAYING, 0,
+                0F
+            ).build()
+        )
 
         val audio = this!!.getSystemService(Context.AUDIO_SERVICE) as AudioManager
         val maxVol = audio.getStreamMaxVolume(AudioManager.STREAM_MUSIC)
@@ -28,16 +31,26 @@ class VolumeService : Service() {
 
         //Note: VolumeProviderCompat inherently (apparently...) adjusts another audio stream (besides media, STREAM_MUSIC)
 
-        val myVolumeProvider : VolumeProviderCompat = object : VolumeProviderCompat(VOLUME_CONTROL_RELATIVE,
-            maxVol, currentVol) {
-            override fun onAdjustVolume(direction : Int) {
+        val myVolumeProvider: VolumeProviderCompat = object : VolumeProviderCompat(
+            VOLUME_CONTROL_RELATIVE,
+            maxVol, currentVol
+        ) {
+            override fun onAdjustVolume(direction: Int) {
                 VolumeObservable.getShared().didUpdate()
                 if (direction > 0) {
                     //VOLUME IS ADJUSTED WITH +1
-                    audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_RAISE, 0)
+                    audio.adjustStreamVolume(
+                        AudioManager.STREAM_MUSIC,
+                        AudioManager.ADJUST_RAISE,
+                        0
+                    )
                 } else if (direction < 0) {
                     //VOLUME IS ADJUSTED WITH -1
-                    audio.adjustStreamVolume(AudioManager.STREAM_MUSIC, AudioManager.ADJUST_LOWER, 0)
+                    audio.adjustStreamVolume(
+                        AudioManager.STREAM_MUSIC,
+                        AudioManager.ADJUST_LOWER,
+                        0
+                    )
                 }
                 currentVol = audio.getStreamVolume(AudioManager.STREAM_MUSIC)
                 currentVolume = currentVol
