@@ -74,4 +74,6 @@
     <string name="welcome_to_the_app">Welcome to the Audientes Companion App.</string>
     <string name="please_turn_your_device_on">Please turn your device on.</string>
     <string name="about_audientes_hearable">Your Audientes hearable will work optimally when you perform a hearing test using the built-in Pure Tone Audiometry, just like when visiting a hearing specialist.\n\nA series of sounds will be broadcast through the earphones. It will measure your ability to hear sounds at various pitches and volumes.</string>
+    <string name="edit">Edit</string>
+    <string name="delete">Delete</string>
 </resources>
