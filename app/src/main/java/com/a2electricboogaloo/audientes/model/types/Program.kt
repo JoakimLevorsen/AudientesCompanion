@@ -56,9 +56,9 @@ class Program {
     val modified get() = creationDate.time != modificationDate.time
 
     constructor(
+        name: String,
         leftEar: HearingChannelData = arrayOf(0,0,0,0,0),
         rightEar: HearingChannelData = arrayOf(0,0,0,0,0),
-        name: String,
         audiogramID: String = "",
         deviceIndex: Int?
     ) {

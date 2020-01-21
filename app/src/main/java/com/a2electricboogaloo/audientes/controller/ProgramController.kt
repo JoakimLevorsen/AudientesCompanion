@@ -37,31 +37,31 @@ class ProgramController {
             val audiID = audiogram.id
             // We create two programs parabola programs where mids are higher or lower than the rest.
             Program(
-                arrayOf(-1000, 0, 1000, 0, -1000),
-                arrayOf(-1000, 0, 1000, 0, -1000),
                 "Auto 1",
+                arrayOf(-1000, 0, 1000, 0, -1000),
+                arrayOf(-1000, 0, 1000, 0, -1000),
                 audiID,
                 0
             )
             Program(
-                arrayOf(1000, 0, -1000, 0, 1000),
-                arrayOf(1000, 0, -1000, 0, 1000),
                 "Auto 2",
+                arrayOf(1000, 0, -1000, 0, 1000),
+                arrayOf(1000, 0, -1000, 0, 1000),
                 audiID,
                 1
             )
             // Then we make one with a higher bass, and one with a higher treble
             Program(
-                arrayOf(-1000, -500, 0, 500, 1000),
-                arrayOf(-1000, -500, 0, 500, 1000),
                 "Auto 3",
+                arrayOf(-1000, -500, 0, 500, 1000),
+                arrayOf(-1000, -500, 0, 500, 1000),
                 audiID,
                 2
             )
             Program(
+                "Auto 4",
                 arrayOf(1000, 500, 0, 0, -1000),
                 arrayOf(-1000, 0, 1000, 0, -1000),
-                "Auto 4",
                 audiID,
                 3
             )
