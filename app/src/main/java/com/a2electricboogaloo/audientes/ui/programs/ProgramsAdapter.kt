@@ -33,14 +33,11 @@ class ProgramsAdapter(val container: AppCompatActivity) :
         // create a new view
         val cardView = LayoutInflater.from(parent.context)
             .inflate(R.layout.programs_listview, parent, false) as LinearLayout
-        // TODO: set the view's size, margins, paddings and layout parameters
         return ProgramsViewHolder(cardView)
     }
 
     // Replace the contents of a view (invoked by the layout manager)
     override fun onBindViewHolder(holder: ProgramsViewHolder, position: Int) {
-        // TODO: get element from your dataset at this position
-        // TODO: replace the contents of the view with that element
         val name = holder.itemView.findViewById<TextView>(R.id.programName)
         val program = data[position]
         name.text = program.getName()

@@ -23,8 +23,8 @@ import com.a2electricboogaloo.audientes.model.VolumeListener
 import com.a2electricboogaloo.audientes.model.VolumeObservable
 import com.a2electricboogaloo.audientes.model.types.Program
 import com.a2electricboogaloo.audientes.ui.programs.EditProgramActivity
+import com.a2electricboogaloo.audientes.model.types.Audiogram
 import com.a2electricboogaloo.audientes.ui.programs.ProgramsActivity
-import kotlinx.android.synthetic.main.home_fragment.*
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 import com.google.android.material.snackbar.Snackbar
 
@@ -52,6 +52,10 @@ class HomeFragment : Fragment(), VolumeListener {
         })
 
         VolumeObservable.getShared().addAsListener(this)
+
+        val lastHearingTestText = root.findViewById<TextView>(R.id.lastHearingTest)
+        if (Audiogram.amountOfAudiograms() == null) lastHearingTestText.text = ""
+        else lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date)
 
         val goButton = root.findViewById<Button>(R.id.goButton)
         goButton.setOnClickListener {
@@ -121,8 +125,10 @@ class HomeFragment : Fragment(), VolumeListener {
         seekBarLeft.isEnabled = false //Disabled, Left and Right ear volume is not implemented
         seekBarRight.isEnabled = false //Disabled, Left and Right ear volume is not implemented
 
-        val programIntent = Intent(this.activity, ProgramsActivity::class.java)
-        root.findViewById<Button>(R.id.moreButton)?.setOnClickListener { startActivity(programIntent) }
+        root.findViewById<Button>(R.id.moreButton)?.setOnClickListener {
+            startActivity(Intent(this.activity, ProgramsActivity::class.java))
+            activity!!.finish()
+        }
 
         val viewManager = GridLayoutManager(this.context, 3)
         val programAdapter = ProgramAdapter{

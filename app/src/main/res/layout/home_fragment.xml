@@ -286,7 +286,7 @@
                     android:id="@+id/lastHearingTest"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/last_hearing_test"
+                    android:text=""
                     android:textAlignment="center"
                     android:textColor="@color/gray4"
                     android:textSize="16sp" />
@@ -369,7 +369,8 @@
                     android:layout_gravity="top"
                     app:lottie_autoPlay="true"
                     app:lottie_loop="true"
-                    app:lottie_rawRes="@raw/loading" />
+                    app:lottie_rawRes="@raw/loading"
+                    app:lottie_colorFilter="@color/primaryDark"/>
             </FrameLayout>
 
             <Space
