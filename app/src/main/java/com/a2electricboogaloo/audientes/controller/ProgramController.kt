@@ -38,32 +38,32 @@ class ProgramController {
             // We create two programs parabola programs where mids are higher or lower than the rest.
             Program(
                 "Auto 1",
+                0,
                 arrayOf(-1000, 0, 1000, 0, -1000),
                 arrayOf(-1000, 0, 1000, 0, -1000),
-                audiID,
-                0
+                audiID
             )
             Program(
                 "Auto 2",
+                1,
                 arrayOf(1000, 0, -1000, 0, 1000),
                 arrayOf(1000, 0, -1000, 0, 1000),
-                audiID,
-                1
+                audiID
             )
             // Then we make one with a higher bass, and one with a higher treble
             Program(
                 "Auto 3",
+                2,
                 arrayOf(-1000, -500, 0, 500, 1000),
                 arrayOf(-1000, -500, 0, 500, 1000),
-                audiID,
-                2
+                audiID
             )
             Program(
                 "Auto 4",
+                3,
                 arrayOf(1000, 500, 0, 0, -1000),
                 arrayOf(-1000, 0, 1000, 0, -1000),
-                audiID,
-                3
+                audiID
             )
         }
 

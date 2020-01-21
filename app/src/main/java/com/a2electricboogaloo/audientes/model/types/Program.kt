@@ -57,10 +57,10 @@ class Program {
 
     constructor(
         name: String,
+        deviceIndex: Int?,
         leftEar: HearingChannelData = arrayOf(0,0,0,0,0),
         rightEar: HearingChannelData = arrayOf(0,0,0,0,0),
-        audiogramID: String = "",
-        deviceIndex: Int?
+        audiogramID: String = ""
     ) {
         if (leftEar.size != 5 && rightEar.size != 5) throw Error("Only exactly 5 values are allowed for each ear")
         this.leftEar = leftEar
