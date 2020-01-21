@@ -64,4 +64,8 @@
     <string name="play_test_audio">Play or stop test audio</string>
     <string name="play">Play</string>
     <string name="stop">Stop</string>
+    <string name="languagelabel">Language</string>
+    <string name="uk_english">UK English</string>
+    <string name="use_uk_english_for_the_audientes_app">Use UK English for the Audientes App</string>
+    <string name="uk_flag_image">UKFlagImage</string>
 </resources>
