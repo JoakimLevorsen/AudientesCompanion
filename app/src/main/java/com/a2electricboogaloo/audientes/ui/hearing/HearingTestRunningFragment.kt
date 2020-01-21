@@ -52,6 +52,7 @@ class HearingTestRunningFragment : Fragment() {
 
         val cancelButton = root.findViewById<Button>(R.id.cancelButton)
         cancelButton.setOnClickListener {
+            stopTone()
             activity!!
                 .supportFragmentManager
                 .beginTransaction()
@@ -97,7 +98,6 @@ class HearingTestRunningFragment : Fragment() {
         if (freqIndex < frequencies.size) {
             playTone(freqIndex)
         } else {
-            //TODO: java.lang.Error: You must be signed in to save data.
             Audiogram(volumeFrequencyHeardAt, volumeFrequencyHeardAt, Date())
             activity!!
                 .supportFragmentManager

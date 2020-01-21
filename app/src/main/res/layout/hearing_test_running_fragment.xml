@@ -37,6 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/ic_amazing_round_confirm"
+            android:theme="@style/AppTheme.Ripple"
             app:layout_constraintBottom_toTopOf="@+id/cancelButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -19,446 +19,466 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
+    <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/activity_outer_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_outer_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_outer_horizontal_margin"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/gray2"
+            android:layout_marginStart="@dimen/activity_outer_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_outer_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_outer_horizontal_margin"
             android:orientation="vertical">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="@dimen/activity_horizontal_margin"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:id="@+id/volumeOverallTitle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/volume_overall"
-                        android:textColor="@color/gray6"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/activity_vertical_margin" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0" />
-
-                    <SeekBar
-                        android:id="@+id/sliderOverall"
-                        style="@android:style/Widget.Material.SeekBar"
-                        android:layout_width="match_parent"
-                        android:layout_height="24dp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="@dimen/activity_horizontal_margin"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:id="@+id/volumeLeftTitle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/volume_left"
-                        android:textColor="@color/gray6"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/activity_vertical_margin" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="@dimen/activity_horizontal_margin"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0" />
-
-                    <SeekBar
-                        android:id="@+id/sliderLeft"
-                        android:layout_width="330dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="0" />
-
-                    <TextView
-                        android:id="@+id/letterL"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:fontFamily="monospace"
-                        android:text="@string/letter_l"
-                        android:textColor="@color/gray6"
-                        android:textSize="18sp"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="@dimen/activity_horizontal_margin"
-                        android:layout_height="match_parent" />
-
-                    <TextView
-                        android:id="@+id/volumeRightTitle"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="@string/volume_right"
-                        android:textColor="@color/gray6"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <Space
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/activity_vertical_margin" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal">
-
-                    <Space
-                        android:layout_width="@dimen/activity_horizontal_margin"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0" />
-
-                    <SeekBar
-                        android:id="@+id/sliderRight"
-                        android:layout_width="330dp"
-                        android:layout_height="24dp"
-                        android:layout_weight="0" />
-
-                    <TextView
-                        android:id="@+id/letterR"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0"
-                        android:fontFamily="monospace"
-                        android:text="@string/letter_r"
-                        android:textColor="@color/gray6"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:typeface="monospace" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
-
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray2"
-            android:orientation="vertical">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/gray2"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
                 <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
 
-                <TextView
-                    android:id="@+id/programsTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/programs"
-                    android:textColor="@color/gray6"
-                    android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                <Button
-                    android:id="@+id/moreButton"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_weight="0"
-                    android:background="@drawable/ic_open" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/volumeOverallTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/volume_overall"
+                            android:textColor="@color/gray6"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_vertical_margin" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+
+                        <SeekBar
+                            android:id="@+id/sliderOverall"
+                            style="@android:style/Widget.Material.SeekBar"
+                            android:layout_width="match_parent"
+                            android:layout_height="24dp" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/volumeLeftTitle"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/volume_left"
+                            android:textColor="@color/gray6"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_vertical_margin" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+
+                        <SeekBar
+                            android:id="@+id/sliderLeft"
+                            android:layout_width="330dp"
+                            android:layout_height="24dp"
+                            android:layout_weight="0" />
+
+                        <TextView
+                            android:id="@+id/letterL"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:fontFamily="monospace"
+                            android:text="@string/letter_l"
+                            android:textColor="@color/gray6"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="match_parent" />
+
+                        <TextView
+                            android:id="@+id/volumeRightTitle"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/volume_right"
+                            android:textColor="@color/gray6"
+                            android:textSize="18sp" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_vertical_margin" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+
+                        <SeekBar
+                            android:id="@+id/sliderRight"
+                            android:layout_width="330dp"
+                            android:layout_height="24dp"
+                            android:layout_weight="0" />
+
+                        <TextView
+                            android:id="@+id/letterR"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:fontFamily="monospace"
+                            android:text="@string/letter_r"
+                            android:textColor="@color/gray6"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:typeface="monospace" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <Space
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
 
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
+                android:layout_height="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:background="@color/gray2"
+                android:orientation="vertical">
 
                 <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
 
-                <ToggleButton
-                    android:id="@+id/toggleButton"
-                    android:layout_width="105dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="ToggleButton"
-                    android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <Space
+                        android:layout_width="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0" />
+
+                    <TextView
+                        android:id="@+id/infoText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/new_hearing_test"
+                        android:textColor="@color/gray6"
+                        android:textSize="18sp" />
+
+                    <Space
+                        android:layout_width="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content" />
+
+                    <Button
+                        android:id="@+id/goButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/go"
+                        android:textSize="18sp" />
+
+                    <Space
+                        android:layout_width="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0" />
+
+                </LinearLayout>
 
                 <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
                     android:layout_weight="0" />
 
-                <ToggleButton
-                    android:id="@+id/toggleButton2"
-                    android:layout_width="105dp"
+                <TextView
+                    android:id="@+id/lastHearingTest"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="ToggleButton"
-                    android:textSize="18sp" />
+                    android:text="@string/last_hearing_test"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray4"
+                    android:textSize="16sp" />
 
                 <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
-
-                <ToggleButton
-                    android:id="@+id/toggleButton3"
-                    android:layout_width="105dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0"
-                    android:text="ToggleButton"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
+                android:layout_height="20dp" />
 
-        </LinearLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/gray2"
+                    android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray2"
-            android:orientation="vertical">
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_vertical_margin" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/gray2"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content" />
+
+                        <TextView
+                            android:id="@+id/programsTitle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/programs"
+                            android:textColor="@color/gray6"
+                            android:textSize="18sp" />
+
+                        <Button
+                            android:id="@+id/moreButton"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_weight="0"
+                            android:background="@drawable/ic_open" />
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_vertical_margin" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+
+                        <ToggleButton
+                            android:id="@+id/toggleButton"
+                            android:layout_width="105dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="ToggleButton"
+                            android:textSize="18sp" />
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+
+                        <ToggleButton
+                            android:id="@+id/toggleButton2"
+                            android:layout_width="105dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="ToggleButton"
+                            android:textSize="18sp" />
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+
+                        <ToggleButton
+                            android:id="@+id/toggleButton3"
+                            android:layout_width="105dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0"
+                            android:text="ToggleButton"
+                            android:textSize="18sp" />
+
+                        <Space
+                            android:layout_width="@dimen/activity_horizontal_margin"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="0" />
+                    </LinearLayout>
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/activity_vertical_margin" />
+
+                </LinearLayout>
+
+                <com.airbnb.lottie.LottieAnimationView
+                    android:id="@+id/loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="135dp"
+                    android:layout_gravity="top"
+                    app:lottie_autoPlay="true"
+                    app:lottie_loop="true"
+                    app:lottie_rawRes="@raw/loading" />
+            </FrameLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
+                android:layout_height="20dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:background="@color/gray2"
+                android:orientation="vertical">
 
                 <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
 
-                <TextView
-                    android:id="@+id/infoText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/new_hearing_test"
-                    android:textColor="@color/gray6"
-                    android:textSize="18sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
 
-                <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content" />
+                    <Space
+                        android:layout_width="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0" />
 
-                <Button
-                    android:id="@+id/goButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/go"
-                    android:textSize="18sp" />
+                    <TextView
+                        android:id="@+id/playTestAudioText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/play_test_audio"
+                        android:textColor="@color/gray6"
+                        android:textSize="18sp" />
 
-                <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    <Space
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1" />
 
-            </LinearLayout>
+                    <Button
+                        android:id="@+id/playPauseTestAudioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/play"
+                        android:textSize="18sp" />
 
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_weight="0" />
-
-            <TextView
-                android:id="@+id/lastHearingTest"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/last_hearing_test"
-                android:textAlignment="center"
-                android:textColor="@color/gray4"
-                android:textSize="16sp" />
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
-        </LinearLayout>
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/gray2"
-            android:orientation="vertical">
-
-            <Space
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
+                    <Space
+                        android:layout_width="@dimen/activity_horizontal_margin"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0" />
+                </LinearLayout>
 
                 <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
-
-                <TextView
-                    android:id="@+id/playTestAudioText"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/play_test_audio"
-                    android:textColor="@color/gray6"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
-
-                <Button
-                    android:id="@+id/playPauseTestAudioButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/play"
-                    android:textSize="18sp" />
-
-                <Space
-                    android:layout_width="@dimen/activity_horizontal_margin"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="0" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/activity_vertical_margin" />
             </LinearLayout>
 
             <Space
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/activity_vertical_margin" />
-        </LinearLayout>
+                android:layout_height="20dp" />
 
-    </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

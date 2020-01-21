@@ -64,4 +64,5 @@
     <string name="play_test_audio">Play or stop test audio</string>
     <string name="play">Play</string>
     <string name="stop">Stop</string>
+    <string name="deleting_audiograms">Deleting audiogram and accompanying programs...</string>
 </resources>
