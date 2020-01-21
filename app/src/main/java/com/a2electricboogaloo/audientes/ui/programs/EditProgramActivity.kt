@@ -14,13 +14,16 @@ class EditProgramActivity: AppCompatActivity() {
 
     private lateinit var program: Program
     private var leftChannelSelected = true
-    private val selectedColor = resources.getColor(R.color.primary)
-    private val nonSelectedColor = resources.getColor(R.color.gray4)
+    private var selectedColor = 0
+    private var nonSelectedColor = 0
     private lateinit var sliders: List<VerticalSeekBar>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_program_activity)
+
+        selectedColor = getColor(R.color.primary)
+        nonSelectedColor = getColor(R.color.gray4)
 
         program = ProgramController.sharedInstance.getProgramToEdit() ?: throw Error("Must set program to edit before EditProgram is opened")
 
@@ -85,7 +88,7 @@ class EditProgramActivity: AppCompatActivity() {
     private fun updateSliders() {
         val channelData = getActiveChannel()
         saveButton.isEnabled = true
-        for (i in 0..5) {
+        for (i in 0..4) {
             // When the progress is added we need to add the possible negative numbers
             sliders[i].progress = channelData[i] + 1000
         }

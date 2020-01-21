@@ -51,8 +51,14 @@ class HomeFragment : Fragment(), VolumeListener {
         VolumeObservable.getShared().addAsListener(this)
 
         val lastHearingTestText = root.findViewById<TextView>(R.id.lastHearingTest)
-        if (Audiogram.amountOfAudiograms() == null) lastHearingTestText.text = ""
-        else lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date)
+        if (Audiogram.amountOfAudiograms() == null) {
+            lastHearingTestText.text = ""
+            lastHearingTestText.visibility = View.GONE
+        }
+        else {
+            lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date.toString())
+            lastHearingTestText.visibility = View.VISIBLE
+        }
 
         val goButton = root.findViewById<Button>(R.id.goButton)
         goButton.setOnClickListener {
@@ -124,10 +130,22 @@ class HomeFragment : Fragment(), VolumeListener {
 
         root.findViewById<Button>(R.id.moreButton)?.setOnClickListener {
             startActivity(Intent(this.activity, ProgramsActivity::class.java))
-            activity!!.finish()
         }
 
         return root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val lastHearingTestText = this.view!!.findViewById<TextView>(R.id.lastHearingTest)
+        if (Audiogram.amountOfAudiograms() == null) {
+            lastHearingTestText.text = ""
+            lastHearingTestText.visibility = View.GONE
+        }
+        else {
+            lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date.toString())
+            lastHearingTestText.visibility = View.VISIBLE
+        }
     }
 
     override fun didChange() {
@@ -136,10 +154,16 @@ class HomeFragment : Fragment(), VolumeListener {
         }
     }
 
+    override fun onPause() {
+        super.onPause()
+        mediaPlayer?.release()
+        mediaPlayer = null
+        mediaPlayerPrepared = false
+        testAudioPlaying = false
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         VolumeObservable.getShared().removeAsListener(this)
-        mediaPlayer?.release()
-        mediaPlayer = null
     }
 }
