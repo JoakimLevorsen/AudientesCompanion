@@ -17,8 +17,8 @@ class ProgramController {
             sharedInstance.activeProgram = program
             val left = splitProgramsToLevel(program.getLeftEar(), eq.numberOfBands.toInt())
             val right = splitProgramsToLevel(program.getRightEar(), eq.numberOfBands.toInt())
-            left.forEachIndexed {
-                    index, i -> eq.setBandLevel(index.toShort(), i.toShort())
+            left.forEachIndexed { index, i ->
+                eq.setBandLevel(index.toShort(), i.toShort())
             }
             val ranges = eq.getBandFreqRange(0)
         }
@@ -33,11 +33,35 @@ class ProgramController {
         fun generatePrograms(audiogram: Audiogram) {
             val audiID = audiogram.id
             // We create two programs parabola programs where mids are higher or lower than the rest.
-            Program(arrayOf(-1000, 0, 1000, 0, -1000), arrayOf(-1000, 0, 1000, 0, -1000), "Auto 1", audiID, 0)
-            Program(arrayOf(1000, 0, -1000, 0, 1000), arrayOf(1000, 0, -1000, 0, 1000), "Auto 2", audiID, 1)
+            Program(
+                arrayOf(-1000, 0, 1000, 0, -1000),
+                arrayOf(-1000, 0, 1000, 0, -1000),
+                "Auto 1",
+                audiID,
+                0
+            )
+            Program(
+                arrayOf(1000, 0, -1000, 0, 1000),
+                arrayOf(1000, 0, -1000, 0, 1000),
+                "Auto 2",
+                audiID,
+                1
+            )
             // Then we make one with a higher bass, and one with a higher treble
-            Program(arrayOf(-1000, -500, 0, 500, 1000), arrayOf(-1000, -500, 0, 500, 1000), "Auto 3", audiID, 2)
-            Program(arrayOf(1000, 500, 0, 0, -1000), arrayOf(-1000, 0, 1000, 0, -1000), "Auto 4", audiID, 3)
+            Program(
+                arrayOf(-1000, -500, 0, 500, 1000),
+                arrayOf(-1000, -500, 0, 500, 1000),
+                "Auto 3",
+                audiID,
+                2
+            )
+            Program(
+                arrayOf(1000, 500, 0, 0, -1000),
+                arrayOf(-1000, 0, 1000, 0, -1000),
+                "Auto 4",
+                audiID,
+                3
+            )
         }
 
         private fun splitProgramsToLevel(program: HearingChannelData, levels: Int): List<Int> {
@@ -52,7 +76,7 @@ class ProgramController {
             // How much do we increase between samples
             val sample = levels / (levels - 1)
             for (i in sample until (levels - 1) step sample) {
-                val specificSample = sampleAtIndex(program,(i / (levels.toDouble() - 1)) * 4)
+                val specificSample = sampleAtIndex(program, (i / (levels.toDouble() - 1)) * 4)
                 sampleCoordinates.add(specificSample)
             }
             val returnable = mutableListOf(start)

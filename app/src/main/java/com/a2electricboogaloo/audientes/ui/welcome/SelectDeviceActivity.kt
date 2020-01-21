@@ -34,6 +34,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         fun setGlobalInstance(activity: SelectDeviceActivity) {
             instance = activity
         }
+
         const val EXTRA_ADDRESS: String = "Device_address"
     }
 
@@ -44,7 +45,8 @@ class SelectDeviceActivity : AppCompatActivity() {
         run()
         button_devicelist.setOnClickListener { discoverDevices() }
     }
-    private fun run(){
+
+    private fun run() {
         isBluetoothSupported()
         enableBluetooth()
         registerBroadcast()
@@ -52,6 +54,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         accessCoarseLocation()
         discoverDevices()
     }
+
     private val receiver = object : BroadcastReceiver() {
 
         @SuppressLint("NewApi")
@@ -158,7 +161,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         var device: BluetoothDevice = btdevicelist[position]
         val address: String = device.address
         device = bluetoothAdapter!!.getRemoteDevice(address)
-        if(!device.createBond()){
+        if (!device.createBond()) {
             toast("connection didn't succeed")
             toast("Make sure your phone isn't already connected to a Bluetooth device")
         }
@@ -184,9 +187,10 @@ class SelectDeviceActivity : AppCompatActivity() {
         }
     }
 
-    fun toast(message : String){
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
+    fun toast(message: String) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
+
     override fun onDestroy() {
         super.onDestroy()
         bluetoothAdapter!!.cancelDiscovery()
