@@ -16,7 +16,6 @@
     <string name="go">Go</string>
     <string name="new_hearing_test">Take new hearing test</string>
     <string name="last_hearing_test">Your last hearing test was taken on the %1$s</string>
-
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ble_not_supported">Bluetooth Low Energy is not supported</string>
     <string name="refresh">refresh</string>
@@ -59,14 +58,20 @@
     <string name="learn_about_audientes_companion">Learn about Audientes Companion</string>
     <string name="audientes_formaal">Audientes går ind for blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah  </string>
     <string name="appensskabere">Denne app er lavet af gruppe A2. Gruppen består af 6 medlemmer. Sersan Aslan, Theodor Guttesen, Joakim Levorsen, Tim Jensen, Ida Christensen og Cecilie Drejer</string>
+    <string name="about_audientes">At Audientes, our mission is to help the millions of people around the world who suffer from mild to severe hearing loss.</string>
+    <string name="app_creators">This app was created by Group A2:\n\nSersan Aslan\nTheodor Guttesen\nJoakim Levorsen\nTim Jensen\nIda Christensen\nCecilie Drejer</string>
     <string name="sign_out_text">Sign Out</string>
     <string name="sign_out_undertext">Sign out of audientes companion</string>
     <string name="play_test_audio">Play or stop test audio</string>
     <string name="play">Play</string>
     <string name="stop">Stop</string>
-    <string name="deleting_audiograms">Deleting audiogram and accompanying programs...</string>
+    <string name="deleting_audiograms">Deleting audiogram and accompanying programs…</string>
     <string name="languagelabel">Language</string>
     <string name="uk_english">UK English</string>
     <string name="use_uk_english_for_the_audientes_app">Use UK English for the Audientes App</string>
     <string name="uk_flag_image">UKFlagImage</string>
+    <string name="hearing_test_info">You will be asked to wear the hearable and sit in a quiet area free for disturbing sounds and other factors.\n\nEvery time you hear a tone you should press the test-button on the screen.\n\nBefore starting the hearing test, we check the surrounding noise level, if it is greater than expected value, we would suggest that the user find another quiet place.</string>
+    <string name="welcome_to_the_app">Welcome to the Audientes Companion App.</string>
+    <string name="please_turn_your_device_on">Please turn your device on.</string>
+    <string name="about_audientes_hearable">Your Audientes hearable will work optimally when you perform a hearing test using the built-in Pure Tone Audiometry, just like when visiting a hearing specialist.\n\nA series of sounds will be broadcast through the earphones. It will measure your ability to hear sounds at various pitches and volumes.</string>
 </resources>
