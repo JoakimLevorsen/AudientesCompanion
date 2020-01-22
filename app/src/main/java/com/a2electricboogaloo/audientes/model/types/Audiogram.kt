@@ -1,5 +1,6 @@
 package com.a2electricboogaloo.audientes.model.types
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.firebase.Auth
@@ -7,6 +8,10 @@ import com.a2electricboogaloo.audientes.model.firebase.ObjectKeys
 import com.google.firebase.firestore.*
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 typealias HearingChannelData = Array<Int>
@@ -114,14 +119,19 @@ class Audiogram {
         }
     }
 
+    fun getName() = SimpleDateFormat("dd-MMMM-yyyy").format(this.creationDate)
+
     private fun save() = this.documentReference.set(this.toFirebase())
 
-    fun delete(didFinish: (state: Boolean) -> Unit) {
+    fun equals(other: Audiogram) = this.documentReference.id == other.documentReference.id
+
+    fun delete(/*didFinish: (state: Boolean) -> Unit*/) {
         val task = this.documentReference.delete()
-        task.addOnSuccessListener { didFinish(true) }
-        task.addOnFailureListener { didFinish(false) }
+
         // This code was used when programs were tied to audiograms, this is no longer the case
-        /*val id = this.id
+        /*task.addOnSuccessListener { didFinish(true) }
+        task.addOnFailureListener { didFinish(false) }
+        val id = this.id
         val db = FirebaseFirestore.getInstance()
         val thisRef = this.documentReference
         GlobalScope.launch {

@@ -9,7 +9,10 @@ import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.a2electricboogaloo.audientes.R
+import com.a2electricboogaloo.audientes.model.types.Audiogram
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 
 class AudiogramListFragment : Fragment() {
@@ -30,11 +33,19 @@ class AudiogramListFragment : Fragment() {
         val button = root.findViewById<Button>(R.id.newTestButton)
         button?.setOnClickListener { startActivity(Intent(this.context, HearingTest::class.java)) }
 
-        /*val listView = root.findViewById<ListView>(R.id.audiogramList)
-        val intent = Intent(this.context, HearingTest::class.java)
-        listView?.setOnClickListener { startActivity(intent) }
+        val audiogramList = root.findViewById<RecyclerView>(R.id.audiogramList)
+        val context = this.context
+        val viewAdapter = AudiogramListAdapter()
 
-         */
+        Audiogram.getUserAudiograms().observe(this, Observer { audiograms ->
+            viewAdapter.setAudiogramsAndUpdate(audiograms)
+        })
+
+        audiogramList.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(context)
+            adapter = viewAdapter
+        }
 
         return root
     }
