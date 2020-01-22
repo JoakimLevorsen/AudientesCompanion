@@ -88,11 +88,11 @@ class SettingsFragment : Fragment() {
     }
 
     fun changesignInText(text: String?) {
-        signInText.setText(text)
+        signInText.text = text
     }
 
     fun changeSignInundertext(text: String?) {
-        SignInundertext.setText(text)
+        SignInundertext.text = text
     }
 
     fun getAuthProviders(): Boolean {
@@ -108,7 +108,6 @@ class SettingsFragment : Fragment() {
         } else {
             returnBoolean = false
         }
-        toast(returnBoolean.toString())
         return returnBoolean
     }
 
