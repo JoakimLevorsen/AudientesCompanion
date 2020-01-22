@@ -119,7 +119,7 @@ class Audiogram {
         }
     }
 
-    fun getName() = SimpleDateFormat("dd-MMMM-yyyy").format(this.creationDate)
+    fun getName() = SimpleDateFormat("dd MMMM yyyy").format(this.creationDate)
 
     private fun save() = this.documentReference.set(this.toFirebase())
 
