@@ -55,12 +55,14 @@ class HomeFragment : Fragment(), VolumeListener {
         VolumeObservable.getShared().addAsListener(this)
 
         val lastHearingTestText = root.findViewById<TextView>(R.id.lastHearingTest)
-        if (Audiogram.amountOfAudiograms() == null) {
-            lastHearingTestText.text = ""
-            lastHearingTestText.visibility = View.GONE
-        } else {
+        if (Audiogram.amountOfAudiograms() != null) {
+            
+
             lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date.toString())
             lastHearingTestText.visibility = View.VISIBLE
+        } else {
+            lastHearingTestText.text = ""
+            lastHearingTestText.visibility = View.GONE
         }
 
         val goButton = root.findViewById<Button>(R.id.goButton)

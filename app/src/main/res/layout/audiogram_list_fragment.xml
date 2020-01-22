@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--Loading dialog to be used if programs are connected to a specific audiogram and an
+        audiogram (and thus, accompaying programs) are deleted.
     <com.example.kloadingspin.KLoadingSpin
         android:id="@+id/loading_audiogram"
         android:layout_width="match_parent"
@@ -14,7 +16,7 @@
         app:text="@string/deleting_audiograms"
         app:secondarySpinnerColor="@color/primary"
         app:textColor="@color/gray6"
-        app:textSize="80" />
+        app:textSize="80" />-->
 
     <LinearLayout
         android:layout_width="0dp"
