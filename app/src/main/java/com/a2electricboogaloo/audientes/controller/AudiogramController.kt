@@ -7,7 +7,6 @@ import com.a2electricboogaloo.audientes.model.types.Program
 
 class AudiogramController {
     companion object {
-
         val sharedInstance = AudiogramController()
 
         fun selectAudiogram(audiogram: Audiogram?) {

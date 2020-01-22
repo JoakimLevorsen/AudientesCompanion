@@ -2,6 +2,7 @@ package com.a2electricboogaloo.audientes.model.types
 
 import android.content.Context
 import androidx.lifecycle.MutableLiveData
+import com.a2electricboogaloo.audientes.controller.AudiogramController
 import com.a2electricboogaloo.audientes.controller.ProgramController
 import com.a2electricboogaloo.audientes.model.firebase.Auth
 import com.a2electricboogaloo.audientes.model.firebase.ObjectKeys
@@ -41,9 +42,14 @@ class Audiogram {
                             throw exception
                         }
                         if (snapshot != null) {
+                            val audiograms = snapshot.documents.map { Audiogram(it) }
+                            // If no audiogram is active, set the newest
+                            if (AudiogramController.sharedInstance.getActiveAudiogram() == null && audiograms.size != 0) {
+                                val latests = audiograms.sortedByDescending { it.creationDate }.first()
+                                AudiogramController.selectAudiogram(latests)
+                            }
                             loaded = true
-                            userAudiograms.value =
-                                snapshot.documents.map { Audiogram(it) }
+                            userAudiograms.value = audiograms
                         }
                     }
             }
@@ -119,7 +125,7 @@ class Audiogram {
         }
     }
 
-    fun getName() = SimpleDateFormat("dd-MMMM-yyyy").format(this.creationDate)
+    fun getName() = SimpleDateFormat("dd MMMM yyyy").format(this.creationDate)
 
     private fun save() = this.documentReference.set(this.toFirebase())
 
