@@ -53,10 +53,10 @@ class SettingsFragment : Fragment() {
         deleteData = root.findViewById(R.id.delete)
         changeLanguage = root.findViewById(R.id.language)
         deleteData.setOnClickListener {
-            toast("Delete data is not supported")
+            toast("Deleting data not yet supported")
         }
         changeLanguage.setOnClickListener {
-            toast("Language is not supported")
+            toast("Other languages not yet supported")
             /*val intent = Intent(context, Language::class.java)
             startActivity(intent)*/
         }
