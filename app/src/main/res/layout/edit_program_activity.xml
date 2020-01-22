@@ -333,12 +333,16 @@
             android:id="@+id/leftButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:background="@color/primary"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="Left" />
 
         <Button
             android:id="@+id/rightButton"
             android:layout_width="120dp"
             android:layout_height="wrap_content"
+            android:background="@color/gray4"
+            android:foreground="?android:attr/selectableItemBackground"
             android:text="Right" />
 
         <Space
