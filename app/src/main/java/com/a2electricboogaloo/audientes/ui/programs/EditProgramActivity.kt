@@ -62,6 +62,9 @@ class EditProgramActivity: AppCompatActivity() {
             true
         }
 
+        leftButton.setBackgroundColor(selectedColor)
+        rightButton.setBackgroundColor(nonSelectedColor)
+
         leftButton.setOnClickListener {
             leftButton.setBackgroundColor(selectedColor)
             rightButton.setBackgroundColor(nonSelectedColor)
