@@ -64,7 +64,7 @@ class SettingsFragment : Fragment() {
             this.activity!!.finish()
         }
         changeLanguage.setOnClickListener {
-            toast("Language is not supported")
+            toast("Other languages not yet supported")
             /*val intent = Intent(context, Language::class.java)
             startActivity(intent)*/
         }
