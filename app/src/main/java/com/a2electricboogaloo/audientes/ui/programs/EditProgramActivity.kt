@@ -62,6 +62,11 @@ class EditProgramActivity: AppCompatActivity() {
             true
         }
 
+        deleteButton.setOnClickListener {
+            program.delete()
+            this.finish()
+        }
+
         leftButton.setBackgroundColor(selectedColor)
         rightButton.setBackgroundColor(nonSelectedColor)
 
