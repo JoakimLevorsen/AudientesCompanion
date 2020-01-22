@@ -21,14 +21,15 @@ class HearingTestCompleteFragment : Fragment() {
         // Inflate the layout for this fragment
         val root = inflater.inflate(R.layout.hearing_test_complete_fragment, container, false)
 
-        val seeResultsButton = root.findViewById<Button>(R.id.seeResultsButton)
+        // The "see results button" is currently not supported, as the emulation of the hearing test doesn't generate a graphic audiogram
+        /*val seeResultsButton = root.findViewById<Button>(R.id.seeResultsButton)
         seeResultsButton.setOnClickListener {
             activity!!
                 .supportFragmentManager
                 .beginTransaction()
-                .replace(R.id.hearing_test_activity_frame, AudiogramListFragment()) //TODO: Should redirect to specific audiogram - awaiting proper implementation
+                .replace(R.id.hearing_test_activity_frame, AudiogramListFragment())
                 .commit()
-        }
+        }*/
 
         val homeButton = root.findViewById<Button>(R.id.homeButton)
         homeButton.setOnClickListener {

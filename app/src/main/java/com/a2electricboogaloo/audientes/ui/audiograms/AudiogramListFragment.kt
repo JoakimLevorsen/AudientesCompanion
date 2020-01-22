@@ -31,8 +31,7 @@ class AudiogramListFragment : Fragment() {
             //textView.text = it
         })
         val button = root.findViewById<Button>(R.id.newTestButton)
-        val intent = Intent(this.context, HearingTest::class.java)
-        button?.setOnClickListener { startActivity(intent) }
+        button?.setOnClickListener { startActivity(Intent(this.context, HearingTest::class.java)) }
 
         val audiogramList = root.findViewById<RecyclerView>(R.id.audiogramList)
         val context = this.context

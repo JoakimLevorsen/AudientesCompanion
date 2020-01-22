@@ -58,8 +58,7 @@ class HomeFragment : Fragment(), VolumeListener {
         if (Audiogram.amountOfAudiograms() == null) {
             lastHearingTestText.text = ""
             lastHearingTestText.visibility = View.GONE
-        }
-        else {
+        } else {
             lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date.toString())
             lastHearingTestText.visibility = View.VISIBLE
         }
@@ -121,9 +120,9 @@ class HomeFragment : Fragment(), VolumeListener {
 
             override fun onStopTrackingTouch(seekBarOverall: SeekBar) {
                 val currentVolume = seekBarOverall.progress
-                val snackyText =
+                /*val snackyText =
                     Snackbar.make(view!!, "Volume is: $currentVolume", Snackbar.LENGTH_SHORT)
-                snackyText.show()
+                snackyText.show()*/
             }
         })
 
@@ -141,11 +140,11 @@ class HomeFragment : Fragment(), VolumeListener {
         val programAdapter = HomeProgramAdapter(this.context!!,{
             mediaPlayer?.audioSessionId ?: 0
         }, {
-            programList.setAdapter(null);
-            programList.setLayoutManager(null);
-            programList.setAdapter(it);
-            programList.setLayoutManager(viewManager);
-            it.notifyDataSetChanged();
+            programList.adapter = null
+            programList.layoutManager = null
+            programList.adapter = it
+            programList.layoutManager = viewManager
+            it.notifyDataSetChanged()
         })
 
         val lottie = root.findViewById<LottieAnimationView>(R.id.loading)
