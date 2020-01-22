@@ -27,7 +27,6 @@ import com.a2electricboogaloo.audientes.model.types.Audiogram
 import com.a2electricboogaloo.audientes.ui.programs.ProgramsActivity
 import com.a2electricboogaloo.audientes.ui.hearing.HearingTest
 import com.airbnb.lottie.LottieAnimationView
-import com.google.android.material.snackbar.Snackbar
 
 class HomeFragment : Fragment(), VolumeListener {
 
@@ -54,16 +53,7 @@ class HomeFragment : Fragment(), VolumeListener {
 
         VolumeObservable.getShared().addAsListener(this)
 
-        val lastHearingTestText = root.findViewById<TextView>(R.id.lastHearingTest)
-        if (Audiogram.amountOfAudiograms() != null) {
-            
-
-            lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date.toString())
-            lastHearingTestText.visibility = View.VISIBLE
-        } else {
-            lastHearingTestText.text = ""
-            lastHearingTestText.visibility = View.GONE
-        }
+        updateTestTakenText()
 
         val goButton = root.findViewById<Button>(R.id.goButton)
         goButton.setOnClickListener {
@@ -167,15 +157,7 @@ class HomeFragment : Fragment(), VolumeListener {
 
     override fun onResume() {
         super.onResume()
-        val lastHearingTestText = this.view!!.findViewById<TextView>(R.id.lastHearingTest)
-        if (Audiogram.amountOfAudiograms() == null) {
-            lastHearingTestText.text = ""
-            lastHearingTestText.visibility = View.GONE
-        }
-        else {
-            lastHearingTestText.text = resources.getQuantityString(R.plurals.last_hearing_test, Audiogram.amountOfAudiograms()!!, Audiogram.newestAudiogram()?.date.toString())
-            lastHearingTestText.visibility = View.VISIBLE
-        }
+        updateTestTakenText()
     }
 
     override fun didChange() {
@@ -200,5 +182,26 @@ class HomeFragment : Fragment(), VolumeListener {
         mediaPlayerPrepared = false
         testAudioPlaying = false
         ProgramController.removeEqualizer()
+    }
+
+    private fun updateTestTakenText() {
+        val lastHearingTestText = this.view?.findViewById<TextView>(R.id.lastHearingTest)
+        val audiogramName = Audiogram.newestAudiogram()?.getName() ?: ""
+        println("Audiograms: ${Audiogram.amountOfAudiograms()}")
+
+        when (Audiogram.amountOfAudiograms()) {
+            null -> {
+                lastHearingTestText?.text = ""
+                lastHearingTestText?.visibility = View.GONE
+            }
+            0 -> {
+                lastHearingTestText?.text = getString(R.string.last_hearing_test_zero)
+                lastHearingTestText?.visibility = View.VISIBLE
+            }
+            else -> {
+                lastHearingTestText?.text = getString(R.string.last_hearing_test_other, audiogramName)
+                lastHearingTestText?.visibility = View.VISIBLE
+            }
+        }
     }
 }

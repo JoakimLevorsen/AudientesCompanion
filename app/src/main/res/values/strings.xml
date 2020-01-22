@@ -15,10 +15,8 @@
     <string name="letter_r">R</string>
     <string name="go">Go</string>
     <string name="new_hearing_test">Take new hearing test</string>
-    <plurals name="last_hearing_test">
-        <item quantity="zero">You have not taken a hearing test yet %1$s</item>
-        <item quantity="other">Your last hearing test was taken on the %1$s</item>
-    </plurals>
+    <string name="last_hearing_test_zero">You have not taken a hearing test yet</string>
+    <string name="last_hearing_test_other">Your last hearing test was taken on the %1$s</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="ble_not_supported">Bluetooth Low Energy is not supported</string>
     <string name="refresh">refresh</string>
