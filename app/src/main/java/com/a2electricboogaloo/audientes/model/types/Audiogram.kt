@@ -20,6 +20,11 @@ class Audiogram {
         fun hasLoaded() = loaded
 
         fun getUserAudiograms(): MutableLiveData<List<Audiogram>> {
+            Auth.signInAnonymously()
+            return userAudiograms
+        }
+
+        fun addFirebaseListener() {
             if (!hasAddedListener) {
                 FirebaseFirestore
                     .getInstance()
@@ -37,7 +42,6 @@ class Audiogram {
                         }
                     }
             }
-            return userAudiograms
         }
 
         fun newestAudiogram(): Audiogram? {

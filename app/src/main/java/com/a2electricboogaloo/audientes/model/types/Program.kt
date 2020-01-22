@@ -17,6 +17,11 @@ class Program {
         fun hasLoaded() = loaded
 
         fun getUserPrograms(): MutableLiveData<List<Program>> {
+            Auth.signInAnonymously()
+            return userPrograms
+        }
+
+        fun addFirebaseListener() {
             if (!hasAddedListener) {
                 val uid = Auth.signedIn.value?.uid
                 if (uid == null) {
@@ -38,7 +43,6 @@ class Program {
                         }
                     }
             }
-            return userPrograms
         }
     }
 

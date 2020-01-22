@@ -1,6 +1,8 @@
 package com.a2electricboogaloo.audientes.model.firebase
 
 import androidx.lifecycle.MutableLiveData
+import com.a2electricboogaloo.audientes.model.types.Audiogram
+import com.a2electricboogaloo.audientes.model.types.Program
 import com.google.firebase.auth.FirebaseAuth
 
 class Auth {
@@ -8,7 +10,13 @@ class Auth {
         fun signInAnonymously() {
             FirebaseAuth
                 .getInstance()
-                .addAuthStateListener { signedIn.value = it }
+                .addAuthStateListener {
+                    signedIn.value = it
+                    if (it.currentUser != null) {
+                        Audiogram.addFirebaseListener()
+                        Program.addFirebaseListener()
+                    }
+                }
             if (FirebaseAuth.getInstance().currentUser == null) {
                 FirebaseAuth
                     .getInstance()
