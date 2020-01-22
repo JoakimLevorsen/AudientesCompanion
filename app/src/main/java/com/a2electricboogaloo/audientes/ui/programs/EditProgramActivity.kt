@@ -1,6 +1,7 @@
 package com.a2electricboogaloo.audientes.ui.programs
 
 import android.os.Bundle
+import android.view.MenuItem
 import android.widget.EditText
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
@@ -18,9 +19,15 @@ class EditProgramActivity: AppCompatActivity() {
     private var nonSelectedColor = 0
     private lateinit var sliders: List<VerticalSeekBar>
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        this.finish()
+        return true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.edit_program_activity)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         selectedColor = getColor(R.color.primary)
         nonSelectedColor = getColor(R.color.gray4)
