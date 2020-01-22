@@ -33,6 +33,13 @@ class HearingTest : AppCompatActivity() {
         setContentView(R.layout.hearing_test_activity)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
+
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.RECORD_AUDIO),
+            12345
+        )
+
         checkPermission()
 
         startButton.setOnClickListener {
@@ -71,6 +78,7 @@ class HearingTest : AppCompatActivity() {
        audio!!.maxAmplitude
    }
 
+    @InternalCoroutinesApi
     fun getSound(){
         var maxAmplitude = audio!!.maxAmplitude
 
@@ -83,7 +91,7 @@ class HearingTest : AppCompatActivity() {
                 builder.setMessage("Find a more quite place to take the hearing test")
                 builder.setPositiveButton("Okay"){
                     dialog: DialogInterface?, which: Int ->
-                    Toast.makeText(this, "go back to Audiogram page, and try again", Toast.LENGTH_LONG).show()
+                    finish()
                 }
 
                 val alertDialog: AlertDialog = builder.create()
@@ -95,6 +103,7 @@ class HearingTest : AppCompatActivity() {
         audio?.release()
     }
 
+    @InternalCoroutinesApi
     fun startHearingTest(){
         supportFragmentManager
             .beginTransaction()
