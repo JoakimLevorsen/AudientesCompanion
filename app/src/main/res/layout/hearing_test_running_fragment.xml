@@ -9,58 +9,72 @@
     android:id="@+id/hearing_test_running_frag">
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/activity_outer_horizontal_margin"
-        android:layout_marginTop="@dimen/activity_outer_vertical_margin"
-        android:layout_marginEnd="@dimen/activity_outer_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_outer_vertical_margin">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
-        <TextView
-            android:id="@+id/infoText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:layout_weight="1"
-            android:text="@string/hearing_test_how_to"
-            android:textAlignment="center"
-            android:textColor="@color/gray6"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/activity_outer_horizontal_margin"
+            android:layout_marginTop="@dimen/activity_outer_vertical_margin"
+            android:layout_marginEnd="@dimen/activity_outer_horizontal_margin"
+            android:layout_marginBottom="@dimen/activity_outer_vertical_margin">
 
-        <Button
-            android:id="@+id/confirmButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="@drawable/ic_amazing_round_confirm"
-            android:foreground="?android:attr/selectableItemBackgroundBorderless"
-            android:theme="@style/AppTheme.Ripple"
-            app:layout_constraintBottom_toTopOf="@+id/cancelButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/infoText" />
+            <TextView
+                android:id="@+id/infoText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_weight="1"
+                android:text="@string/hearing_test_how_to"
+                android:textAlignment="center"
+                android:textColor="@color/gray6"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/cancelButton"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginBottom="50dp"
-            android:layout_weight="1"
-            android:background="@color/primary"
-            android:foreground="?android:attr/selectableItemBackground"
-            android:text="@android:string/cancel"
-            android:textColor="@color/gray1"
-            android:textSize="18sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <Button
+                android:id="@+id/confirmButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_weight="1"
+                android:background="@drawable/ic_amazing_round_confirm"
+                android:foreground="?android:attr/selectableItemBackgroundBorderless"
+                android:theme="@style/AppTheme.Ripple"
+                app:layout_constraintBottom_toTopOf="@+id/cancelButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/infoText" />
+
+            <Button
+                android:id="@+id/cancelButton"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="100dp"
+                android:layout_marginBottom="50dp"
+                android:layout_weight="1"
+                android:background="@color/primary"
+                android:foreground="?android:attr/selectableItemBackground"
+                android:text="@android:string/cancel"
+                android:textColor="@color/gray1"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/confirmButton" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </FrameLayout>
 
