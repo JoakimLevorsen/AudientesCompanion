@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -37,7 +38,7 @@ class HearingTest : AppCompatActivity() {
                arrayOf(Manifest.permission.RECORD_AUDIO),
                12345
            )
-           checkEnvironmentNoise()
+          checkEnvironmentNoise()
 
        } else {
         checkEnvironmentNoise()
@@ -52,38 +53,31 @@ class HearingTest : AppCompatActivity() {
        audio?.setOutputFile("/dev/null")
        audio?.prepare()
        audio?.start()
+       audio!!.maxAmplitude
    }
 
     fun getSound(){
-        audio?.maxAmplitude
-        val noiseLevel: Int? = audio?.maxAmplitude
+        var maxAmplitude = audio!!.maxAmplitude
 
-
-        if (noiseLevel != null && noiseLevel < 100){
+        if (maxAmplitude < 500){
             startHearingTest()
-            println("new loud is:  $noiseLevel and: " + audio?.maxAmplitude)
-
+            
             } else {
                 val builder = AlertDialog.Builder(this)
                 builder.setTitle("Too much background noise!")
                 builder.setMessage("Find a more quite place to take the hearing test")
                 builder.setPositiveButton("Okay"){
                     dialog: DialogInterface?, which: Int ->
+                    Toast.makeText(this, "go back to Audiogram page, and try again", Toast.LENGTH_LONG).show()
                 }
 
                 val alertDialog: AlertDialog = builder.create()
                 alertDialog.setCancelable(false)
                 alertDialog.show()
-
-                println("too loud $noiseLevel" + " sound is:  " + audio?.maxAmplitude)
             }
-
-       while(audio?.maxAmplitude != null){
-            println("input sound: $noiseLevel  and the other: " + audio?.maxAmplitude)
-        }
-
-
-
+        audio?.stop()
+        audio?.reset()
+        audio?.release()
     }
 
     fun startHearingTest(){
@@ -92,6 +86,4 @@ class HearingTest : AppCompatActivity() {
         transaction.add(R.id.fragmentindhold, fragment)
         transaction.commit()
     }
-
-
 }
