@@ -45,36 +45,42 @@ class ProgramController {
 
         fun generatePrograms(audiogram: Audiogram) {
             val audiID = audiogram.id
+            // We check if the auto programs exist before we make new ones
+
             // We create two programs parabola programs where mids are higher or lower than the rest.
-            Program(
-                "Auto 1",
-                0,
-                arrayOf(-1000, 0, 1000, 0, -1000),
-                arrayOf(-1000, 0, 1000, 0, -1000),
-                audiID
-            )
-            Program(
-                "Auto 2",
-                1,
-                arrayOf(1000, 0, -1000, 0, 1000),
-                arrayOf(1000, 0, -1000, 0, 1000),
-                audiID
-            )
+            if (Program.getUserPrograms().value?.find{it.getName() == "Auto 1"} == null)
+                Program(
+                    "Auto 1",
+                    0,
+                    arrayOf(-1000, 0, 1000, 0, -1000),
+                    arrayOf(-1000, 0, 1000, 0, -1000),
+                    audiID
+                )
+            if (Program.getUserPrograms().value?.find{it.getName() == "Auto 2"} == null)
+                Program(
+                    "Auto 2",
+                    1,
+                    arrayOf(1000, 0, -1000, 0, 1000),
+                    arrayOf(1000, 0, -1000, 0, 1000),
+                    audiID
+                )
             // Then we make one with a higher bass, and one with a higher treble
-            Program(
-                "Auto 3",
-                2,
-                arrayOf(-1000, -500, 0, 500, 1000),
-                arrayOf(-1000, -500, 0, 500, 1000),
-                audiID
-            )
-            Program(
-                "Auto 4",
-                3,
-                arrayOf(1000, 500, 0, 0, -1000),
-                arrayOf(-1000, 0, 1000, 0, -1000),
-                audiID
-            )
+            if (Program.getUserPrograms().value?.find{it.getName() == "Auto 3"} == null)
+                Program(
+                    "Auto 3",
+                    2,
+                    arrayOf(-1000, -500, 0, 500, 1000),
+                    arrayOf(-1000, -500, 0, 500, 1000),
+                    audiID
+                )
+            if (Program.getUserPrograms().value?.find{it.getName() == "Auto 4"} == null)
+                Program(
+                    "Auto 4",
+                    3,
+                    arrayOf(1000, 500, 0, 0, -1000),
+                    arrayOf(-1000, 0, 1000, 0, -1000),
+                    audiID
+                )
         }
 
         private fun splitProgramsToLevel(program: HearingChannelData, levels: Int): List<Int> {

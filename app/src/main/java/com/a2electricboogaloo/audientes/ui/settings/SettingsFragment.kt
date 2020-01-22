@@ -14,7 +14,9 @@ import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.ui.login.SignInActivity
 import com.a2electricboogaloo.audientes.ui.settings.aboutUs.AboutUs
 import com.a2electricboogaloo.audientes.ui.settings.language.Language
+import com.a2electricboogaloo.audientes.ui.welcome.WelcomeActivity
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 
 class SettingsFragment : Fragment() {
@@ -54,6 +56,12 @@ class SettingsFragment : Fragment() {
         changeLanguage = root.findViewById(R.id.language)
         deleteData.setOnClickListener {
             toast("Delete data is not supported")
+            FirebaseFirestore.getInstance().clearPersistence()
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(this.context, WelcomeActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            startActivity(intent)
+            this.activity!!.finish()
         }
         changeLanguage.setOnClickListener {
             toast("Language is not supported")
