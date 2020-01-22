@@ -2,6 +2,7 @@ package com.a2electricboogaloo.audientes.ui.programs
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,9 +17,15 @@ class ProgramsActivity : AppCompatActivity() {
     private lateinit var viewManager: RecyclerView.LayoutManager
     private lateinit var viewAdapter: EditProgramsAdapter
 
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
+        this.finish()
+        return true
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.programs_activity)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         viewManager = LinearLayoutManager(this)
         viewAdapter = EditProgramsAdapter(this)

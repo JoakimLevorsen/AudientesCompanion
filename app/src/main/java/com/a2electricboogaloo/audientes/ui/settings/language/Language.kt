@@ -13,8 +13,6 @@ class Language : Activity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.language_activity)
 
-        // ID
-        uk_english = findViewById(R.id.uk_flag)
 
     }
 
