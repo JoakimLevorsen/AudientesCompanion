@@ -82,7 +82,7 @@ class HearingTest : AppCompatActivity() {
     fun getSound(){
         var maxAmplitude = audio!!.maxAmplitude
 
-        if (maxAmplitude < 800){
+        if (maxAmplitude < 10000000){
             startHearingTest()
 
             } else {
