@@ -1,6 +1,8 @@
 package com.a2electricboogaloo.audientes.ui.programs
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.MenuItem
 import android.widget.EditText
 import android.widget.SeekBar
@@ -64,10 +66,19 @@ class EditProgramActivity: AppCompatActivity() {
             })
         }
 
-        programName.setOnKeyListener { v, keyCode, event ->
-            program.setName(programName.text.toString())
-            true
-        }
+        programName.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                program.setName(programName.text.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+        })
 
         deleteButton.setOnClickListener {
             program.delete()
