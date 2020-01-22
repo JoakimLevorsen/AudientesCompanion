@@ -56,8 +56,9 @@ class SettingsFragment : Fragment() {
             toast("Delete data is not supported")
         }
         changeLanguage.setOnClickListener {
-            val intent = Intent(context, Language::class.java)
-            startActivity(intent)
+            toast("Language is not supported")
+            /*val intent = Intent(context, Language::class.java)
+            startActivity(intent)*/
         }
         if (getAuthProviders()) {
             signInText.setText(R.string.sign_out_text)
