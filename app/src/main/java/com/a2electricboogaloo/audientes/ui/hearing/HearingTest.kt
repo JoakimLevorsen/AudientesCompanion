@@ -1,16 +1,13 @@
 package com.a2electricboogaloo.audientes.ui.hearing
 
-import android.Manifest
+
 import android.content.DialogInterface
-import android.content.pm.PackageManager
 import android.media.MediaRecorder
 import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import kotlinx.android.synthetic.main.hearing_test_activity.*
@@ -57,28 +54,27 @@ class HearingTest : AppCompatActivity() {
 
     @InternalCoroutinesApi
     fun getSoundLevel(){
-        var maxAmplitude = audio!!.maxAmplitude
+        val maxAmplitude = audio!!.maxAmplitude
         println(maxAmplitude)
 
         if (maxAmplitude < 4000){
             startHearingTest()
 
-            } else {
-                val builder = AlertDialog.Builder(this)
-                builder.setTitle("Too much background noise!")
-                builder.setMessage("Find a more quite place to take the hearing test")
-                builder.setPositiveButton("Okay"){
-                    dialog: DialogInterface?, which: Int ->
-                    finish()
-                }
-
-                val alertDialog: AlertDialog = builder.create()
-                alertDialog.setCancelable(false)
-                alertDialog.show()
+        } else {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("Too much background noise!")
+            builder.setMessage("Find a more quite place to take the hearing test")
+            builder.setPositiveButton("Okay"){ dialog: DialogInterface?, which: Int ->
+                finish()
+                audio?.stop()
+                audio?.reset()
+                audio?.release()
             }
-        audio?.stop()
-        audio?.reset()
-        audio?.release()
+
+            val alertDialog: AlertDialog = builder.create()
+            alertDialog.setCancelable(false)
+            alertDialog.show()
+        }
     }
 
     @InternalCoroutinesApi
@@ -87,5 +83,8 @@ class HearingTest : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.hearing_test_activity_frame, HearingTestRunningFragment())
             .commit()
+        audio?.stop()
+        audio?.reset()
+        audio?.release()
     }
 }
