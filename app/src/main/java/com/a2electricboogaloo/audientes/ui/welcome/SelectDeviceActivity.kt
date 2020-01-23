@@ -162,7 +162,7 @@ class SelectDeviceActivity : AppCompatActivity() {
         val address: String = device.address
         device = bluetoothAdapter!!.getRemoteDevice(address)
         if (!device.createBond()) {
-            toast("connection didn't succeed. \n Make sure your phone isn't already connected to a Bluetooth device")
+            toast("Connection didn't succeed. \nMake sure your phone isn't already connected to a Bluetooth device")
         }
         val intent = Intent(this, MainActivity::class.java)
         intent.putExtra(EXTRA_ADDRESS, address)
@@ -187,7 +187,7 @@ class SelectDeviceActivity : AppCompatActivity() {
     }
 
     fun toast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
     override fun onDestroy() {

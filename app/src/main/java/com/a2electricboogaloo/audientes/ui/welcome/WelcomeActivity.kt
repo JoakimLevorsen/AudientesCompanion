@@ -1,10 +1,12 @@
 package com.a2electricboogaloo.audientes.ui.welcome
 
+import android.Manifest
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.model.firebase.Auth
@@ -21,6 +23,12 @@ class WelcomeActivity : AppCompatActivity() {
         setContentView(R.layout.welcome_activity)
 
         Auth.signInAnonymously()
+
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(Manifest.permission.RECORD_AUDIO),
+            12345
+        )
 
         nextButton = findViewById(R.id.button11)
         titleText = findViewById(R.id.titleView)

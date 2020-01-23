@@ -33,39 +33,16 @@ class HearingTest : AppCompatActivity() {
         setContentView(R.layout.hearing_test_activity)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-
-        ActivityCompat.requestPermissions(
-            this,
-            arrayOf(Manifest.permission.RECORD_AUDIO),
-            12345
-        )
-
-        checkPermission()
+        checkEnvironmentNoise()
 
         startButton.setOnClickListener {
-            getSound()
+            getSoundLevel()
         }
         cancelButton2.setOnClickListener {
             startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
-
-   fun checkPermission() {
-       if (ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO)
-           != PackageManager.PERMISSION_GRANTED) {
-
-           ActivityCompat.requestPermissions(
-               this,
-               arrayOf(Manifest.permission.RECORD_AUDIO),
-               12345
-           )
-          checkEnvironmentNoise()
-
-       } else {
-        checkEnvironmentNoise()
-       }
-   }
 
    fun checkEnvironmentNoise() {
        audio = MediaRecorder()
@@ -79,10 +56,11 @@ class HearingTest : AppCompatActivity() {
    }
 
     @InternalCoroutinesApi
-    fun getSound(){
+    fun getSoundLevel(){
         var maxAmplitude = audio!!.maxAmplitude
+        println(maxAmplitude)
 
-        if (maxAmplitude < 10000000){
+        if (maxAmplitude < 4000){
             startHearingTest()
 
             } else {
