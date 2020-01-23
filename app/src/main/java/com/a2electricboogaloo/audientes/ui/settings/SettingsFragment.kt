@@ -55,7 +55,7 @@ class SettingsFragment : Fragment() {
         deleteData = root.findViewById(R.id.delete)
         changeLanguage = root.findViewById(R.id.language)
         deleteData.setOnClickListener {
-            toast("Delete data is not supported")
+            toast("App data has been deleted")
             FirebaseFirestore.getInstance().clearPersistence()
             FirebaseAuth.getInstance().signOut()
             val intent = Intent(this.context, WelcomeActivity::class.java)
