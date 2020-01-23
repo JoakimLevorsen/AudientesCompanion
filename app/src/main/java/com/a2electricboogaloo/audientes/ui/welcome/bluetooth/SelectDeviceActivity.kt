@@ -1,4 +1,4 @@
-package com.a2electricboogaloo.audientes.ui.welcome
+package com.a2electricboogaloo.audientes.ui.welcome.bluetooth
 
 import android.Manifest
 import android.annotation.SuppressLint
@@ -40,7 +40,9 @@ class SelectDeviceActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setGlobalInstance(this)
+        setGlobalInstance(
+            this
+        )
         setContentView(R.layout.select_device_activity)
         run()
         button_devicelist.setOnClickListener { discoverDevices() }
@@ -144,7 +146,11 @@ class SelectDeviceActivity : AppCompatActivity() {
     }
 
     private fun makeList() {
-        adapter = DeviceListAdapter(convertList(btdevicelist), applicationContext)
+        adapter =
+            DeviceListAdapter(
+                convertList(btdevicelist),
+                applicationContext
+            )
         val layoutManager = LinearLayoutManager(applicationContext)
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView?.layoutManager = layoutManager

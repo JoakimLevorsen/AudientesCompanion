@@ -7,9 +7,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import com.a2electricboogaloo.audientes.MainActivity
 import com.a2electricboogaloo.audientes.R
 import com.a2electricboogaloo.audientes.model.firebase.Auth
+import com.a2electricboogaloo.audientes.ui.welcome.bluetooth.SelectDeviceActivity
 
 class WelcomeActivity : AppCompatActivity() {
     private var didStartActivation = false

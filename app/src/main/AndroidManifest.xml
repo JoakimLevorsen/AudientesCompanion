@@ -46,7 +46,7 @@
             android:name=".ui.login.SignInActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.welcome.SelectDeviceActivity"
+            android:name=".ui.welcome.bluetooth.SelectDeviceActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"

@@ -1,4 +1,4 @@
-package com.a2electricboogaloo.audientes.ui.welcome
+package com.a2electricboogaloo.audientes.ui.welcome.bluetooth
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -34,7 +34,9 @@ class DeviceListAdapter(private val foundDeviceList: ArrayList<FoundDevice>, var
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.devicelist, parent, false)
-        return ListeViewHolder(view)
+        return ListeViewHolder(
+            view
+        )
     }
 
     override fun onBindViewHolder(holder: ListeViewHolder, position: Int) {
@@ -44,7 +46,8 @@ class DeviceListAdapter(private val foundDeviceList: ArrayList<FoundDevice>, var
 
         holder.name.text = "Device: " + name
 
-        holder.setOnListItemClickListener(object : ListItemClickListener {
+        holder.setOnListItemClickListener(object :
+            ListItemClickListener {
             override fun onListItemClickListener(view: View, pos: Int) {
                 SelectDeviceActivity.instance!!.connect(pos)
             }
