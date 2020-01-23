@@ -1,9 +1,6 @@
 package com.a2electricboogaloo.audientes.controller
 
-import android.media.audiofx.Equalizer
 import com.a2electricboogaloo.audientes.model.types.Audiogram
-import com.a2electricboogaloo.audientes.model.types.HearingChannelData
-import com.a2electricboogaloo.audientes.model.types.Program
 
 class AudiogramController {
     companion object {

@@ -1,4 +1,4 @@
-package com.a2electricboogaloo.audientes.ui.welcome
+package com.a2electricboogaloo.audientes.ui.welcome.bluetooth
 
 import android.view.View
 

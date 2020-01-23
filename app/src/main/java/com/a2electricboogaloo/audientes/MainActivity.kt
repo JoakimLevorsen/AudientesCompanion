@@ -9,9 +9,8 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.a2electricboogaloo.audientes.controller.BluetoothController
-import com.a2electricboogaloo.audientes.model.firebase.Auth
 import com.a2electricboogaloo.audientes.services.VolumeService
-import com.a2electricboogaloo.audientes.ui.welcome.SelectDeviceActivity
+import com.a2electricboogaloo.audientes.ui.welcome.bluetooth.SelectDeviceActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
