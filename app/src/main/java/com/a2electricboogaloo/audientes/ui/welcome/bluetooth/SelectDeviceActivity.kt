@@ -50,6 +50,12 @@ class SelectDeviceActivity : AppCompatActivity() {
 
     private fun run() {
         isBluetoothSupported()
+        if (bluetoothAdapter == null) { // Undgå crash hvis der ikke er BT på enheden
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+            return
+        }
         enableBluetooth()
         registerBroadcast()
         addBondedDevices()
@@ -198,6 +204,7 @@ class SelectDeviceActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         super.onDestroy()
+        if (bluetoothAdapter==null) return // undgå crash hvis enhed ikke har BT
         bluetoothAdapter!!.cancelDiscovery()
         unregisterReceiver(receiver)
     }
